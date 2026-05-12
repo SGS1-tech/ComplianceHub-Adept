@@ -1018,7 +1018,106 @@ header {
   .sku-summary-bar > div { gap: 12px; }
   .summary-box .num { font-size: 18px; }
   .lang-toggle { margin-right: 0; }
+  .header-cta .btn-primary { display: none; }
+  .hero-tools { display: grid; grid-template-columns: 1fr 1fr; }
+  .hero-tool { justify-content: flex-start; }
 }
+
+/* ── MOBILE HAMBURGER BUTTON ── */
+.mobile-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: 7px;
+  padding: 6px 8px;
+  cursor: pointer;
+  color: var(--forest);
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.mobile-menu-btn:hover { background: var(--sky); }
+.mobile-menu-btn.open { background: var(--sky); border-color: var(--sage); }
+@media (max-width: 900px) { .mobile-menu-btn { display: flex; } }
+
+/* ── MOBILE NAV DRAWER ── */
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  top: 64px; left: 0; right: 0;
+  background: var(--white);
+  border-bottom: 2px solid var(--border);
+  box-shadow: 0 8px 32px rgba(15,26,15,0.14);
+  padding: 10px 14px 16px;
+  z-index: 99;
+  gap: 3px;
+}
+.mobile-nav.open { display: flex; animation: slideDown 0.18s ease both; }
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.mob-nav-btn {
+  width: 100%;
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--forest);
+  background: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.mob-nav-btn:hover { background: var(--sky); }
+.mob-nav-btn.active { background: var(--forest); color: white; font-weight: 600; }
+.mob-nav-divider { height: 1px; background: var(--border); margin: 6px 0; }
+.mob-nav-register {
+  width: 100%;
+  padding: 13px 16px;
+  background: var(--forest);
+  color: var(--amber);
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 2px;
+  transition: background 0.15s;
+}
+.mob-nav-register:hover { background: var(--moss); }
+.mob-nav-overlay {
+  display: none;
+  position: fixed;
+  top: 64px; left: 0; right: 0; bottom: 0;
+  z-index: 98;
+  background: rgba(0,0,0,0.2);
+}
+.mob-nav-overlay.open { display: block; }
+@media (max-width: 600px) {
+  .mobile-nav { top: 56px; }
+  .mob-nav-overlay { top: 56px; }
+}
+
+/* ── TAB BAR SCROLL HINT ── */
+.tabs-wrap {
+  position: relative;
+}
+.tabs-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 48px; height: 100%;
+  background: linear-gradient(to left, var(--cream) 0%, transparent 100%);
+  pointer-events: none;
+  border-radius: 0 var(--r) var(--r) 0;
+  display: none;
+}
+@media (max-width: 900px) { .tabs-wrap::after { display: block; } }
 
 /* ── LANG TOGGLE (header inline) ── */
 .lang-toggle {
@@ -1112,6 +1211,9 @@ header {
     <button class="hn" onclick="switchTab('cert', this)" data-i18n="nav_cert">Chứng chỉ</button>
   </div>
   <div class="header-cta">
+    <button class="mobile-menu-btn" id="mob-menu-btn" onclick="toggleMobileNav()" aria-label="Menu">
+      <svg width="20" height="16" viewBox="0 0 20 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="0" y1="2" x2="20" y2="2"/><line x1="0" y1="8" x2="20" y2="8"/><line x1="0" y1="14" x2="20" y2="14"/></svg>
+    </button>
     <div class="lang-toggle">
       <button id="lang-vi" class="active" onclick="setLang('vi')">VI</button>
       <button id="lang-en" onclick="setLang('en')">EN</button>
@@ -1119,6 +1221,20 @@ header {
     <button class="btn-primary" onclick="openModal()" data-i18n="cta_register">Đăng ký miễn phí →</button>
   </div>
 </header>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="mob-nav-overlay" id="mob-nav-overlay" onclick="closeMobileNav()"></div>
+
+<!-- MOBILE NAV DRAWER -->
+<nav class="mobile-nav" id="mobile-nav">
+  <button class="mob-nav-btn active" data-tab="hs" onclick="switchTab('hs',null)" data-i18n="nav_hs">HS Code</button>
+  <button class="mob-nav-btn" data-tab="cfia" onclick="switchTab('cfia',null)" data-i18n="nav_cfia">Checklist CFIA</button>
+  <button class="mob-nav-btn" data-tab="allergen" onclick="switchTab('allergen',null)" data-i18n="nav_allergen">Khai báo Allergen</button>
+  <button class="mob-nav-btn" data-tab="label" onclick="switchTab('label',null)" data-i18n="nav_label">Nhãn EN/FR</button>
+  <button class="mob-nav-btn" data-tab="cert" onclick="switchTab('cert',null)" data-i18n="nav_cert">Chứng chỉ</button>
+  <div class="mob-nav-divider"></div>
+  <button class="mob-nav-register" onclick="openModal();closeMobileNav()" data-i18n="cta_register">Đăng ký miễn phí →</button>
+</nav>
 
 <!-- HERO -->
 <div class="hero">
@@ -1158,6 +1274,7 @@ header {
 <div class="shell">
 
   <!-- TABS -->
+  <div class="tabs-wrap">
   <div class="tool-tabs">
     <button class="tab-btn active" id="tab-hs" onclick="switchTab('hs', this)">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
@@ -1179,6 +1296,7 @@ header {
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
       <span data-i18n="tab_cert_full">Chứng chỉ &amp; Trust Score</span>
     </button>
+  </div>
   </div>
 
   <!-- ══════════════════════════════════════════════════════════ -->
@@ -1392,6 +1510,7 @@ header {
 
           <div class="r-name" id="hs-desc-out" style="margin-bottom:16px;">—</div>
 
+          <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
           <table class="r-table">
             <thead>
               <tr>
@@ -1403,6 +1522,7 @@ header {
             </thead>
             <tbody id="hs-table-body"></tbody>
           </table>
+          </div>
 
           <!-- CPTPP Note box -->
           <div style="margin-top:14px;padding:13px 16px;background:rgba(61,122,82,0.07);border:1px solid rgba(61,122,82,0.18);border-radius:8px;overflow:hidden;">
@@ -1930,6 +2050,7 @@ header {
         </div>
       </div>
       <div class="card-body">
+        <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
         <table class="r-table">
           <thead>
             <tr>
@@ -1948,6 +2069,7 @@ header {
             <tr><td><strong>SA8000</strong></td><td>ESG-focused buyers</td><td><span class="tag tag-gray">Nice to have</span></td><td data-i18n="cert_sa8000_note">Tăng uy tín, không bắt buộc</td></tr>
           </tbody>
         </table>
+        </div>
       </div>
     </div>
   </div>
@@ -2041,17 +2163,38 @@ const state = {
 // TAB SWITCHING
 // ══════════════════════════════════════════
 function switchTab(id, btnEl) {
+  closeMobileNav();
+
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.hn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.mob-nav-btn').forEach(b => b.classList.remove('active'));
 
   document.getElementById('panel-' + id).classList.add('active');
   const tb = document.getElementById('tab-' + id);
   if (tb) tb.classList.add('active');
   const hnBtn = document.querySelector(`.hn[data-i18n="nav_${id}"]`);
   if (hnBtn) hnBtn.classList.add('active');
+  const mobBtn = document.querySelector(`.mob-nav-btn[data-tab="${id}"]`);
+  if (mobBtn) mobBtn.classList.add('active');
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleMobileNav() {
+  const nav = document.getElementById('mobile-nav');
+  const overlay = document.getElementById('mob-nav-overlay');
+  const btn = document.getElementById('mob-menu-btn');
+  const isOpen = nav.classList.contains('open');
+  nav.classList.toggle('open', !isOpen);
+  overlay.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+}
+
+function closeMobileNav() {
+  document.getElementById('mobile-nav').classList.remove('open');
+  document.getElementById('mob-nav-overlay').classList.remove('open');
+  document.getElementById('mob-menu-btn').classList.remove('open');
 }
 
 // ══════════════════════════════════════════
