@@ -9,26 +9,41 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --ink:     #0f1a0f;
-  --forest:  #1a3320;
-  --moss:    #2a5235;
-  --sage:    #3d7a52;
-  --mint:    #6ab389;
-  --cream:   #f7f3ec;
-  --parch:   #ede6d6;
-  --gold:    #c9941a;
-  --amber:   #e6a820;
-  --rust:    #c4481f;
-  --sky:     #e8f4f0;
-  --white:   #ffffff;
-  --muted:   #5a6b5a;
-  --light:   #8a9e8a;
-  --border:  rgba(42,82,53,0.15);
-  --shadow:  0 2px 20px rgba(15,26,15,0.08);
-  --r:       10px;
+  /* ── Core palette ── */
+  --ink:        #0f1a0f;
+  --forest:     #1a3320;
+  --deep:       #1e4d35;
+  --moss:       #2a5235;
+  --sage:       #3d7a52;
+  --mint:       #6ab389;
+  --cream:      #f7f3ec;
+  --parch:      #ede6d6;
+  --gold:       #c9941a;
+  --amber:      #e6a820;
+  --rust:       #c4481f;
+  --sky:        #e8f4f0;
+  --white:      #ffffff;
+  --muted:      #5a6b5a;
+  --light:      #8a9e8a;
+  --border:     rgba(42,82,53,0.15);
+  --shadow:     0 2px 20px rgba(15,26,15,0.08);
+  --r:          10px;
+
+  /* ── Semantic state backgrounds ── */
+  --success-bg: #edf7f1;
+  --warn-bg:    #fef8ec;
+  --danger-bg:  #fdf0ec;
+  --error-bg:   #fff8f6;
+
+  /* ── Category tag colors ── */
+  --agri-bg:    #eaf3de;
+  --agri-text:  #3b6d11;
+  --proc-bg:    #fef3e2;
+  --proc-text:  #a05a00;
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
+button, input, select, textarea { font-family: inherit; }
 
 body {
   font-family: 'DM Sans', sans-serif;
@@ -98,7 +113,6 @@ header {
   background: none;
   font-size: 13px; font-weight: 600;
   cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
   transition: all 0.15s;
 }
 .btn-outline:hover { background: var(--sage); color: white; }
@@ -110,14 +124,13 @@ header {
   color: var(--amber);
   font-size: 13px; font-weight: 600;
   cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
   transition: all 0.15s;
 }
 .btn-primary:hover { background: var(--moss); transform: translateY(-1px); }
 
 /* ── HERO ── */
 .hero {
-  background: linear-gradient(135deg, var(--forest) 0%, var(--moss) 60%, #1e4d35 100%);
+  background: linear-gradient(135deg, var(--forest) 0%, var(--moss) 60%, var(--deep) 100%);
   padding: 64px 32px 56px;
   position: relative;
   overflow: hidden;
@@ -194,7 +207,6 @@ header {
   cursor: pointer;
   transition: all 0.2s;
   border: none;
-  font-family: 'DM Sans', sans-serif;
 }
 .hero-tool:hover {
   background: rgba(255,255,255,0.18);
@@ -234,7 +246,6 @@ header {
   cursor: pointer;
   transition: all 0.15s;
   white-space: nowrap;
-  font-family: 'DM Sans', sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -303,7 +314,6 @@ header {
   border: 1.5px solid var(--border);
   border-radius: 7px;
   font-size: 14px;
-  font-family: 'DM Sans', sans-serif;
   color: var(--ink);
   background: var(--white);
   outline: none;
@@ -316,7 +326,6 @@ header {
   border: 1.5px solid var(--border);
   border-radius: 7px;
   font-size: 14px;
-  font-family: 'DM Sans', sans-serif;
   color: var(--ink);
   background: var(--white);
   outline: none;
@@ -337,7 +346,6 @@ header {
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
   transition: all 0.15s;
   display: inline-flex;
   align-items: center;
@@ -354,7 +362,6 @@ header {
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
   transition: all 0.15s;
 }
 .btn-secondary:hover { background: var(--parch); }
@@ -371,15 +378,15 @@ header {
 .result-box.show { display: block; animation: fadeUp 0.2s ease; }
 
 .result-success {
-  background: #edf7f1;
+  background: var(--success-bg);
   border-color: rgba(61,122,82,0.35);
 }
 .result-warn {
-  background: #fef8ec;
+  background: var(--warn-bg);
   border-color: rgba(201,148,26,0.4);
 }
 .result-danger {
-  background: #fdf0ec;
+  background: var(--danger-bg);
   border-color: rgba(196,72,31,0.3);
 }
 
@@ -499,7 +506,7 @@ header {
 }
 .allergen-item:hover { border-color: var(--sage); }
 .allergen-item.selected {
-  background: #edf7f1;
+  background: var(--success-bg);
   border-color: var(--sage);
 }
 .allergen-item.selected .a-dot { background: var(--sage); }
@@ -628,7 +635,7 @@ header {
 }
 .cert-upload:hover { border-color: var(--sage); color: var(--sage); background: var(--sky); }
 .cert-upload-done {
-  background: #edf7f1;
+  background: var(--success-bg);
   border-color: var(--sage);
   color: var(--sage);
   font-weight: 600;
@@ -695,7 +702,6 @@ header {
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
   transition: all 0.15s;
 }
 .btn-gold:hover { background: var(--gold); transform: translateY(-1px); }
@@ -800,7 +806,7 @@ header {
 /* ── HS CODE EXTRAS ── */
 .req-star { color: var(--rust); margin-left: 2px; }
 .f-err { font-size: 12px; color: var(--rust); margin-top: 5px; min-height: 16px; }
-.f-input.error, .f-select.error { border-color: var(--rust); background: #fff8f6; }
+.f-input.error, .f-select.error { border-color: var(--rust); background: var(--error-bg); }
 
 .hs-field-wrap { display: flex; flex-direction: column; }
 
@@ -846,7 +852,7 @@ header {
   background: var(--white);
 }
 .upload-zone:hover { border-color: var(--sage); color: var(--sage); background: var(--sky); }
-.upload-zone.has-file { border-color: var(--sage); background: #edf7f1; color: var(--sage); }
+.upload-zone.has-file { border-color: var(--sage); background: var(--success-bg); color: var(--sage); }
 
 /* Suggest dropdown */
 .hs-suggest-box {
@@ -890,14 +896,14 @@ header {
   display: inline-flex; align-items: center; gap: 5px;
   padding: 4px 11px; border-radius: 20px;
   font-size: 12px; font-weight: 700;
-  background: #eaf3de; color: #3b6d11;
+  background: var(--agri-bg); color: var(--agri-text);
   border: 1px solid rgba(59,109,17,0.25);
 }
 .cat-tag-processed {
   display: inline-flex; align-items: center; gap: 5px;
   padding: 4px 11px; border-radius: 20px;
   font-size: 12px; font-weight: 700;
-  background: #fef3e2; color: #a05a00;
+  background: var(--proc-bg); color: var(--proc-text);
   border: 1px solid rgba(160,90,0,0.25);
 }
 .cat-tag-icon { width: 12px; height: 12px; flex-shrink: 0; }
@@ -1335,7 +1341,7 @@ header {
           </div>
 
           <!-- Risk Warning box -->
-          <div id="hs-risk-box" style="display:none;margin-top:12px;padding:13px 16px;background:#fef8ec;border:1px solid rgba(201,148,26,0.3);border-radius:8px;overflow:hidden;">
+          <div id="hs-risk-box" style="display:none;margin-top:12px;padding:13px 16px;background:var(--warn-bg);border:1px solid rgba(201,148,26,0.3);border-radius:8px;overflow:hidden;">
             <div style="display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;color:var(--gold);margin-bottom:6px;">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
               Lưu ý rủi ro
@@ -1517,7 +1523,7 @@ header {
               </div>
 
               <!-- POST-GENERATE: success state -->
-              <div id="sku-gate-success" style="display:none;margin-top:14px;padding:16px 18px;background:#edf7f1;border:1.5px solid rgba(61,122,82,0.3);border-radius:10px;">
+              <div id="sku-gate-success" style="display:none;margin-top:14px;padding:16px 18px;background:var(--success-bg);border:1.5px solid rgba(61,122,82,0.3);border-radius:10px;">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                   <span style="font-weight:700;color:var(--forest);font-size:15px;">Báo cáo đã được tạo!</span>
