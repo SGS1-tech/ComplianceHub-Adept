@@ -1021,13 +1021,13 @@ header {
   .lang-toggle { margin-right: 0; }
 }
 
-/* ── LANG TOGGLE ── */
+/* ── LANG TOGGLE (header inline) ── */
 .lang-toggle {
   display: flex;
   align-items: center;
   gap: 2px;
   background: var(--parch);
-  border: 1px solid var(--border);
+  border: 1.5px solid var(--sage);
   border-radius: 20px;
   padding: 2px;
   margin-right: 4px;
@@ -1038,20 +1038,63 @@ header {
   border: none;
   cursor: pointer;
   font-family: inherit;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 5px 13px;
   border-radius: 16px;
-  color: var(--muted);
+  color: var(--sage);
   transition: all .15s;
-  letter-spacing: .5px;
+  letter-spacing: .8px;
 }
-.lang-toggle button.active { background: var(--forest); color: white; }
+.lang-toggle button.active {
+  background: var(--forest);
+  color: white;
+  box-shadow: 0 1px 4px rgba(0,0,0,.15);
+}
+
+/* ── FLOATING LANG BUTTON (always visible) ── */
+.lang-float {
+  position: fixed;
+  bottom: 28px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: white;
+  border: 2px solid var(--forest);
+  border-radius: 24px;
+  padding: 3px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.18);
+}
+.lang-float button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 20px;
+  color: var(--forest);
+  transition: all .15s;
+  letter-spacing: .8px;
+}
+.lang-float button.active {
+  background: var(--forest);
+  color: white;
+  box-shadow: 0 1px 4px rgba(0,0,0,.15);
+}
 
 </style>
 </head>
 <body>
 
+<!-- FLOATING LANG SWITCHER -->
+<div class="lang-float" id="lang-float">
+  <button id="lang-float-vi" class="active" onclick="setLang('vi')">VI</button>
+  <button id="lang-float-en" onclick="setLang('en')">EN</button>
+</div>
 
 <!-- HEADER -->
 <header>
@@ -3631,9 +3674,11 @@ function setLang(lang) {
   _lang = lang;
   localStorage.setItem('adeptlink_lang', lang);
 
-  // Update toggle buttons
-  document.getElementById('lang-vi').classList.toggle('active', lang === 'vi');
-  document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+  // Update both toggle sets (header + floating)
+  ['lang-vi','lang-en','lang-float-vi','lang-float-en'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('active', id.endsWith(lang === 'vi' ? 'vi' : 'en'));
+  });
 
   // Apply to all [data-i18n] (textContent)
   document.querySelectorAll('[data-i18n]').forEach(el => {
