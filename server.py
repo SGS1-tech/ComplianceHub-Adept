@@ -1,0 +1,115 @@
+import os
+import json
+import requests
+from flask import Flask, request, jsonify, send_from_directory
+
+app = Flask(__name__, static_folder=".")
+
+BREVO_API_KEY = os.environ.get("BREVO_API_KEY", "")
+BREVO_URL = "https://api.brevo.com/v3/smtp/email"
+SENDER_EMAIL = "compliance@adept-link.com"
+SENDER_NAME = "Compliance Hub — Adeptlink"
+NOTIFY_EMAIL = "support@adept-link.com"
+
+
+def send_email(to_email, to_name, subject, html_content):
+    headers = {
+        "accept": "application/json",
+        "api-key": BREVO_API_KEY,
+        "content-type": "application/json",
+    }
+    payload = {
+        "sender": {"name": SENDER_NAME, "email": SENDER_EMAIL},
+        "to": [{"email": to_email, "name": to_name}],
+        "subject": subject,
+        "htmlContent": html_content,
+    }
+    resp = requests.post(BREVO_URL, headers=headers, json=payload, timeout=10)
+    return resp.status_code, resp.text
+
+
+@app.route("/api/contact", methods=["POST"])
+def contact():
+    data = request.get_json(force=True, silent=True) or {}
+    company = data.get("company", "").strip()
+    name = data.get("name", "").strip()
+    email = data.get("email", "").strip()
+    product = data.get("product", "").strip()
+    volume = data.get("volume", "").strip()
+    hs_info = data.get("hs_info", "").strip()
+
+    if not email or not company:
+        return jsonify({"ok": False, "error": "Thiếu email hoặc tên công ty"}), 400
+
+    if not BREVO_API_KEY:
+        return jsonify({"ok": False, "error": "Chưa cấu hình BREVO_API_KEY"}), 500
+
+    # ── Email 1: thông báo nội bộ đến Adeptlink ──
+    internal_html = f"""
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
+      <div style="background:#1a3320;padding:20px 28px;border-radius:8px 8px 0 0;">
+        <h2 style="color:#e6a820;margin:0;font-size:18px;">📋 Yêu cầu tư vấn mới</h2>
+        <p style="color:rgba(255,255,255,0.7);margin:4px 0 0;font-size:13px;">Compliance Hub — Adeptlink</p>
+      </div>
+      <div style="background:#f7f3ec;padding:24px 28px;border-radius:0 0 8px 8px;border:1px solid #ede6d6;">
+        <table style="width:100%;border-collapse:collapse;font-size:14px;">
+          <tr><td style="padding:8px 0;color:#5a6b5a;width:140px;"><strong>Công ty</strong></td><td style="padding:8px 0;color:#0f1a0f;">{company}</td></tr>
+          <tr><td style="padding:8px 0;color:#5a6b5a;"><strong>Người liên hệ</strong></td><td style="padding:8px 0;color:#0f1a0f;">{name or '—'}</td></tr>
+          <tr><td style="padding:8px 0;color:#5a6b5a;"><strong>Email</strong></td><td style="padding:8px 0;"><a href="mailto:{email}" style="color:#3d7a52;">{email}</a></td></tr>
+          <tr><td style="padding:8px 0;color:#5a6b5a;"><strong>Sản phẩm</strong></td><td style="padding:8px 0;color:#0f1a0f;">{product or '—'}</td></tr>
+          <tr><td style="padding:8px 0;color:#5a6b5a;"><strong>Kim ngạch</strong></td><td style="padding:8px 0;color:#0f1a0f;">{volume or '—'}</td></tr>
+          {"<tr><td style='padding:8px 0;color:#5a6b5a;'><strong>HS Code</strong></td><td style='padding:8px 0;color:#0f1a0f;font-family:monospace;'>" + hs_info + "</td></tr>" if hs_info else ""}
+        </table>
+        <div style="margin-top:20px;padding:12px 16px;background:#fff;border-radius:6px;border:1px solid #ede6d6;font-size:12px;color:#5a6b5a;">
+          Hãy phản hồi trong vòng <strong>24h</strong> theo email trên.
+        </div>
+      </div>
+    </div>
+    """
+    send_email(NOTIFY_EMAIL, "Adeptlink Support", f"[Compliance Hub] Yêu cầu tư vấn từ {company}", internal_html)
+
+    # ── Email 2: xác nhận gửi đến khách hàng ──
+    confirm_html = f"""
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
+      <div style="background:#1a3320;padding:20px 28px;border-radius:8px 8px 0 0;">
+        <h2 style="color:#e6a820;margin:0;font-size:18px;">✅ Đã nhận yêu cầu tư vấn!</h2>
+        <p style="color:rgba(255,255,255,0.7);margin:4px 0 0;font-size:13px;">Compliance Hub — Adeptlink</p>
+      </div>
+      <div style="background:#f7f3ec;padding:24px 28px;border-radius:0 0 8px 8px;border:1px solid #ede6d6;">
+        <p style="color:#0f1a0f;font-size:15px;margin:0 0 16px;">Xin chào <strong>{name or company}</strong>,</p>
+        <p style="color:#5a6b5a;font-size:14px;line-height:1.7;margin:0 0 16px;">
+          Chúng tôi đã nhận được yêu cầu tư vấn xuất khẩu thực phẩm sang Canada của công ty <strong style="color:#1a3320;">{company}</strong>.
+          Đội ngũ Adeptlink sẽ liên hệ với bạn trong vòng <strong>24 giờ làm việc</strong>.
+        </p>
+        <div style="background:#fff;border-radius:6px;border:1px solid #ede6d6;padding:16px 20px;margin-bottom:20px;">
+          <p style="margin:0 0 8px;font-size:12px;color:#8a9e8a;text-transform:uppercase;letter-spacing:0.7px;">Thông tin đã gửi</p>
+          <p style="margin:4px 0;font-size:13px;color:#0f1a0f;"><strong>Sản phẩm:</strong> {product or '—'}</p>
+          <p style="margin:4px 0;font-size:13px;color:#0f1a0f;"><strong>Kim ngạch:</strong> {volume or '—'}</p>
+          {"<p style='margin:4px 0;font-size:13px;color:#0f1a0f;'><strong>HS Code:</strong> <span style='font-family:monospace;'>" + hs_info + "</span></p>" if hs_info else ""}
+        </div>
+        <div style="text-align:center;">
+          <a href="https://adept-link.com/registration/" style="display:inline-block;background:#1a3320;color:#e6a820;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:700;font-size:14px;">
+            Đăng ký Adeptlink miễn phí →
+          </a>
+        </div>
+        <p style="margin:20px 0 0;font-size:12px;color:#8a9e8a;text-align:center;">
+          © Adeptlink · <a href="https://compliance.adept-link.com" style="color:#3d7a52;">compliance.adept-link.com</a>
+        </p>
+      </div>
+    </div>
+    """
+    send_email(email, name or company, "Adeptlink đã nhận yêu cầu tư vấn của bạn", confirm_html)
+
+    return jsonify({"ok": True})
+
+
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def serve(path):
+    if path and os.path.exists(path):
+        return send_from_directory(".", path)
+    return send_from_directory(".", "index.html")
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=False)

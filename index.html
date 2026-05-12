@@ -2700,24 +2700,42 @@ function closeModal() {
 function handleOverlayClick(e) {
   if (e.target.id === 'lead-modal') closeModal();
 }
-function submitLead() {
-  const email = document.getElementById('m-email').value;
-  const company = document.getElementById('m-company').value;
-  const name = document.getElementById('m-name').value;
-  const product = document.getElementById('m-product').value;
-  const volume = document.getElementById('m-volume').value;
-  if (!email || !company) { alert('Vui lòng điền tên công ty và email.'); return; }
+async function submitLead() {
+  const email = document.getElementById('m-email').value.trim();
+  const company = document.getElementById('m-company').value.trim();
+  const name = document.getElementById('m-name').value.trim();
+  const product = document.getElementById('m-product').value.trim();
+  const volume = document.getElementById('m-volume').value.trim();
 
-  // Build mailto link → directs to support@adept-link.com
-  const subject = encodeURIComponent(`[Compliance Hub] Yêu cầu tư vấn từ ${company}`);
-  const body = encodeURIComponent(
-    `Công ty: ${company}\nNgười liên hệ: ${name}\nEmail: ${email}\nSản phẩm: ${product}\nKim ngạch: ${volume}\n\n` +
-    (window._lastHSResult ? `HS Code tra cứu: ${window._lastHSResult.code} — ${window._lastHSResult.desc}\nPhân loại: ${window._lastHSResult.product_category}` : '')
-  );
-  location.href = `mailto:support@adept-link.com?subject=${subject}&body=${body}`;
+  if (!email || !company) {
+    alert('Vui lòng điền tên công ty và email.');
+    return;
+  }
 
-  document.getElementById('modal-form').style.display = 'none';
-  document.getElementById('modal-success').style.display = 'block';
+  const btn = document.querySelector('#modal-form .btn-run');
+  const origText = btn.textContent;
+  btn.textContent = 'Đang gửi…';
+  btn.disabled = true;
+
+  const hsInfo = window._lastHSResult
+    ? `${window._lastHSResult.code} — ${window._lastHSResult.desc}`
+    : '';
+
+  try {
+    const resp = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ company, name, email, product, volume, hs_info: hsInfo })
+    });
+    const result = await resp.json();
+    if (!resp.ok || !result.ok) throw new Error(result.error || 'Lỗi không xác định');
+    document.getElementById('modal-form').style.display = 'none';
+    document.getElementById('modal-success').style.display = 'block';
+  } catch (err) {
+    alert('Gửi thất bại: ' + err.message + '\nVui lòng thử lại hoặc liên hệ support@adept-link.com');
+    btn.textContent = origText;
+    btn.disabled = false;
+  }
 }
 
 // ══════════════════════════════════════════
