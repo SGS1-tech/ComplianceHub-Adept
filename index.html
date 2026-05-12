@@ -1895,19 +1895,29 @@ header {
     <p>Đội ngũ Adeptlink sẽ liên hệ trong vòng 24h để hỗ trợ bạn chuẩn bị hồ sơ xuất khẩu sang Canada.</p>
 
     <div id="modal-form">
+      <div class="form-full">
+        <label class="f-label">Tên công ty <span class="req-star">*</span></label>
+        <input class="f-input" id="m-company" placeholder="Tên công ty của bạn" />
+      </div>
       <div class="form-grid">
         <div>
-          <label class="f-label">Tên công ty</label>
-          <input class="f-input" id="m-company" placeholder="Tên công ty của bạn" />
+          <label class="f-label">Người liên hệ <span class="req-star">*</span></label>
+          <input class="f-input" id="m-name" placeholder="Họ và tên" />
         </div>
         <div>
-          <label class="f-label">Người liên hệ</label>
-          <input class="f-input" id="m-name" placeholder="Họ tên" />
+          <label class="f-label">Chức vụ</label>
+          <input class="f-input" id="m-title" placeholder="VD: Giám đốc XNK, CEO..." />
         </div>
       </div>
-      <div class="form-full">
-        <label class="f-label">Email</label>
-        <input class="f-input" id="m-email" type="email" placeholder="email@congty.com" />
+      <div class="form-grid">
+        <div>
+          <label class="f-label">Email <span class="req-star">*</span></label>
+          <input class="f-input" id="m-email" type="email" placeholder="email@congty.com" />
+        </div>
+        <div>
+          <label class="f-label">Di động</label>
+          <input class="f-input" id="m-phone" type="tel" placeholder="+84 xxx xxx xxx" />
+        </div>
       </div>
       <div class="form-grid">
         <div>
@@ -2701,14 +2711,16 @@ function handleOverlayClick(e) {
   if (e.target.id === 'lead-modal') closeModal();
 }
 async function submitLead() {
-  const email = document.getElementById('m-email').value.trim();
   const company = document.getElementById('m-company').value.trim();
-  const name = document.getElementById('m-name').value.trim();
+  const name    = document.getElementById('m-name').value.trim();
+  const title   = document.getElementById('m-title').value.trim();
+  const email   = document.getElementById('m-email').value.trim();
+  const phone   = document.getElementById('m-phone').value.trim();
   const product = document.getElementById('m-product').value.trim();
-  const volume = document.getElementById('m-volume').value.trim();
+  const volume  = document.getElementById('m-volume').value.trim();
 
-  if (!email || !company) {
-    alert('Vui lòng điền tên công ty và email.');
+  if (!company || !name || !email) {
+    alert('Vui lòng điền đầy đủ: Tên công ty, Người liên hệ và Email.');
     return;
   }
 
@@ -2725,7 +2737,7 @@ async function submitLead() {
     const resp = await fetch('/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ company, name, email, product, volume, hs_info: hsInfo })
+      body: JSON.stringify({ company, name, title, email, phone, product, volume, hs_info: hsInfo })
     });
     const result = await resp.json();
     if (!resp.ok || !result.ok) throw new Error(result.error || 'Lỗi không xác định');
