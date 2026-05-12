@@ -1,0 +1,3123 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compliance Hub — Adeptlink | Xuất khẩu thực phẩm Việt Nam → Canada</title>
+<meta name="description" content="Công cụ compliance cho nhà xuất khẩu thực phẩm Việt Nam vào thị trường Canada: HS Code, CFIA, Allergen, Nhãn EN/FR, Chứng chỉ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:     #0f1a0f;
+  --forest:  #1a3320;
+  --moss:    #2a5235;
+  --sage:    #3d7a52;
+  --mint:    #6ab389;
+  --cream:   #f7f3ec;
+  --parch:   #ede6d6;
+  --gold:    #c9941a;
+  --amber:   #e6a820;
+  --rust:    #c4481f;
+  --sky:     #e8f4f0;
+  --white:   #ffffff;
+  --muted:   #5a6b5a;
+  --light:   #8a9e8a;
+  --border:  rgba(42,82,53,0.15);
+  --shadow:  0 2px 20px rgba(15,26,15,0.08);
+  --r:       10px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── HEADER ── */
+header {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: var(--shadow);
+}
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo-mark {
+  width: 36px; height: 36px;
+  background: var(--forest);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fraunces', serif;
+  color: var(--amber);
+  font-size: 16px; font-weight: 700;
+}
+.logo-text { line-height: 1.15; }
+.logo-name {
+  font-family: 'Fraunces', serif;
+  font-size: 17px; font-weight: 600;
+  color: var(--forest);
+}
+.logo-sub {
+  font-size: 10px;
+  color: var(--light);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.header-nav { display: flex; gap: 4px; }
+.hn {
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: all 0.15s;
+}
+.hn:hover { background: var(--sky); color: var(--forest); }
+.hn.active { background: var(--forest); color: white; }
+.header-cta {
+  display: flex; gap: 10px; align-items: center;
+}
+.btn-outline {
+  padding: 8px 16px;
+  border-radius: 7px;
+  border: 1.5px solid var(--sage);
+  color: var(--sage);
+  background: none;
+  font-size: 13px; font-weight: 600;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.15s;
+}
+.btn-outline:hover { background: var(--sage); color: white; }
+.btn-primary {
+  padding: 8px 18px;
+  border-radius: 7px;
+  border: none;
+  background: var(--forest);
+  color: var(--amber);
+  font-size: 13px; font-weight: 600;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.15s;
+}
+.btn-primary:hover { background: var(--moss); transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, var(--forest) 0%, var(--moss) 60%, #1e4d35 100%);
+  padding: 64px 32px 56px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(201,148,26,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--amber), transparent);
+}
+.hero-in {
+  max-width: 780px;
+  margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(201,148,26,0.18);
+  border: 1px solid rgba(201,148,26,0.35);
+  color: var(--amber);
+  padding: 5px 14px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 700;
+  color: white;
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--amber);
+}
+.hero-sub {
+  color: rgba(255,255,255,0.72);
+  font-size: 16px;
+  max-width: 600px;
+  margin-bottom: 36px;
+  line-height: 1.7;
+}
+.hero-tools {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.hero-tool {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+}
+.hero-tool:hover {
+  background: rgba(255,255,255,0.18);
+  transform: translateY(-2px);
+}
+.hero-tool-ico { font-size: 16px; }
+
+/* ── MAIN LAYOUT ── */
+.shell {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* ── TOOL TABS ── */
+.tool-tabs {
+  display: flex;
+  gap: 0;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 6px;
+  margin: 32px 0 28px;
+  overflow-x: auto;
+  box-shadow: var(--shadow);
+}
+.tab-btn {
+  flex: 1;
+  min-width: 130px;
+  padding: 10px 14px;
+  border-radius: 7px;
+  border: none;
+  background: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+  font-family: 'DM Sans', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.tab-btn:hover { background: var(--sky); color: var(--forest); }
+.tab-btn.active {
+  background: var(--forest);
+  color: white;
+  font-weight: 600;
+}
+
+/* ── PANELS ── */
+.panel { display: none; animation: fadeUp 0.25s ease; }
+.panel.active { display: block; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── CARD ── */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+.card-head {
+  padding: 22px 26px 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.card-title-row { display: flex; align-items: center; gap: 10px; }
+.card-ico {
+  width: 38px; height: 38px;
+  background: var(--sky);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.card-title { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 600; color: var(--forest); }
+.card-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.card-body { padding: 24px 26px; }
+
+/* ── FORM ELEMENTS ── */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.form-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+.form-full { margin-bottom: 16px; }
+.f-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  margin-bottom: 7px;
+}
+.f-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 7px;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink);
+  background: var(--white);
+  outline: none;
+  transition: border-color 0.15s;
+}
+.f-input:focus { border-color: var(--sage); }
+.f-select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 7px;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink);
+  background: var(--white);
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a6b5a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+.btn-run {
+  padding: 11px 28px;
+  background: var(--forest);
+  color: var(--amber);
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-run:hover { background: var(--moss); transform: translateY(-1px); }
+
+.btn-secondary {
+  padding: 10px 22px;
+  background: var(--sky);
+  color: var(--forest);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.15s;
+}
+.btn-secondary:hover { background: var(--parch); }
+
+/* ── RESULT BOXES ── */
+.result-box {
+  background: var(--sky);
+  border: 1.5px solid rgba(61,122,82,0.25);
+  border-radius: 8px;
+  padding: 20px 22px;
+  margin-top: 20px;
+  display: none;
+}
+.result-box.show { display: block; animation: fadeUp 0.2s ease; }
+
+.result-success {
+  background: #edf7f1;
+  border-color: rgba(61,122,82,0.35);
+}
+.result-warn {
+  background: #fef8ec;
+  border-color: rgba(201,148,26,0.4);
+}
+.result-danger {
+  background: #fdf0ec;
+  border-color: rgba(196,72,31,0.3);
+}
+
+.r-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--sage);
+  margin-bottom: 6px;
+}
+.r-code {
+  font-family: 'DM Mono', monospace;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--forest);
+  margin-bottom: 4px;
+}
+.r-name {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.r-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.r-table th {
+  text-align: left;
+  padding: 7px 12px;
+  background: rgba(42,82,53,0.06);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+.r-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink);
+}
+.r-table tr:last-child td { border-bottom: none; }
+.r-table .hi { color: var(--sage); font-weight: 700; font-family: 'DM Mono', monospace; }
+.r-table .savings { color: var(--rust); font-weight: 700; }
+.r-table .ok { color: var(--sage); }
+.r-table .warn { color: var(--gold); }
+
+.tag {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+.tag-green { background: rgba(61,122,82,0.12); color: var(--moss); border: 1px solid rgba(61,122,82,0.2); }
+.tag-amber { background: rgba(201,148,26,0.12); color: var(--gold); border: 1px solid rgba(201,148,26,0.25); }
+.tag-red   { background: rgba(196,72,31,0.1);  color: var(--rust); border: 1px solid rgba(196,72,31,0.2); }
+.tag-gray  { background: rgba(90,107,90,0.1);  color: var(--muted); border: 1px solid var(--border); }
+
+/* ── CHECKLIST ITEMS ── */
+.check-list { list-style: none; }
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+}
+.check-item:last-child { border-bottom: none; }
+.check-box {
+  width: 22px; height: 22px;
+  border: 2px solid var(--border);
+  border-radius: 5px;
+  flex-shrink: 0;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+  margin-top: 1px;
+}
+.check-box.checked {
+  background: var(--sage);
+  border-color: var(--sage);
+}
+.check-box.checked::after {
+  content: '✓';
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+}
+.check-content { flex: 1; }
+.check-title { font-weight: 600; font-size: 14px; color: var(--forest); margin-bottom: 3px; }
+.check-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.check-badge { margin-top: 6px; }
+
+/* ── ALLERGEN GRID ── */
+.allergen-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.allergen-item {
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.allergen-item:hover { border-color: var(--sage); }
+.allergen-item.selected {
+  background: #edf7f1;
+  border-color: var(--sage);
+}
+.allergen-item.selected .a-dot { background: var(--sage); }
+.a-dot {
+  width: 14px; height: 14px;
+  border-radius: 3px;
+  border: 1.5px solid var(--border);
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+.allergen-item.selected .a-dot::after {
+  content: '✓';
+  font-size: 9px;
+  color: white;
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; height: 100%;
+  line-height: 1;
+  background: var(--sage);
+  border-radius: 2px;
+}
+.a-name { font-size: 13px; font-weight: 500; color: var(--forest); }
+.a-sub  { font-size: 11px; color: var(--light); }
+
+/* ── LABEL PREVIEW ── */
+.label-preview {
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 20px;
+  display: none;
+}
+.label-preview.show { display: block; }
+.label-flag {
+  display: flex;
+  background: var(--forest);
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+.lf-en { flex: 1; padding: 6px 16px; background: rgba(255,255,255,0.1); }
+.lf-fr { flex: 1; padding: 6px 16px; background: rgba(201,148,26,0.25); text-align: right; }
+.label-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.label-col {
+  padding: 18px 20px;
+}
+.label-col:first-child { border-right: 2px dashed var(--border); }
+.lc-lang {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--light);
+  margin-bottom: 10px;
+}
+.lc-prod-name {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--forest);
+  margin-bottom: 6px;
+}
+.lc-detail { font-size: 12px; color: var(--muted); margin-bottom: 3px; }
+.lc-allergen {
+  margin-top: 10px;
+  padding: 8px 10px;
+  background: var(--parch);
+  border-radius: 5px;
+  font-size: 11px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.lc-allergen strong { color: var(--rust); }
+
+/* ── PROGRESS BAR ── */
+.prog-wrap {
+  background: var(--parch);
+  border-radius: 20px;
+  height: 8px;
+  overflow: hidden;
+  margin: 8px 0 4px;
+}
+.prog-bar {
+  height: 100%;
+  border-radius: 20px;
+  background: var(--sage);
+  transition: width 0.4s ease;
+}
+.prog-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+/* ── CERT SECTION ── */
+.cert-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.cert-card {
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 18px;
+  background: var(--white);
+}
+.cert-card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.cert-name { font-weight: 700; font-size: 14px; color: var(--forest); }
+.cert-desc { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+.cert-upload {
+  border: 1.5px dashed var(--border);
+  border-radius: 6px;
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--muted);
+  transition: all 0.15s;
+}
+.cert-upload:hover { border-color: var(--sage); color: var(--sage); background: var(--sky); }
+.cert-upload-done {
+  background: #edf7f1;
+  border-color: var(--sage);
+  color: var(--sage);
+  font-weight: 600;
+}
+
+/* ── TRUST SCORE ── */
+.trust-display {
+  text-align: center;
+  padding: 28px 0 20px;
+}
+.trust-circle {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  border: 8px solid var(--parch);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+  position: relative;
+}
+.trust-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--forest);
+  line-height: 1;
+}
+.trust-label { font-size: 11px; color: var(--light); margin-top: 2px; }
+.trust-factors { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+.tf-item {
+  background: var(--sky);
+  border-radius: 7px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tf-name { font-size: 12px; color: var(--muted); }
+.tf-val { font-size: 13px; font-weight: 700; color: var(--forest); font-family: 'DM Mono', monospace; }
+
+/* ── CTA STRIP ── */
+.cta-strip {
+  background: var(--forest);
+  border-radius: var(--r);
+  padding: 32px 36px;
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.cta-left h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  color: white;
+  margin-bottom: 6px;
+}
+.cta-left p { font-size: 14px; color: rgba(255,255,255,0.65); }
+.cta-right { display: flex; gap: 10px; flex-shrink: 0; }
+.btn-gold {
+  padding: 11px 24px;
+  background: var(--amber);
+  color: var(--forest);
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.15s;
+}
+.btn-gold:hover { background: var(--gold); transform: translateY(-1px); }
+
+/* ── LEAD MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(15,26,15,0.55);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  display: none; align-items: center; justify-content: center;
+}
+.modal-overlay.show { display: flex; }
+.modal {
+  background: var(--white);
+  border-radius: 14px;
+  width: 440px;
+  max-width: 95vw;
+  padding: 32px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.2);
+  animation: fadeUp 0.25s ease;
+}
+.modal h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  color: var(--forest);
+  margin-bottom: 6px;
+}
+.modal p { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+.modal-close {
+  float: right;
+  background: var(--parch);
+  border: none;
+  width: 32px; height: 32px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: -4px;
+}
+.m-success {
+  text-align: center;
+  padding: 20px 0;
+  display: none;
+}
+.m-success-ico { font-size: 48px; margin-bottom: 12px; }
+.m-success h4 { font-family: 'Fraunces', serif; font-size: 20px; color: var(--forest); margin-bottom: 6px; }
+.m-success p { font-size: 14px; color: var(--muted); }
+
+/* ── MISC ── */
+.section-intro {
+  margin-bottom: 24px;
+}
+.section-intro h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  color: var(--forest);
+  margin-bottom: 6px;
+}
+.section-intro p { font-size: 14px; color: var(--muted); }
+
+.info-banner {
+  background: var(--sky);
+  border: 1px solid rgba(61,122,82,0.25);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
+}
+.info-banner .bn-icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+}
+.info-banner .bn-text {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+.info-banner .bn-text strong { color: var(--forest); }
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 20px 0;
+}
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+/* ── HS CODE EXTRAS ── */
+.req-star { color: var(--rust); margin-left: 2px; }
+.f-err { font-size: 12px; color: var(--rust); margin-top: 5px; min-height: 16px; }
+.f-input.error, .f-select.error { border-color: var(--rust); background: #fff8f6; }
+
+.hs-field-wrap { display: flex; flex-direction: column; }
+
+/* Additive chips */
+.additive-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding: 10px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 7px;
+  background: var(--white);
+  min-height: 46px;
+  align-items: center;
+}
+.chip {
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  user-select: none;
+}
+.chip:hover { border-color: var(--sage); color: var(--forest); }
+.chip.active { background: var(--sage); color: white; border-color: var(--sage); }
+
+/* Upload zone */
+.upload-zone {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1.5px dashed var(--border);
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--muted);
+  transition: all 0.15s;
+  min-height: 46px;
+  background: var(--white);
+}
+.upload-zone:hover { border-color: var(--sage); color: var(--sage); background: var(--sky); }
+.upload-zone.has-file { border-color: var(--sage); background: #edf7f1; color: var(--sage); }
+
+/* Suggest dropdown */
+.hs-suggest-box {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0; right: 0;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(15,26,15,0.12);
+  z-index: 50;
+  overflow: hidden;
+}
+.suggest-item {
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--forest);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.12s;
+  border-bottom: 1px solid var(--border);
+}
+.suggest-item:last-child { border-bottom: none; }
+.suggest-item:hover { background: var(--sky); }
+.suggest-item .s-cat { font-size: 11px; color: var(--light); margin-left: auto; }
+
+/* Spinner */
+.spinner {
+  width: 16px; height: 16px;
+  border: 2px solid var(--border);
+  border-top-color: var(--sage);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Category tags in result */
+.cat-tag-agri {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 11px; border-radius: 20px;
+  font-size: 12px; font-weight: 700;
+  background: #eaf3de; color: #3b6d11;
+  border: 1px solid rgba(59,109,17,0.25);
+}
+.cat-tag-processed {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 11px; border-radius: 20px;
+  font-size: 12px; font-weight: 700;
+  background: #fef3e2; color: #a05a00;
+  border: 1px solid rgba(160,90,0,0.25);
+}
+.cat-tag-icon { width: 12px; height: 12px; flex-shrink: 0; }
+
+/* ── MULTI-SKU TABLE ── */
+.sku-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 680px;
+}
+.sku-table th {
+  text-align: left;
+  padding: 9px 10px;
+  background: var(--parch);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--muted);
+  border-bottom: 2px solid var(--border);
+  white-space: nowrap;
+}
+.sku-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.sku-table tr:last-child td { border-bottom: none; }
+.sku-table tr:hover td { background: var(--sky); }
+.sku-table .f-input, .sku-table .f-select { padding: 7px 10px; font-size: 12px; border-radius: 6px; }
+.sku-table .f-select { padding-right: 28px; }
+.sku-result-code { font-family: 'DM Mono', monospace; font-weight: 600; font-size: 13px; color: var(--forest); }
+.sku-result-pending { color: var(--light); font-size: 12px; font-style: italic; }
+.sku-del-btn { background: none; border: none; cursor: pointer; color: var(--light); padding: 4px; border-radius: 4px; transition: all 0.15s; display: flex; align-items: center; }
+.sku-del-btn:hover { color: var(--rust); background: rgba(196,72,31,0.08); }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET (max 900px)
+══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  header { padding: 0 20px; }
+  .header-nav { display: none; }
+  .header-cta .btn-outline { display: none; }
+  .shell { padding: 0 20px 60px; }
+  .hero { padding: 48px 24px 40px; }
+  .hero-in { max-width: 100%; }
+  .hero h1 { font-size: 32px; }
+  .hero-sub { font-size: 15px; }
+  .hero-tools { gap: 8px; }
+  .hero-tool { font-size: 12px; padding: 7px 12px; }
+  .two-col { grid-template-columns: 1fr; }
+  .cert-grid { grid-template-columns: 1fr 1fr; }
+  .cta-strip { padding: 24px 20px; }
+  .tool-tabs { padding: 5px; }
+  .tab-btn { font-size: 12px; padding: 8px 10px; min-width: 100px; }
+  .card-head { padding: 16px 18px 14px; }
+  .card-body { padding: 18px; }
+  .form-grid-3 { grid-template-columns: 1fr 1fr; }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — MOBILE (max 600px)
+══════════════════════════════════════════ */
+@media (max-width: 600px) {
+  header { padding: 0 14px; height: 56px; }
+  .logo-name { font-size: 15px; }
+  .logo-sub { display: none; }
+  .header-nav { display: none; }
+  .header-cta { gap: 6px; }
+  .header-cta .btn-outline { display: none; }
+  .btn-primary { padding: 7px 12px; font-size: 12px; }
+
+  .hero { padding: 32px 16px 28px; }
+  .hero h1 { font-size: clamp(24px, 7vw, 30px); }
+  .hero-sub { font-size: 13px; margin-bottom: 24px; }
+  .hero-badge { font-size: 11px; padding: 4px 10px; }
+  .hero-tools { gap: 6px; }
+  .hero-tool { font-size: 11px; padding: 6px 10px; gap: 5px; }
+
+  .shell { padding: 0 12px 50px; }
+  .tool-tabs { padding: 4px; gap: 3px; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
+  .tab-btn { min-width: 90px; font-size: 11px; padding: 8px 8px; white-space: nowrap; flex-shrink: 0; }
+
+  .card-head { padding: 14px 14px 12px; flex-wrap: wrap; gap: 8px; }
+  .card-title { font-size: 15px; }
+  .card-body { padding: 14px; }
+
+  .form-grid { grid-template-columns: 1fr; }
+  .form-grid-3 { grid-template-columns: 1fr; }
+  .two-col { grid-template-columns: 1fr; }
+  .cert-grid { grid-template-columns: 1fr; }
+  .trust-factors { grid-template-columns: 1fr 1fr; }
+
+  .label-body { grid-template-columns: 1fr; }
+  .label-col:first-child { border-right: none; border-bottom: 2px dashed var(--border); }
+
+  .allergen-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+
+  .cta-strip { flex-direction: column; padding: 20px 16px; gap: 16px; }
+  .cta-left h3 { font-size: 18px; }
+  .cta-right { flex-direction: column; width: 100%; }
+  .cta-right button, .cta-right .btn-gold { width: 100%; }
+
+  .r-table { font-size: 11px; }
+  .r-table th, .r-table td { padding: 7px 8px; }
+
+  .additive-chips { gap: 5px; }
+  .chip { font-size: 11px; padding: 4px 9px; }
+
+  .info-banner { padding: 10px 12px; font-size: 12px; }
+  .info-banner .bn-text { font-size: 12px; }
+
+  .modal { padding: 22px 18px; }
+  .modal h3 { font-size: 18px; }
+
+  .sku-summary-bar > div { gap: 12px; }
+  .summary-box .num { font-size: 18px; }
+}
+
+</style>
+</head>
+<body>
+
+
+<!-- HEADER -->
+<header>
+  <a href="#" class="logo">
+    <div class="logo-mark">A</div>
+    <div class="logo-text">
+      <div class="logo-name">Adeptlink</div>
+      <div class="logo-sub">Compliance Hub</div>
+    </div>
+  </a>
+  <div class="header-nav">
+    <button class="hn active" onclick="switchTab('hs', this)">HS Code</button>
+    <button class="hn" onclick="switchTab('cfia', this)">CFIA Checklist</button>
+    <button class="hn" onclick="switchTab('allergen', this)">Allergen</button>
+    <button class="hn" onclick="switchTab('label', this)">Nhãn EN/FR</button>
+    <button class="hn" onclick="switchTab('cert', this)">Chứng chỉ</button>
+  </div>
+  <div class="header-cta">
+    <button class="btn-outline" onclick="openModal()">Yêu cầu tư vấn</button>
+    <button class="btn-primary" onclick="window.open('https://adept-link.com/registration/','_blank')">Đăng ký miễn phí →</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-in">
+    <div class="hero-badge">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Compliance Tools · Canada Import · CFIA · CPTPP
+    </div>
+    <h1>Xuất khẩu thực phẩm sang Canada<br><em>đúng chuẩn, nhanh hơn</em></h1>
+    <p class="hero-sub">5 công cụ compliance cho nhà xuất khẩu Việt Nam: tra HS Code, CFIA checklist, khai báo allergen, tạo nhãn EN/FR, và quản lý chứng chỉ. Tất cả theo chuẩn CFIA · SFCA · CPTPP.</p>
+    <div class="hero-tools">
+      <button class="hero-tool" onclick="switchTab('hs', null)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        HS Code Lookup
+      </button>
+      <button class="hero-tool" onclick="switchTab('cfia', null)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        CFIA Checklist
+      </button>
+      <button class="hero-tool" onclick="switchTab('allergen', null)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Allergen Builder
+      </button>
+      <button class="hero-tool" onclick="switchTab('label', null)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+        Nhãn EN/FR
+      </button>
+      <button class="hero-tool" onclick="switchTab('cert', null)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+        Chứng chỉ
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- SHELL -->
+<div class="shell">
+
+  <!-- TABS -->
+  <div class="tool-tabs">
+    <button class="tab-btn active" id="tab-hs" onclick="switchTab('hs', this)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      HS Code
+    </button>
+    <button class="tab-btn" id="tab-cfia" onclick="switchTab('cfia', this)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      CFIA Checklist
+    </button>
+    <button class="tab-btn" id="tab-allergen" onclick="switchTab('allergen', this)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      Allergen Builder
+    </button>
+    <button class="tab-btn" id="tab-label" onclick="switchTab('label', this)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+      Nhãn EN/FR
+    </button>
+    <button class="tab-btn" id="tab-cert" onclick="switchTab('cert', this)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+      Chứng chỉ &amp; Trust Score
+    </button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- PANEL 1: HS CODE -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="panel active" id="panel-hs">
+    <div class="section-intro">
+      <h2>Tra cứu mã HS Code</h2>
+      <p>Tìm mã HS Code đúng cho sản phẩm, xem mức thuế nhập khẩu Canada và mức tiết kiệm nhờ CPTPP. Tự động phân loại <strong>Agri (Raw)</strong> hoặc <strong>Processed Food</strong>.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-title-row">
+            <div class="card-ico">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage)"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            </div>
+            <div>
+              <div class="card-title">HS Code Lookup</div>
+              <div class="card-sub">Dữ liệu từ CBSA Canada · Cập nhật 2026</div>
+            </div>
+          </div>
+        </div>
+        <span class="tag tag-green">CBSA 2026</span>
+      </div>
+
+      <div class="card-body">
+        <!-- INFO BANNER -->
+        <div class="info-banner">
+          <span class="bn-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage)"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </span>
+          <span class="bn-text">Khai sai mã HS có thể dẫn đến bị phạt hoặc nộp thuế cao hơn cần thiết. Với CPTPP, sản phẩm đủ điều kiện xuất xứ VN có thể được giảm thuế <strong>0–12%</strong>. Điền đầy đủ các trường bên dưới để nhận kết quả chính xác nhất.</span>
+        </div>
+
+        <!-- ROW 1: Tên sản phẩm + Danh mục -->
+        <div class="form-grid" style="margin-bottom:0;">
+          <div class="hs-field-wrap">
+            <label class="f-label">
+              Tên sản phẩm
+              <span class="req-star">*</span>
+            </label>
+            <div style="position:relative;">
+              <input class="f-input" id="hs-product" placeholder="VD: cashew nuts, roasted, salted"
+                oninput="onProductInput(this.value)" autocomplete="off" />
+              <div id="hs-suggest" class="hs-suggest-box" style="display:none;"></div>
+            </div>
+            <div class="f-err" id="err-hs-product"></div>
+          </div>
+          <div class="hs-field-wrap">
+            <label class="f-label">
+              Danh mục sản phẩm
+              <span class="req-star">*</span>
+            </label>
+            <select class="f-select" id="hs-category" onchange="onCategoryChange()">
+              <option value="">-- Chọn danh mục --</option>
+              <optgroup label="Nông sản tươi / Agri Raw">
+                <option value="fresh_fruit">Trái cây tươi / Fresh Fruit</option>
+                <option value="fresh_veg">Rau củ tươi / Fresh Vegetables</option>
+                <option value="fresh_herb">Rau thơm, lá tươi / Fresh Herbs</option>
+              </optgroup>
+              <optgroup label="Hạt & Nông sản khô / Nuts & Dried">
+                <option value="nuts">Nuts & Dried Fruit — Hạt điều, hạnh nhân, trái cây sấy</option>
+                <option value="pepper">Pepper / Tiêu hạt</option>
+                <option value="rice">Rice / Gạo</option>
+                <option value="grains">Grains & Cereals / Ngũ cốc, hạt</option>
+              </optgroup>
+              <optgroup label="Gia vị & Dầu / Spices & Oils">
+                <option value="spices">Spices & Herbs / Gia vị, thảo mộc</option>
+                <option value="oils">Edible Oils / Dầu thực vật</option>
+              </optgroup>
+              <optgroup label="Hải sản / Seafood">
+                <option value="seafood">Seafood / Hải sản, thủy sản</option>
+              </optgroup>
+              <optgroup label="Thực phẩm chế biến / Processed">
+                <option value="processed">Processed Food / Thực phẩm chế biến đóng gói</option>
+                <option value="sauce">Sauces & Condiments / Nước chấm, gia vị đóng chai</option>
+                <option value="coffee">Coffee & Tea / Cà phê, trà chế biến</option>
+              </optgroup>
+            </select>
+            <div class="f-err" id="err-hs-category"></div>
+          </div>
+        </div>
+
+        <!-- Nuts-specific: Hình thức hạt -->
+        <div id="hs-nut-extra" style="display:none;margin-top:14px;">
+          <div class="form-grid">
+            <div class="hs-field-wrap">
+              <label class="f-label">Hình thức hạt điều
+                <span class="req-star">*</span>
+              </label>
+              <select class="f-select" id="hs-nut-form" onchange="livePreview()">
+                <option value="">-- Chọn --</option>
+                <option value="inshell">Chưa bóc vỏ / In Shell (WW, SW)</option>
+                <option value="kernel">Đã bóc vỏ / Kernels (W180, W240, W320...)</option>
+                <option value="split">Nhân vỡ / Split & Broken</option>
+                <option value="pieces">Vụn / Pieces & Scorched</option>
+              </select>
+              <div class="f-err" id="err-hs-nut-form"></div>
+            </div>
+            <div class="hs-field-wrap">
+              <label class="f-label">Grade / Loại hạt <span style="color:var(--light);font-weight:400;">(tùy chọn)</span></label>
+              <input class="f-input" id="hs-nut-grade" placeholder="VD: W180, W240, W320, LBW..." oninput="livePreview()" />
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 2: Hình thức chế biến + Phụ gia -->
+        <div class="form-grid" style="margin-top:14px;margin-bottom:0;">
+          <div class="hs-field-wrap">
+            <label class="f-label">Hình thức / Trạng thái chế biến
+              <span class="req-star">*</span>
+            </label>
+            <select class="f-select" id="hs-state" onchange="livePreview()">
+              <option value="">-- Chọn --</option>
+              <option value="raw_inshell">Nguyên liệu thô chưa bóc vỏ (Raw – In Shell)</option>
+              <option value="raw_shelled">Nguyên liệu thô đã bóc vỏ (Raw – Shelled / Kernels)</option>
+              <option value="dried">Sấy khô / Dried</option>
+              <option value="frozen">Đông lạnh / Frozen</option>
+              <option value="roasted">Đã rang / Roasted</option>
+              <option value="roasted_salted">Rang muối / Roasted &amp; Salted</option>
+              <option value="canned">Đóng hộp / Canned</option>
+              <option value="other_processed">Chế biến khác / Other Processed</option>
+            </select>
+            <div class="f-err" id="err-hs-state"></div>
+          </div>
+          <div class="hs-field-wrap">
+            <label class="f-label">Mục đích sử dụng
+              <span class="req-star">*</span>
+            </label>
+            <select class="f-select" id="hs-purpose" onchange="livePreview()">
+              <option value="">-- Chọn --</option>
+              <option value="human">Human Consumption / Dùng cho người</option>
+              <option value="industrial">Industrial Use / Nguyên liệu công nghiệp</option>
+              <option value="feed">Animal Feed / Thức ăn chăn nuôi</option>
+            </select>
+            <div class="f-err" id="err-hs-purpose"></div>
+          </div>
+        </div>
+
+        <!-- ROW 3: Phụ gia (multi-select chips) + Upload -->
+        <div class="form-grid" style="margin-top:14px;margin-bottom:0;">
+          <div class="hs-field-wrap">
+            <label class="f-label">Có chứa muối, đường hoặc phụ gia?</label>
+            <div class="additive-chips" id="additive-chips">
+              <div class="chip" data-val="none" onclick="toggleChip(this)" style="background:var(--sage);color:white;border-color:var(--sage);">Không có</div>
+              <div class="chip" data-val="salted" onclick="toggleChip(this)">Muối</div>
+              <div class="chip" data-val="sweetened" onclick="toggleChip(this)">Đường</div>
+              <div class="chip" data-val="flavored" onclick="toggleChip(this)">Hương liệu</div>
+              <div class="chip" data-val="preservative" onclick="toggleChip(this)">Chất bảo quản</div>
+              <div class="chip" data-val="colorant" onclick="toggleChip(this)">Phẩm màu</div>
+            </div>
+          </div>
+          <div class="hs-field-wrap">
+            <label class="f-label">
+              Upload nhãn mác / CoA
+              <span style="color:var(--light);font-weight:400;">(tùy chọn)</span>
+            </label>
+            <label class="upload-zone" id="upload-zone" for="hs-file-input">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--light)"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span id="upload-label">Kéo thả hoặc click để chọn file (PDF, JPG, PNG)</span>
+              <input type="file" id="hs-file-input" accept=".pdf,.jpg,.jpeg,.png" style="display:none;" onchange="onFileSelect(this)" />
+            </label>
+          </div>
+        </div>
+
+        <!-- LIVE PREVIEW BAR -->
+        <div id="hs-live-preview" style="display:none;margin-top:18px;">
+          <div style="display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--sky);border:1px solid rgba(61,122,82,0.2);border-radius:8px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage);flex-shrink:0"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span style="font-size:12px;color:var(--muted);">Gợi ý HS Code:</span>
+            <span style="font-family:'DM Mono',monospace;font-weight:600;font-size:13px;color:var(--forest);" id="hs-preview-code">—</span>
+            <span style="font-size:12px;color:var(--muted);" id="hs-preview-desc">—</span>
+            <span id="hs-preview-cat-tag" style="margin-left:auto;"></span>
+          </div>
+        </div>
+
+        <!-- SUBMIT BUTTON -->
+        <div style="margin-top:20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+          <button class="btn-run" id="hs-submit-btn" onclick="runHSLookup()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            Tra cứu HS Code
+          </button>
+          <div id="hs-spinner" style="display:none;align-items:center;gap:8px;font-size:13px;color:var(--muted);">
+            <div class="spinner"></div> Đang tra cứu...
+          </div>
+        </div>
+
+        <!-- RESULT BOX -->
+        <div class="result-box result-success" id="hs-result">
+
+          <!-- Category tag + HS code -->
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:12px;">
+            <div>
+              <div class="r-label">Kết quả HS Code</div>
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:4px;">
+                <div class="r-code" id="hs-code-out" style="margin-bottom:0;">—</div>
+                <div id="hs-cat-tag-result"></div>
+              </div>
+              <div style="font-size:12px;color:var(--muted);margin-top:4px;" id="hs-product-category-line">—</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:11px;color:var(--light);margin-bottom:4px;">Lưu & Yêu cầu tư vấn</div>
+              <button class="btn-secondary" onclick="openModal('hs')">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                Lưu kết quả
+              </button>
+            </div>
+          </div>
+
+          <div class="r-name" id="hs-desc-out" style="margin-bottom:16px;">—</div>
+
+          <table class="r-table">
+            <thead>
+              <tr>
+                <th>Chỉ tiêu</th>
+                <th>MFN (Thông thường)</th>
+                <th>CPTPP (VN ưu đãi)</th>
+                <th>Ghi chú</th>
+              </tr>
+            </thead>
+            <tbody id="hs-table-body"></tbody>
+          </table>
+
+          <!-- CPTPP Note box -->
+          <div style="margin-top:14px;padding:13px 16px;background:rgba(61,122,82,0.07);border:1px solid rgba(61,122,82,0.18);border-radius:8px;overflow:hidden;">
+            <div style="display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;color:var(--sage);margin-bottom:6px;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+              CPTPP Form E
+            </div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.6;word-break:break-word;" id="hs-cptpp-note">—</div>
+          </div>
+
+          <!-- Risk Warning box -->
+          <div id="hs-risk-box" style="display:none;margin-top:12px;padding:13px 16px;background:#fef8ec;border:1px solid rgba(201,148,26,0.3);border-radius:8px;overflow:hidden;">
+            <div style="display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;color:var(--gold);margin-bottom:6px;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              Lưu ý rủi ro
+            </div>
+            <div style="font-size:13px;color:var(--ink);line-height:1.6;word-break:break-word;" id="hs-risk-text"></div>
+          </div>
+
+          <!-- DISCLAIMER -->
+          <div style="margin-top:14px;padding:12px 16px;background:var(--parch);border:1px solid var(--border);border-radius:8px;display:flex;align-items:flex-start;gap:10px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--muted);flex-shrink:0;margin-top:2px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <div style="font-size:12px;color:var(--muted);line-height:1.7;">
+              <strong style="color:var(--ink);display:block;margin-bottom:4px;">Dữ liệu tham khảo — không có giá trị pháp lý.</strong>
+              Vui lòng xác nhận thuế suất chính xác trước khi khai báo hải quan tại:
+              <div style="margin-top:6px;display:flex;flex-direction:column;gap:4px;">
+                <span>
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px;color:var(--sage);"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+                  <a href="https://www.tariffinder.ca" target="_blank" rel="noopener" style="color:var(--sage);font-weight:600;text-decoration:none;">tariffinder.ca</a>
+                  <span style="color:var(--light);"> — Tra cứu nhanh theo sản phẩm & FTA (Canada ↔ VN CPTPP)</span>
+                </span>
+                <span>
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px;color:var(--sage);"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+                  <a href="https://www.cbsa-asfc.gc.ca/trade-commerce/tariff-tarif/menu-eng.html" target="_blank" rel="noopener" style="color:var(--sage);font-weight:600;text-decoration:none;">cbsa-asfc.gc.ca</a>
+                  <span style="color:var(--light);"> — Biểu thuế CBSA chính thức (nguồn pháp lý Canada)</span>
+                </span>
+                <span>
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px;color:var(--sage);"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+                  <a href="https://www.vcci.com.vn" target="_blank" rel="noopener" style="color:var(--sage);font-weight:600;text-decoration:none;">VCCI / Bộ Công Thương VN</a>
+                  <span style="color:var(--light);"> — Xác nhận điều kiện Form E & xuất xứ CPTPP phía Việt Nam</span>
+                </span>
+                <span style="margin-top:2px;">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px;color:var(--muted);"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                  <span style="color:var(--muted);">Hoặc tư vấn với <strong style="color:var(--ink);">customs broker được cấp phép tại Canada</strong> trước khi khai báo chính thức.</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /hs-result -->
+
+        <!-- ── INLINE MICRO-FORM: xuất hiện sau kết quả đầu tiên ── -->
+        <div id="sku-micro-trigger" style="display:none;margin-top:16px;padding:14px 18px;background:var(--parch);border:1.5px dashed var(--border);border-radius:10px;display:none;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="width:36px;height:36px;background:var(--forest);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>
+              </div>
+              <div>
+                <div style="font-weight:700;font-size:14px;color:var(--forest);">Có nhiều SKU cần kiểm tra?</div>
+                <div style="font-size:12px;color:var(--muted);margin-top:2px;">Nhập hàng loạt và nhận báo cáo PDF đầy đủ</div>
+              </div>
+            </div>
+            <button class="btn-run" style="flex-shrink:0;" onclick="openMultiSKU()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Tra cứu nhiều SKU
+            </button>
+          </div>
+        </div>
+
+        <!-- ── MULTI-SKU PANEL ── -->
+        <div id="multi-sku-panel" style="display:none;margin-top:20px;">
+          <div class="card" style="margin-bottom:0;">
+            <div class="card-head">
+              <div class="card-title-row">
+                <div class="card-ico">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage)"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>
+                </div>
+                <div>
+                  <div class="card-title">Multi-SKU HS Code Lookup</div>
+                  <div class="card-sub">Tra cứu hàng loạt · Nhận báo cáo PDF · Gợi ý AI</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span class="tag tag-gray">Multi-SKU</span>
+                <button onclick="closeMultiSKU()" style="background:var(--parch);border:none;width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+
+              <!-- SKU Counter + detect message -->
+              <div id="sku-detect-banner" style="display:none;margin-bottom:16px;padding:10px 14px;border-radius:8px;font-size:13px;line-height:1.5;"></div>
+
+              <!-- SKU Table -->
+              <div style="overflow-x:auto;margin-bottom:16px;">
+                <table class="sku-table" id="sku-table">
+                  <thead>
+                    <tr>
+                      <th style="width:32px;">#</th>
+                      <th>Tên sản phẩm</th>
+                      <th>Danh mục</th>
+                      <th>Hình thức chế biến</th>
+                      <th>Kết quả HS Code</th>
+                      <th>Thuế</th>
+                      <th>Phân loại</th>
+                      <th style="width:36px;"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="sku-tbody">
+                    <!-- rows injected by JS -->
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Add row + Upload Excel -->
+              <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:20px;">
+                <button class="btn-secondary" onclick="addSKURow()">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Thêm SKU
+                </button>
+                <label class="btn-secondary" style="cursor:pointer;" title="Upload file Excel danh sách SKU">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  Upload Excel (.xlsx)
+                  <input type="file" accept=".xlsx,.xls,.csv" style="display:none;" onchange="parseExcel(this)" />
+                </label>
+                <span style="font-size:12px;color:var(--light);">Format: Tên SP | Danh mục | Trạng thái</span>
+                <span id="sku-count-badge" style="margin-left:auto;font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);"></span>
+              </div>
+
+              <!-- Summary bar (hiện sau khi đủ >=2 kết quả) -->
+              <div id="sku-summary-bar" style="display:none;margin-bottom:20px;padding:14px 18px;background:var(--sky);border:1px solid rgba(61,122,82,0.2);border-radius:8px;">
+                <div style="display:flex;gap:24px;flex-wrap:wrap;">
+                  <div><div style="font-size:11px;color:var(--light);text-transform:uppercase;letter-spacing:0.7px;">Tổng SKU</div><div style="font-family:'DM Mono',monospace;font-size:20px;font-weight:600;color:var(--forest);" id="sum-total">0</div></div>
+                  <div><div style="font-size:11px;color:var(--light);text-transform:uppercase;letter-spacing:0.7px;">CPTPP Eligible</div><div style="font-family:'DM Mono',monospace;font-size:20px;font-weight:600;color:var(--sage);" id="sum-cptpp">0</div></div>
+                  <div><div style="font-size:11px;color:var(--light);text-transform:uppercase;letter-spacing:0.7px;">Agri Raw</div><div style="font-family:'DM Mono',monospace;font-size:20px;font-weight:600;color:var(--moss);" id="sum-agri">0</div></div>
+                  <div><div style="font-size:11px;color:var(--light);text-transform:uppercase;letter-spacing:0.7px;">Processed</div><div style="font-family:'DM Mono',monospace;font-size:20px;font-weight:600;color:var(--gold);" id="sum-proc">0</div></div>
+                  <div><div style="font-size:11px;color:var(--light);text-transform:uppercase;letter-spacing:0.7px;">Tiết kiệm thuế ước tính</div><div style="font-family:'DM Mono',monospace;font-size:20px;font-weight:600;color:var(--rust);" id="sum-saving">—</div></div>
+                </div>
+              </div>
+
+              <!-- GATE FORM — Email + Company + SKU count -->
+              <div id="sku-gate-form" style="border:1.5px solid var(--border);border-radius:10px;padding:20px 22px;background:var(--white);">
+                <div style="font-weight:700;font-size:15px;color:var(--forest);margin-bottom:4px;display:flex;align-items:center;gap:8px;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage)"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                  Nhận báo cáo PDF đầy đủ
+                </div>
+                <div style="font-size:13px;color:var(--muted);margin-bottom:16px;">Điền thông tin bên dưới — báo cáo sẽ được tạo ngay và gợi ý AI sẽ được gửi về email của bạn.</div>
+                <div class="form-grid" style="margin-bottom:14px;">
+                  <div>
+                    <label class="f-label">Email công ty <span class="req-star">*</span></label>
+                    <input class="f-input" id="gate-email" type="email" placeholder="you@company.com.vn" />
+                    <div class="f-err" id="err-gate-email"></div>
+                  </div>
+                  <div>
+                    <label class="f-label">Tên công ty <span class="req-star">*</span></label>
+                    <input class="f-input" id="gate-company" placeholder="Công ty TNHH Xuất khẩu ABC" />
+                    <div class="f-err" id="err-gate-company"></div>
+                  </div>
+                </div>
+                <div class="form-grid" style="margin-bottom:18px;">
+                  <div>
+                    <label class="f-label">Tổng số SKU của công ty</label>
+                    <select class="f-select" id="gate-sku-count">
+                      <option value="">-- Tùy chọn --</option>
+                      <option value="1-10">1–10 SKUs</option>
+                      <option value="11-50">11–50 SKUs</option>
+                      <option value="51-200">51–200 SKUs</option>
+                      <option value="200+">200+ SKUs</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="f-label">Thị trường mục tiêu</label>
+                    <select class="f-select" id="gate-market">
+                      <option value="canada">Canada (chính)</option>
+                      <option value="canada-us">Canada + Mỹ</option>
+                      <option value="canada-eu">Canada + EU</option>
+                      <option value="multiple">Nhiều thị trường</option>
+                    </select>
+                  </div>
+                </div>
+                <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+                  <button class="btn-run" id="gen-pdf-btn" onclick="generatePDFReport()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    Tạo báo cáo PDF ngay
+                  </button>
+                  <div id="pdf-spinner" style="display:none;align-items:center;gap:8px;font-size:13px;color:var(--muted);"><div class="spinner"></div> Đang phân tích với AI...</div>
+                  <span style="font-size:12px;color:var(--light);">Báo cáo mở ngay trong tab · Không cần cài đặt</span>
+                </div>
+              </div>
+
+              <!-- POST-GENERATE: success state -->
+              <div id="sku-gate-success" style="display:none;margin-top:14px;padding:16px 18px;background:#edf7f1;border:1.5px solid rgba(61,122,82,0.3);border-radius:10px;">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  <span style="font-weight:700;color:var(--forest);font-size:15px;">Báo cáo đã được tạo!</span>
+                </div>
+                <div style="font-size:13px;color:var(--muted);margin-bottom:14px;">PDF đã mở trong tab mới. Gợi ý chi tiết từ Adeptlink sẽ được gửi về email của bạn trong vòng 24h.</div>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                  <button class="btn-run" onclick="printReport()">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px;"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                    In / Lưu PDF lại
+                  </button>
+                  <button class="btn-secondary" onclick="window.open('https://adept-link.com/registration/','_blank')">
+                    Đăng ký Adeptlink để kết nối buyer Canada →
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- PANEL 2: CFIA CHECKLIST -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="panel" id="panel-cfia">
+    <div class="section-intro">
+      <h2>CFIA Import Checklist</h2>
+      <p>Danh sách đầy đủ các bước cần hoàn thành trước khi lô hàng thực phẩm được nhập vào Canada theo Safe Food for Canadians Act (SFCA).</p>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title-row">
+          <div class="card-ico">📋</div>
+          <div>
+            <div class="card-title">SFCA / CFIA Import Requirements</div>
+            <div class="card-sub">Theo Safe Food for Canadians Regulations 2019 · Cập nhật 2026</div>
+          </div>
+        </div>
+        <span class="tag tag-amber">Bắt buộc</span>
+      </div>
+      <div class="card-body">
+        <div class="form-grid">
+          <div>
+            <label class="f-label">Loại sản phẩm</label>
+            <select class="f-select" id="cfia-type" onchange="filterChecklist()">
+              <option value="all">Tất cả thực phẩm</option>
+              <option value="fresh">Trái cây / Rau tươi</option>
+              <option value="processed">Thực phẩm chế biến đóng gói</option>
+              <option value="seafood">Hải sản / Thủy sản</option>
+              <option value="meat">Thịt / Gia cầm</option>
+              <option value="dairy">Sữa / Sản phẩm từ sữa</option>
+              <option value="grains">Hạt / Ngũ cốc / Gia vị</option>
+            </select>
+          </div>
+          <div>
+            <label class="f-label">Tiến độ của bạn</label>
+            <div class="prog-wrap">
+              <div class="prog-bar" id="cfia-prog" style="width:0%"></div>
+            </div>
+            <div class="prog-info">
+              <span id="cfia-done-count">0/10 bước hoàn thành</span>
+              <span id="cfia-pct">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <ul class="check-list" id="cfia-checklist">
+          <!-- Items rendered by JS -->
+        </ul>
+
+        <div class="result-box" id="cfia-complete" style="display:none;">
+          <div style="text-align:center;padding:10px 0;">
+            <div style="font-size:40px;margin-bottom:8px;">✅</div>
+            <div style="font-family:'Fraunces',serif;font-size:20px;color:var(--forest);margin-bottom:6px;">Bạn đã sẵn sàng xuất khẩu sang Canada!</div>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:16px;">Tất cả yêu cầu CFIA đã được hoàn thành. Bước tiếp theo: đăng ký trên Adeptlink để kết nối với buyer Canada.</div>
+            <button class="btn-run" onclick="window.open('https://adept-link.com/registration/','_blank')">Đăng ký Adeptlink miễn phí →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- PANEL 3: ALLERGEN BUILDER -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="panel" id="panel-allergen">
+    <div class="section-intro">
+      <h2>Allergen Declaration Builder</h2>
+      <p>Canada yêu cầu khai báo bắt buộc 14 chất gây dị ứng ưu tiên (Priority Food Allergens) trên nhãn sản phẩm theo Health Canada regulations.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title-row">
+          <div class="card-ico">⚠️</div>
+          <div>
+            <div class="card-title">Priority Food Allergens — Canada</div>
+            <div class="card-sub">Theo Health Canada · Safe Food for Canadians Act · 14 allergens bắt buộc</div>
+          </div>
+        </div>
+        <span class="tag tag-red">Bắt buộc trên nhãn</span>
+      </div>
+      <div class="card-body">
+        <div class="info-banner">
+          <span class="bn-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--rust)"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </span>
+          <span class="bn-text">Khai thiếu allergen là vi phạm nghiêm trọng, có thể dẫn đến <strong>thu hồi sản phẩm</strong> và phạt tiền. Canada có danh sách allergen riêng — khác với EU và Mỹ.</span>
+        </div>
+
+        <div class="f-label" style="margin-bottom:12px;">Chọn tất cả allergen CÓ MẶT trong sản phẩm của bạn:</div>
+        <div class="allergen-grid" id="allergen-grid">
+          <!-- Rendered by JS -->
+        </div>
+
+        <div class="form-full">
+          <label class="f-label">Tên sản phẩm (để tạo declaration text)</label>
+          <input class="f-input" id="allergen-product-name" placeholder="VD: ABC Foods Roasted Cashews with Sea Salt" />
+        </div>
+
+        <button class="btn-run" onclick="buildAllergenDeclaration()">⚠️ Tạo Allergen Declaration</button>
+
+        <div class="result-box result-warn" id="allergen-result" style="display:none">
+          <div class="r-label">Allergen Declaration — Theo chuẩn Health Canada</div>
+          <div style="margin-bottom:14px;">
+            <div style="font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px;">Phải in trên nhãn (tiếng Anh):</div>
+            <div style="background:var(--white);border:1.5px solid var(--border);border-radius:7px;padding:14px 16px;font-family:'DM Mono',monospace;font-size:13px;color:var(--ink);line-height:1.6;" id="allergen-en-text">—</div>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px;">Phải in trên nhãn (tiếng Pháp — bắt buộc):</div>
+            <div style="background:var(--white);border:1.5px solid var(--border);border-radius:7px;padding:14px 16px;font-family:'DM Mono',monospace;font-size:13px;color:var(--ink);line-height:1.6;" id="allergen-fr-text">—</div>
+          </div>
+          <div style="margin-top:14px;display:flex;gap:10px;">
+            <button class="btn-secondary" onclick="copyAllergen()">📋 Copy text</button>
+            <button class="btn-secondary" onclick="switchTab('label', null)">🏷️ Thêm vào nhãn EN/FR →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- PANEL 4: LABEL BUILDER -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="panel" id="panel-label">
+    <div class="section-intro">
+      <h2>Bilingual Label Builder (EN/FR)</h2>
+      <p>Canada yêu cầu <strong>tất cả nhãn sản phẩm phải song ngữ</strong> Anh-Pháp theo Official Languages Act và Food and Drug Regulations (FDR).</p>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title-row">
+          <div class="card-ico">🏷️</div>
+          <div>
+            <div class="card-title">Tạo nhãn song ngữ EN/FR</div>
+            <div class="card-sub">Theo Canada Food and Drug Regulations (FDR) · Official Languages Act</div>
+          </div>
+        </div>
+        <span class="tag tag-amber">Bắt buộc</span>
+      </div>
+      <div class="card-body">
+        <div class="info-banner">
+          <span class="bn-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </span>
+          <span class="bn-text">Tất cả thông tin bắt buộc trên nhãn (tên sản phẩm, net weight, ingredients, allergens, địa chỉ nhà sản xuất/nhập khẩu) <strong>phải có cả tiếng Anh lẫn tiếng Pháp</strong>. Nhãn chỉ có tiếng Anh sẽ bị từ chối ở border.</span>
+        </div>
+
+        <div class="form-grid">
+          <div>
+            <label class="f-label">Tên sản phẩm (Anh)</label>
+            <input class="f-input" id="lbl-name-en" placeholder="Roasted Cashews with Sea Salt" />
+          </div>
+          <div>
+            <label class="f-label">Tên sản phẩm (Pháp)</label>
+            <input class="f-input" id="lbl-name-fr" placeholder="Noix de cajou grillées au sel de mer" />
+          </div>
+        </div>
+
+        <div class="form-grid-3">
+          <div>
+            <label class="f-label">Net Weight</label>
+            <input class="f-input" id="lbl-weight" placeholder="500 g" />
+          </div>
+          <div>
+            <label class="f-label">Xuất xứ</label>
+            <input class="f-input" id="lbl-origin" value="Product of Vietnam / Produit du Viêtnam" />
+          </div>
+          <div>
+            <label class="f-label">Best Before</label>
+            <input class="f-input" id="lbl-bb" placeholder="BB: 2027-06-30" />
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div>
+            <label class="f-label">Ingredients (EN)</label>
+            <input class="f-input" id="lbl-ing-en" placeholder="Cashews, sea salt." />
+          </div>
+          <div>
+            <label class="f-label">Ingredients (FR)</label>
+            <input class="f-input" id="lbl-ing-fr" placeholder="Noix de cajou, sel de mer." />
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div>
+            <label class="f-label">Importer / Distributor Canada</label>
+            <input class="f-input" id="lbl-importer" placeholder="ABC Foods Canada Inc., Vancouver BC" />
+          </div>
+          <div>
+            <label class="f-label">Allergen statement (EN)</label>
+            <input class="f-input" id="lbl-allergen" placeholder="Contains: tree nuts (cashew)." />
+          </div>
+        </div>
+
+        <button class="btn-run" onclick="buildLabel()">🏷️ Xem trước nhãn EN/FR</button>
+
+        <div class="label-preview" id="label-preview">
+          <div class="label-flag">
+            <div class="lf-en">🇬🇧 ENGLISH</div>
+            <div class="lf-fr">🇫🇷 FRANÇAIS</div>
+          </div>
+          <div class="label-body">
+            <div class="label-col">
+              <div class="lc-lang">English</div>
+              <div class="lc-prod-name" id="lbl-out-name-en">—</div>
+              <div class="lc-detail" id="lbl-out-weight-en">—</div>
+              <div class="lc-detail" id="lbl-out-ing-en">—</div>
+              <div class="lc-detail" id="lbl-out-origin-en">—</div>
+              <div class="lc-detail" id="lbl-out-bb-en">—</div>
+              <div class="lc-allergen" id="lbl-out-allergen-en">—</div>
+              <div class="lc-detail" id="lbl-out-importer-en" style="margin-top:8px;font-size:11px;">—</div>
+            </div>
+            <div class="label-col">
+              <div class="lc-lang">Français</div>
+              <div class="lc-prod-name" id="lbl-out-name-fr">—</div>
+              <div class="lc-detail" id="lbl-out-weight-fr">—</div>
+              <div class="lc-detail" id="lbl-out-ing-fr">—</div>
+              <div class="lc-detail" id="lbl-out-origin-fr">—</div>
+              <div class="lc-detail" id="lbl-out-bb-fr">—</div>
+              <div class="lc-allergen" id="lbl-out-allergen-fr">—</div>
+              <div class="lc-detail" id="lbl-out-importer-fr" style="margin-top:8px;font-size:11px;">—</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn-secondary" onclick="openModal('label')">📥 Lưu & Yêu cầu tư vấn nhãn chính thức</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- PANEL 5: CERT & TRUST SCORE -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="panel" id="panel-cert">
+    <div class="section-intro">
+      <h2>Chứng chỉ & Trust Score</h2>
+      <p>Kiểm tra chứng chỉ bạn đang có và xem Trust Score ước tính trên nền tảng Adeptlink. Buyer Canada ưu tiên supplier có Trust Score cao.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title-row">
+            <div class="card-ico">📜</div>
+            <div>
+              <div class="card-title">Chứng chỉ hiện có</div>
+              <div class="card-sub">Tick vào chứng chỉ bạn đang sở hữu</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="cert-grid" id="cert-grid">
+            <!-- Rendered by JS -->
+          </div>
+          <button class="btn-run" style="width:100%" onclick="calcTrustScore()">📊 Tính Trust Score</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title-row">
+            <div class="card-ico">⭐</div>
+            <div>
+              <div class="card-title">Trust Score ước tính</div>
+              <div class="card-sub">Điểm tín nhiệm trên Adeptlink (0–100)</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="trust-display">
+            <div class="trust-circle" id="trust-circle">
+              <div class="trust-num" id="trust-num">—</div>
+              <div class="trust-label">/ 100</div>
+            </div>
+            <div id="trust-tier" style="font-size:13px;color:var(--muted);">Chọn chứng chỉ và bấm tính →</div>
+          </div>
+          <div class="trust-factors" id="trust-factors">
+            <div class="tf-item"><div class="tf-name">KYC Verified</div><div class="tf-val" id="tf-kyc">+0</div></div>
+            <div class="tf-item"><div class="tf-name">Food Safety Cert</div><div class="tf-val" id="tf-fs">+0</div></div>
+            <div class="tf-item"><div class="tf-name">Export Certs</div><div class="tf-val" id="tf-exp">+0</div></div>
+            <div class="tf-item"><div class="tf-name">Specialty Certs</div><div class="tf-val" id="tf-spec">+0</div></div>
+          </div>
+
+          <div class="result-box result-success" id="trust-advice" style="margin-top:16px;display:none">
+            <div class="r-label">Lời khuyên để tăng điểm</div>
+            <div id="trust-advice-text" style="font-size:13px;color:var(--muted);line-height:1.7;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- What certs mean -->
+    <div class="card" style="margin-top:4px;">
+      <div class="card-head">
+        <div class="card-title-row">
+          <div class="card-ico">ℹ️</div>
+          <div>
+            <div class="card-title">Chứng chỉ nào quan trọng với buyer Canada?</div>
+            <div class="card-sub">Yêu cầu của chuỗi siêu thị và nhà nhập khẩu Canada</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <table class="r-table">
+          <thead>
+            <tr><th>Chứng chỉ</th><th>Buyer yêu cầu</th><th>Mức độ quan trọng</th><th>Ghi chú</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>HACCP</strong></td><td>Hầu hết food manufacturers</td><td><span class="tag tag-red">Bắt buộc</span></td><td>Tiêu chuẩn tối thiểu vào Canada</td></tr>
+            <tr><td><strong>BRC Grade A/AA</strong></td><td>Loblaw, Metro, Sobeys</td><td><span class="tag tag-red">Cao</span></td><td>Top 3 chuỗi siêu thị Canada</td></tr>
+            <tr><td><strong>SQF Level 2+</strong></td><td>Costco Canada</td><td><span class="tag tag-amber">Cao</span></td><td>Costco chỉ accept SQF hoặc BRC AA</td></tr>
+            <tr><td><strong>Organic (USDA/EU)</strong></td><td>Health food, organic stores</td><td><span class="tag tag-amber">Trung bình</span></td><td>Tăng giá bán 20–40%</td></tr>
+            <tr><td><strong>Kosher / Halal</strong></td><td>Ethnic food distributors</td><td><span class="tag tag-gray">Thị trường ngách</span></td><td>Mở thêm kênh bán</td></tr>
+            <tr><td><strong>SA8000</strong></td><td>ESG-focused buyers</td><td><span class="tag tag-gray">Nice to have</span></td><td>Tăng uy tín, không bắt buộc</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA STRIP -->
+  <div class="cta-strip">
+    <div class="cta-left">
+      <h3>Sẵn sàng xuất khẩu sang Canada?</h3>
+      <p>Đăng ký Adeptlink miễn phí — kết nối với buyer Canada đã verified, quản lý RFQ và compliance trong một nền tảng.</p>
+    </div>
+    <div class="cta-right">
+      <button class="btn-outline" style="color:rgba(255,255,255,0.8);border-color:rgba(255,255,255,0.3);" onclick="openModal()">Yêu cầu tư vấn</button>
+      <button class="btn-gold" onclick="window.open('https://adept-link.com/registration/','_blank')">Đăng ký miễn phí →</button>
+    </div>
+  </div>
+
+</div><!-- /shell -->
+
+<!-- LEAD MODAL -->
+<div class="modal-overlay" id="lead-modal" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3>Yêu cầu tư vấn</h3>
+    <p>Đội ngũ Adeptlink sẽ liên hệ trong vòng 24h để hỗ trợ bạn chuẩn bị hồ sơ xuất khẩu sang Canada.</p>
+
+    <div id="modal-form">
+      <div class="form-grid">
+        <div>
+          <label class="f-label">Tên công ty</label>
+          <input class="f-input" id="m-company" placeholder="Tên công ty của bạn" />
+        </div>
+        <div>
+          <label class="f-label">Người liên hệ</label>
+          <input class="f-input" id="m-name" placeholder="Họ tên" />
+        </div>
+      </div>
+      <div class="form-full">
+        <label class="f-label">Email</label>
+        <input class="f-input" id="m-email" type="email" placeholder="email@congty.com" />
+      </div>
+      <div class="form-grid">
+        <div>
+          <label class="f-label">Sản phẩm muốn xuất khẩu</label>
+          <input class="f-input" id="m-product" placeholder="VD: Hạt điều rang, nước mắm..." />
+        </div>
+        <div>
+          <label class="f-label">Kim ngạch dự kiến</label>
+          <select class="f-select" id="m-volume">
+            <option>Dưới $10,000/tháng</option>
+            <option>$10K – $50K/tháng</option>
+            <option>$50K – $200K/tháng</option>
+            <option>$200K+/tháng</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-run" style="width:100%;margin-top:8px;" onclick="submitLead()">Gửi yêu cầu tư vấn →</button>
+    </div>
+
+    <div class="m-success" id="modal-success">
+      <div class="m-success-ico">✅</div>
+      <h4>Đã nhận! Chúng tôi sẽ liên hệ trong 24h.</h4>
+      <p>Trong lúc chờ, bạn có thể đăng ký tài khoản Adeptlink miễn phí để khám phá buyer Canada.</p>
+      <div style="margin-top:16px;">
+        <button class="btn-run" onclick="window.open('https://adept-link.com/registration/','_blank')">Đăng ký ngay →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════
+const state = {
+  cfiaChecked: {},
+  allergens: new Set(),
+  certs: new Set(),
+  currentTool: null
+};
+
+// ══════════════════════════════════════════
+// TAB SWITCHING
+// ══════════════════════════════════════════
+function switchTab(id, btnEl) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.hn').forEach(b => b.classList.remove('active'));
+
+  document.getElementById('panel-' + id).classList.add('active');
+  const tb = document.getElementById('tab-' + id);
+  if (tb) tb.classList.add('active');
+  if (btnEl && btnEl.classList.contains('hn')) btnEl.classList.add('active');
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ══════════════════════════════════════════
+// HS CODE — ENHANCED DATA & LOGIC
+// ══════════════════════════════════════════
+
+// Maps category → product_category classification
+const CAT_TYPE = {
+  fresh_fruit: 'agri', fresh_veg: 'agri', fresh_herb: 'agri',
+  nuts: 'agri', pepper: 'agri', rice: 'agri', grains: 'agri',
+  spices: 'agri', oils: 'agri', seafood: 'agri',
+  processed: 'processed', sauce: 'processed', coffee: 'processed'
+};
+
+// Suggest keywords → { cat, label }
+const SUGGEST_MAP = [
+  { kw: ['cashew','điều','hat dieu'], cat: 'nuts', label: 'Nuts & Dried Fruit — Hạt điều' },
+  { kw: ['almond','almonds'], cat: 'nuts', label: 'Nuts & Dried Fruit — Hạnh nhân' },
+  { kw: ['walnut','pistachio','macadamia'], cat: 'nuts', label: 'Nuts & Dried Fruit' },
+  { kw: ['shrimp','tôm','tom'], cat: 'seafood', label: 'Seafood — Tôm' },
+  { kw: ['fish','cá','ca tra','ca basa','pangasius'], cat: 'seafood', label: 'Seafood — Cá' },
+  { kw: ['pepper','tiêu','tieu'], cat: 'pepper', label: 'Pepper / Tiêu' },
+  { kw: ['rice','gạo','gao'], cat: 'rice', label: 'Rice / Gạo' },
+  { kw: ['coffee','cà phê','ca phe'], cat: 'coffee', label: 'Coffee & Tea' },
+  { kw: ['cinnamon','quế','que','ginger','gừng','turmeric','nghệ'], cat: 'spices', label: 'Spices & Herbs / Gia vị' },
+  { kw: ['fish sauce','nước mắm','nuoc mam','soy sauce'], cat: 'sauce', label: 'Sauces & Condiments' },
+  { kw: ['noodle','mì','mi','pho'], cat: 'processed', label: 'Processed Food — Mì, Bún' },
+];
+
+// HS Data: category → processing state → result
+// product_category field added: 'agri' | 'processed'
+const HS_DATA = {
+  nuts: {
+    raw_inshell:   { code: '0801.32', desc: 'Cashew nuts, in shell, fresh or dried', mfn: '5.0%', cptpp: '0%', saving: '5.0%', eligible: true, product_category: 'agri',
+                     risk: 'Hạt điều chưa bóc vỏ cần Phytosanitary Certificate từ PPVMO. Kiểm tra dư lượng thuốc trừ sâu theo CFIA Maximum Residue Limits (MRL).' },
+    raw_shelled:   { code: '0801.32', desc: 'Cashew nuts, shelled (kernels), fresh or dried', mfn: '5.0%', cptpp: '0%', saving: '5.0%', eligible: true, product_category: 'agri',
+                     risk: 'Kernels thô cần khai báo moisture content. CFIA có thể yêu cầu lab test aflatoxin.' },
+    dried:         { code: '0813.40', desc: 'Dried nuts / dried fruit mix', mfn: '5.5%', cptpp: '0%', saving: '5.5%', eligible: true, product_category: 'agri',
+                     risk: null },
+    roasted:       { code: '2008.19', desc: 'Cashew nuts, roasted (not salted)', mfn: '7.5%', cptpp: '0%', saving: '7.5%', eligible: true, product_category: 'processed',
+                     risk: null },
+    roasted_salted:{ code: '2008.19', desc: 'Cashew nuts, roasted & salted', mfn: '7.5%', cptpp: '0%', saving: '7.5%', eligible: true, product_category: 'processed',
+                     risk: 'Phải khai báo sodium content trên Nutrition Facts table. Allergen: Tree Nuts (Cashew) bắt buộc.' },
+    frozen:        { code: '0811.90', desc: 'Nuts, frozen, not further prepared', mfn: '5.0%', cptpp: '0%', saving: '5.0%', eligible: true, product_category: 'agri',
+                     risk: 'Cần duy trì cold chain. CFIA kiểm tra nhiệt độ tại cửa khẩu.' },
+    canned:        { code: '2008.19', desc: 'Nuts, otherwise prepared or preserved', mfn: '7.5%', cptpp: '0%', saving: '7.5%', eligible: true, product_category: 'processed',
+                     risk: null },
+    other_processed:{ code: '2008.19', desc: 'Nuts, prepared or preserved NES', mfn: '7.5%', cptpp: '0%', saving: '7.5%', eligible: true, product_category: 'processed',
+                     risk: null },
+    default:       { code: '0801.32', desc: 'Nuts (edible)', mfn: '5.0%', cptpp: '0%', saving: '5.0%', eligible: true, product_category: 'agri', risk: null }
+  },
+  seafood: {
+    raw_inshell:   { code: '0306.17', desc: 'Shrimp and prawns, fresh or chilled', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri',
+                     risk: 'Hải sản tươi cần Health Certificate từ NAFIQAD. CFIA kiểm tra vi sinh và dư lượng kháng sinh.' },
+    raw_shelled:   { code: '0306.17', desc: 'Shrimp / crustaceans, shelled, fresh', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri',
+                     risk: 'Phải kèm Health Certificate. Khai báo allergen: Crustaceans bắt buộc.' },
+    frozen:        { code: '0306.17', desc: 'Crustaceans / shrimp, frozen', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri',
+                     risk: 'Duy trì -18°C toàn chuỗi. CFIA lấy mẫu kiểm tra sulphite và kháng sinh.' },
+    roasted:       { code: '1605.21', desc: 'Shrimp/prawns, prepared or preserved', mfn: '5.0%', cptpp: '0%', saving: '5.0%', eligible: true, product_category: 'processed',
+                     risk: null },
+    roasted_salted:{ code: '1605.21', desc: 'Shrimp, prepared & salted', mfn: '5.0%', cptpp: '0%', saving: '5.0%', eligible: true, product_category: 'processed',
+                     risk: 'Khai báo sodium. Allergen: Crustaceans.' },
+    canned:        { code: '1605.21', desc: 'Canned shrimp / seafood', mfn: '5.0%', cptpp: '0%', saving: '5.0%', eligible: true, product_category: 'processed',
+                     risk: null },
+    other_processed:{ code: '1604.20', desc: 'Prepared or preserved fish / seafood', mfn: '11.0%', cptpp: '0%', saving: '11.0%', eligible: true, product_category: 'processed',
+                     risk: null },
+    default:       { code: '0302.89', desc: 'Fish, fresh or chilled', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri', risk: null }
+  },
+  spices: {
+    raw_inshell:   { code: '0910.11', desc: 'Ginger / spice roots, fresh or dried', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri',
+                     risk: 'Gia vị tươi cần Phytosanitary Certificate. Kiểm tra salmonella tại border.' },
+    raw_shelled:   { code: '0904.21', desc: 'Pepper, dried, not crushed or ground', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri',
+                     risk: 'Phải Phytosanitary Certificate. CFIA kiểm tra aflatoxin và ochratoxin.' },
+    dried:         { code: '0910.11', desc: 'Spices, dried (ginger, turmeric, cinnamon)', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri',
+                     risk: null },
+    other_processed:{ code: '0910.91', desc: 'Mixtures of spices / seasoning blends', mfn: '6.0%', cptpp: '0%', saving: '6.0%', eligible: true, product_category: 'processed',
+                     risk: null },
+    default:       { code: '0904.22', desc: 'Pepper, crushed or ground', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri', risk: null }
+  },
+  rice: {
+    raw_inshell:   { code: '1006.10', desc: 'Rice in the husk (paddy/rough)', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri',
+                     risk: 'Gạo lứt cần Phytosanitary Certificate. Kiểm tra dư lượng thuốc bảo vệ thực vật.' },
+    raw_shelled:   { code: '1006.30', desc: 'Semi-milled or wholly milled rice', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri',
+                     risk: null },
+    dried:         { code: '1006.30', desc: 'Milled rice, polished or glazed', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri',
+                     risk: null },
+    other_processed:{ code: '1102.90', desc: 'Rice flour / flaked rice', mfn: '3.0%', cptpp: '0%', saving: '3.0%', eligible: true, product_category: 'processed',
+                     risk: null },
+    default:       { code: '1006.30', desc: 'Rice, milled', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri', risk: null }
+  },
+  pepper: {
+    raw_inshell:   { code: '0904.21', desc: 'Pepper (Piper), dried, in berry form', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri',
+                     risk: 'Phytosanitary Certificate bắt buộc. Kiểm tra dư lượng và ochratoxin A.' },
+    raw_shelled:   { code: '0904.21', desc: 'Pepper, dried, not crushed or ground', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri',
+                     risk: null },
+    other_processed:{ code: '0904.22', desc: 'Pepper, crushed or ground', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri',
+                     risk: null },
+    default:       { code: '0904.21', desc: 'Pepper (Piper genus)', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri', risk: null }
+  },
+  grains: {
+    raw_inshell:   { code: '1001.99', desc: 'Wheat / grains, not further processed', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri',
+                     risk: 'Phytosanitary Certificate bắt buộc cho ngũ cốc.' },
+    raw_shelled:   { code: '1005.90', desc: 'Maize / corn, not for seed', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri', risk: null },
+    other_processed:{ code: '1904.10', desc: 'Cereals, puffed, flaked or pre-cooked', mfn: '7.5%', cptpp: '0%', saving: '7.5%', eligible: true, product_category: 'processed', risk: null },
+    canned:        { code: '1901.90', desc: 'Food preparations of flour/malt extract', mfn: '11.5%', cptpp: '0%', saving: '11.5%', eligible: true, product_category: 'processed', risk: null },
+    default:       { code: '1001.99', desc: 'Grains / cereals', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri', risk: null }
+  },
+  oils: {
+    raw_inshell:   { code: '1507.10', desc: 'Soya-bean oil, crude', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri', risk: null },
+    raw_shelled:   { code: '1515.90', desc: 'Fixed vegetable fats and oils, crude', mfn: '5.0%', cptpp: '0%', saving: '5.0%', eligible: true, product_category: 'agri', risk: null },
+    other_processed:{ code: '1516.20', desc: 'Vegetable fats and oils, hydrogenated/refined', mfn: '8.0%', cptpp: '0%', saving: '8.0%', eligible: true, product_category: 'processed', risk: null },
+    default:       { code: '1515.90', desc: 'Vegetable oils', mfn: '5.0%', cptpp: '0%', saving: '5.0%', eligible: true, product_category: 'agri', risk: null }
+  },
+  processed: {
+    canned:        { code: '2005.99', desc: 'Other vegetables, prepared or preserved', mfn: '11.5%', cptpp: '0%', saving: '11.5%', eligible: true, product_category: 'processed', risk: null },
+    other_processed:{ code: '2106.90', desc: 'Food preparations NES', mfn: '11.0%', cptpp: '0%', saving: '11.0%', eligible: true, product_category: 'processed', risk: null },
+    default:       { code: '2106.90', desc: 'Prepared food products', mfn: '9.5%', cptpp: '0%', saving: '9.5%', eligible: true, product_category: 'processed', risk: null }
+  },
+  sauce: {
+    other_processed:{ code: '2103.90', desc: 'Sauces and preparations — fish sauce, soy sauce', mfn: '11.0%', cptpp: '0%', saving: '11.0%', eligible: true, product_category: 'processed',
+                     risk: 'Khai báo sodium content. Kiểm tra fish sauce: histamine limit theo CFIA.' },
+    default:       { code: '2103.10', desc: 'Soya sauce', mfn: '8.5%', cptpp: '0%', saving: '8.5%', eligible: true, product_category: 'processed', risk: null }
+  },
+  coffee: {
+    raw_inshell:   { code: '0901.11', desc: 'Coffee, not roasted, not decaffeinated', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri', risk: null },
+    raw_shelled:   { code: '0901.11', desc: 'Coffee beans, green (unroasted)', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri', risk: null },
+    roasted:       { code: '0901.21', desc: 'Coffee, roasted, not decaffeinated', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'processed', risk: null },
+    roasted_salted:{ code: '0901.21', desc: 'Coffee, roasted', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'processed', risk: null },
+    other_processed:{ code: '2101.11', desc: 'Extracts, essences and concentrates of coffee', mfn: '7.5%', cptpp: '0%', saving: '7.5%', eligible: true, product_category: 'processed', risk: null },
+    default:       { code: '0901.21', desc: 'Coffee, roasted', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'processed', risk: null }
+  },
+  fresh_fruit: {
+    raw_inshell:   { code: '0810.90', desc: 'Other fresh fruit (tropical)', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri',
+                     risk: 'Trái cây tươi cần Phytosanitary Certificate + kiểm tra sâu bệnh tại cửa khẩu. CFIA có thể yêu cầu fumigation.' },
+    raw_shelled:   { code: '0810.90', desc: 'Fresh fruit, cut or prepared', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri', risk: null },
+    frozen:        { code: '0811.90', desc: 'Fruit, frozen, not further prepared', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri', risk: null },
+    dried:         { code: '0813.40', desc: 'Other dried fruit', mfn: '5.5%', cptpp: '0%', saving: '5.5%', eligible: true, product_category: 'agri', risk: null },
+    default:       { code: '0810.90', desc: 'Fresh tropical fruit', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri', risk: null }
+  },
+  fresh_veg: {
+    raw_inshell:   { code: '0709.99', desc: 'Vegetables, fresh or chilled, NES', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri',
+                     risk: 'Rau tươi nhập khẩu cần Phytosanitary Certificate. Nguy cơ bị giữ tại border nếu phát hiện sâu bệnh.' },
+    frozen:        { code: '0710.80', desc: 'Other vegetables, frozen', mfn: '5.0%', cptpp: '0%', saving: '5.0%', eligible: true, product_category: 'agri', risk: null },
+    canned:        { code: '2005.99', desc: 'Vegetables, prepared or preserved', mfn: '11.5%', cptpp: '0%', saving: '11.5%', eligible: true, product_category: 'processed', risk: null },
+    default:       { code: '0709.99', desc: 'Vegetables, fresh', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri', risk: null }
+  },
+  fresh_herb: {
+    raw_inshell:   { code: '0709.99', desc: 'Fresh herbs and aromatics', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri',
+                     risk: 'Rau thơm tươi: Phytosanitary Certificate bắt buộc. Rủi ro cao bị từ chối — nên export dạng sấy hoặc đông lạnh.' },
+    dried:         { code: '0910.99', desc: 'Other herbs, dried', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri', risk: null },
+    default:       { code: '0709.99', desc: 'Fresh herbs', mfn: '0%', cptpp: '0%', saving: '0%', eligible: false, product_category: 'agri', risk: null }
+  }
+};
+
+// ── ADDITIVE CHIPS ──────────────────────────────
+const activeAdditives = new Set(['none']);
+
+function toggleChip(el) {
+  const val = el.dataset.val;
+  if (val === 'none') {
+    activeAdditives.clear();
+    activeAdditives.add('none');
+    document.querySelectorAll('.chip').forEach(c => {
+      c.classList.toggle('active', c.dataset.val === 'none');
+    });
+  } else {
+    activeAdditives.delete('none');
+    document.querySelector('.chip[data-val="none"]').classList.remove('active');
+    if (activeAdditives.has(val)) {
+      activeAdditives.delete(val);
+      el.classList.remove('active');
+    } else {
+      activeAdditives.add(val);
+      el.classList.add('active');
+    }
+    if (activeAdditives.size === 0) {
+      activeAdditives.add('none');
+      document.querySelector('.chip[data-val="none"]').classList.add('active');
+    }
+  }
+  livePreview();
+}
+
+// ── AUTOCOMPLETE SUGGEST ────────────────────────
+function onProductInput(val) {
+  const box = document.getElementById('hs-suggest');
+  if (!val || val.length < 2) { box.style.display = 'none'; return; }
+  const v = val.toLowerCase();
+  const matches = SUGGEST_MAP.filter(s => s.kw.some(k => v.includes(k) || k.includes(v)));
+  if (!matches.length) { box.style.display = 'none'; return; }
+  box.innerHTML = matches.slice(0,4).map(m => `
+    <div class="suggest-item" onclick="applySuggest('${m.cat}','${m.label.replace(/'/g,"\\'")}')">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage);flex-shrink:0"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+      <span>${m.label}</span>
+      <span class="s-cat">${CAT_TYPE[m.cat] === 'agri' ? 'Agri Raw' : 'Processed'}</span>
+    </div>
+  `).join('');
+  box.style.display = 'block';
+}
+
+function applySuggest(cat, label) {
+  document.getElementById('hs-category').value = cat;
+  document.getElementById('hs-suggest').style.display = 'none';
+  onCategoryChange();
+  livePreview();
+}
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('#hs-product')) {
+    document.getElementById('hs-suggest').style.display = 'none';
+  }
+});
+
+// ── CATEGORY CHANGE ─────────────────────────────
+function onCategoryChange() {
+  const cat = document.getElementById('hs-category').value;
+  const nutExtra = document.getElementById('hs-nut-extra');
+  const isNuts = cat === 'nuts';
+  nutExtra.style.display = isNuts ? 'block' : 'none';
+
+  // Reset & clear nut-specific fields khi đổi sang category khác
+  if (!isNuts) {
+    const nutForm = document.getElementById('hs-nut-form');
+    const nutGrade = document.getElementById('hs-nut-grade');
+    if (nutForm) nutForm.value = '';
+    if (nutGrade) nutGrade.value = '';
+    clearError('hs-nut-form');
+  }
+
+  clearError('hs-category');
+  livePreview();
+}
+
+// ── FILE SELECT ─────────────────────────────────
+function onFileSelect(input) {
+  const zone = document.getElementById('upload-zone');
+  const lbl = document.getElementById('upload-label');
+  if (input.files && input.files[0]) {
+    zone.classList.add('has-file');
+    lbl.textContent = input.files[0].name;
+  }
+}
+
+// ── LIVE PREVIEW ────────────────────────────────
+function livePreview() {
+  const cat   = document.getElementById('hs-category').value;
+  const st    = document.getElementById('hs-state').value;
+  if (!cat || !st) { document.getElementById('hs-live-preview').style.display = 'none'; return; }
+
+  const catData = HS_DATA[cat] || HS_DATA['processed'];
+  const result  = catData[st] || catData['other_processed'] || catData['default'];
+  if (!result) { document.getElementById('hs-live-preview').style.display = 'none'; return; }
+
+  document.getElementById('hs-preview-code').textContent = result.code;
+  document.getElementById('hs-preview-desc').textContent = result.desc;
+  document.getElementById('hs-preview-cat-tag').innerHTML = renderCatTag(result.product_category);
+  document.getElementById('hs-live-preview').style.display = 'block';
+}
+
+// ── VALIDATION ──────────────────────────────────
+function showError(fieldId, msg) {
+  const el = document.getElementById('err-' + fieldId);
+  if (el) el.textContent = msg;
+  const inp = document.getElementById(fieldId);
+  if (inp) inp.classList.add('error');
+}
+function clearError(fieldId) {
+  const el = document.getElementById('err-' + fieldId);
+  if (el) el.textContent = '';
+  const inp = document.getElementById(fieldId);
+  if (inp) inp.classList.remove('error');
+}
+function validateHS() {
+  let ok = true;
+  const product = document.getElementById('hs-product').value.trim();
+  const cat = document.getElementById('hs-category').value;
+  const st  = document.getElementById('hs-state').value;
+  const purpose = document.getElementById('hs-purpose').value;
+
+  if (!product) { showError('hs-product', 'Vui lòng nhập tên sản phẩm.'); ok = false; }
+  else clearError('hs-product');
+
+  if (!cat) { showError('hs-category', 'Vui lòng chọn danh mục.'); ok = false; }
+  else clearError('hs-category');
+
+  if (!st) { showError('hs-state', 'Vui lòng chọn hình thức chế biến.'); ok = false; }
+  else clearError('hs-state');
+
+  if (!purpose) { showError('hs-purpose', 'Vui lòng chọn mục đích sử dụng.'); ok = false; }
+  else clearError('hs-purpose');
+
+  if (cat === 'nuts') {
+    const nf = document.getElementById('hs-nut-form').value;
+    if (!nf) { showError('hs-nut-form', 'Vui lòng chọn hình thức hạt.'); ok = false; }
+    else clearError('hs-nut-form');
+  }
+  return ok;
+}
+
+// ── CATEGORY TAG HTML ────────────────────────────
+function renderCatTag(pc) {
+  if (pc === 'agri') return `<span class="cat-tag-agri"><svg class="cat-tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Agri – Raw</span>`;
+  return `<span class="cat-tag-processed"><svg class="cat-tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>Processed Food</span>`;
+}
+
+// ── MAIN LOOKUP ─────────────────────────────────
+// ⚙ CONFIG: đổi URL này sau khi deploy Worker
+const HS_PROXY_URL = 'https://hs-proxy.anh521582.workers.dev/api/hs';
+
+async function runHSLookup() {
+  if (!validateHS()) return;
+
+  const btn     = document.getElementById('hs-submit-btn');
+  const spinner = document.getElementById('hs-spinner');
+  btn.style.display    = 'none';
+  spinner.style.display = 'flex';
+
+  const cat     = document.getElementById('hs-category').value;
+  const st      = document.getElementById('hs-state').value;
+  const product = document.getElementById('hs-product').value.trim();
+  const purpose = document.getElementById('hs-purpose').value;
+
+  const nutExtra      = document.getElementById('hs-nut-extra');
+  const isNutsVisible = nutExtra && nutExtra.style.display !== 'none';
+  const grade   = (isNutsVisible && cat === 'nuts')
+    ? (document.getElementById('hs-nut-grade')?.value.trim() || '') : '';
+  const nutForm = (isNutsVisible && cat === 'nuts')
+    ? (document.getElementById('hs-nut-form')?.value || '') : '';
+
+  let effectiveSt = st;
+  if (cat === 'nuts' && nutForm) {
+    const nutFormStateMap = { inshell:'raw_inshell', kernel:'raw_shelled', split:'raw_shelled', pieces:'raw_shelled' };
+    if (['raw_inshell','raw_shelled'].includes(st)) effectiveSt = nutFormStateMap[nutForm] || st;
+  }
+
+  // ── Lấy HS code từ static map trước (để có code gọi API) ──
+  const catData    = HS_DATA[cat] || HS_DATA['processed'];
+  const staticRes  = catData[effectiveSt] || catData[st] || catData['other_processed'] || catData['default'];
+  const hsCode     = staticRes?.code;
+
+  let result = staticRes; // default: dùng static nếu API fail
+
+  // ── Gọi Worker proxy để lấy thuế suất thật từ CBSA ──
+  if (hsCode && HS_PROXY_URL && !HS_PROXY_URL.includes('YOUR-SUBDOMAIN')) {
+    try {
+      const resp = await fetch(`${HS_PROXY_URL}?code=${encodeURIComponent(hsCode)}&origin=VN`);
+      if (resp.ok) {
+        const apiData = await resp.json();
+        // Merge: giữ product_category và risk từ static, lấy thuế từ API
+        result = {
+          ...staticRes,
+          mfn:          apiData.mfn    || staticRes.mfn,
+          cptpp:        apiData.cptpp  || staticRes.cptpp,
+          saving:       apiData.saving || staticRes.saving,
+          eligible:     apiData.eligible ?? staticRes.eligible,
+          _source:      apiData.source  // 'cbsa' | 'cache' | 'fallback'
+        };
+      }
+    } catch (e) {
+      // Network error → giữ static data, không làm gián đoạn UX
+      result._source = 'static_offline';
+    }
+  }
+
+  btn.style.display     = '';
+  spinner.style.display = 'none';
+
+  // ── Populate result ──
+  document.getElementById('hs-code-out').textContent = result.code;
+
+  const gradePart    = (cat === 'nuts' && grade) ? `Grade: ${grade}` : '';
+  const nutFormLabel = (cat === 'nuts' && nutForm) ? ({
+    inshell:'In Shell (WW/SW)', kernel:'Kernels', split:'Split & Broken', pieces:'Pieces/Scorched'
+  }[nutForm] || '') : '';
+  const descParts = [result.desc, product ? `(${product})` : '', nutFormLabel, gradePart].filter(Boolean);
+  document.getElementById('hs-desc-out').textContent = descParts.join(' · ');
+
+  // Source badge — cho user thấy data từ đâu
+  const sourceBadge = result._source === 'cbsa' ? '' :
+    result._source === 'cache'   ? ' <span style="font-size:10px;color:var(--light);font-style:italic;">(cached)</span>' :
+    result._source === 'fallback'? ' <span style="font-size:10px;color:var(--gold);font-style:italic;">(tham khảo)</span>' : '';
+
+  document.getElementById('hs-cat-tag-result').innerHTML = renderCatTag(result.product_category);
+  const catLabel = result.product_category === 'agri' ? 'Agri – Raw (Nông sản thô)' : 'Processed Food (Thực phẩm đã chế biến)';
+  document.getElementById('hs-product-category-line').innerHTML =
+    `Phân loại: <strong>${catLabel}</strong> &nbsp;·&nbsp; Mục đích: <strong>${
+      purpose === 'human' ? 'Human Consumption' : purpose === 'industrial' ? 'Industrial Use' : 'Animal Feed'
+    }</strong>${sourceBadge}`;
+
+  window._lastHSResult = { ...result, input_product: product, input_cat: cat, input_state: st, input_purpose: purpose };
+
+  const saving = parseFloat(result.saving);
+  const tbody  = document.getElementById('hs-table-body');
+  tbody.innerHTML = `
+    <tr>
+      <td>Thuế nhập khẩu</td>
+      <td class="hi">${result.mfn}</td>
+      <td class="hi" style="color:var(--sage)">${result.cptpp}</td>
+      <td>${saving > 0 ? `<span class='tag tag-green'>Tiết kiệm ${result.saving}</span>` : '<span class="tag tag-gray">Không có ưu đãi thêm</span>'}</td>
+    </tr>
+    <tr>
+      <td>CFIA Pre-notification</td>
+      <td colspan="2">Bắt buộc 72h trước khi lô hàng đến</td>
+      <td><span class="tag tag-amber">Xem CFIA tab</span></td>
+    </tr>
+    <tr>
+      <td>CPTPP Form E</td>
+      <td colspan="2">${result.eligible ? 'Đủ điều kiện' : 'Không cần (thuế đã 0%)'}</td>
+      <td>${result.eligible ? '<span class="tag tag-green">Khuyến nghị</span>' : '<span class="tag tag-gray">N/A</span>'}</td>
+    </tr>
+    <tr>
+      <td>Phân loại hải quan</td>
+      <td colspan="2">${result.product_category === 'agri' ? 'Agricultural / Primary product' : 'Processed / Manufactured food'}</td>
+      <td>${renderCatTag(result.product_category)}</td>
+    </tr>
+  `;
+
+  const cptppNote = result.eligible
+    ? `Sản phẩm này đủ điều kiện hưởng thuế suất ưu đãi CPTPP ${result.cptpp} (thay vì ${result.mfn} MFN) nếu có Certificate of Origin Form E từ VCCI. Tiết kiệm thuế cho buyer Canada: <strong>${result.saving}</strong> trên mỗi lô hàng.`
+    : `Sản phẩm này đã có thuế suất MFN ở mức thấp (${result.mfn}). Form E CPTPP không tạo thêm lợi ích đáng kể ở giai đoạn này.`;
+  document.getElementById('hs-cptpp-note').innerHTML = cptppNote;
+
+  const riskBox = document.getElementById('hs-risk-box');
+  if (result.risk) {
+    document.getElementById('hs-risk-text').textContent = result.risk;
+    riskBox.style.display = 'block';
+  } else {
+    riskBox.style.display = 'none';
+  }
+
+  const resultBox = document.getElementById('hs-result');
+  resultBox.classList.add('show');
+  resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  showMicroTrigger();
+}
+
+// ══════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  renderChecklist();
+  renderAllergenGrid();
+  renderCertGrid();
+});
+
+// ══════════════════════════════════════════
+// CFIA CHECKLIST
+// ══════════════════════════════════════════
+const CFIA_ITEMS = [
+  { id: 'sfca', title: 'Xác minh Importer Canada có SFCA License', desc: 'Importer tại Canada phải có Safe Food for Canadians License từ CFIA. Không có license → lô hàng bị từ chối ngay tại border.', tag: 'Bắt buộc', tagClass: 'tag-red', types: ['all'] },
+  { id: 'prenotif', title: '72-hour Pre-notification trên My CFIA Portal', desc: 'Phải submit thông báo nhập khẩu qua hệ thống My CFIA tối thiểu 72 giờ trước khi lô hàng đến. Bao gồm: tên sản phẩm, HS code, nhà sản xuất, số lượng, cửa khẩu.', tag: 'Bắt buộc', tagClass: 'tag-red', types: ['all'] },
+  { id: 'haccp', title: 'Nhà máy có HACCP hoặc GMP được công nhận', desc: 'CFIA yêu cầu thực phẩm nhập khẩu phải được sản xuất trong điều kiện an toàn tương đương tiêu chuẩn Canada. HACCP, BRC, SQF, FSSC 22000 đều được công nhận.', tag: 'Bắt buộc', tagClass: 'tag-red', types: ['all'] },
+  { id: 'label', title: 'Nhãn sản phẩm song ngữ EN/FR', desc: 'Tất cả thông tin bắt buộc (tên sp, ingredients, allergens, net weight, country of origin, importer address) phải có cả tiếng Anh lẫn tiếng Pháp.', tag: 'Bắt buộc', tagClass: 'tag-red', types: ['all'] },
+  { id: 'allergen', title: 'Khai báo đầy đủ 14 Priority Allergens', desc: 'Health Canada quy định 14 allergen phải khai báo: gluten grains, crustaceans, eggs, fish, peanuts, tree nuts, sesame, soya, milk, mustard, sulphites. Thiếu một allergen có thể bị thu hồi toàn bộ lô.', tag: 'Bắt buộc', tagClass: 'tag-red', types: ['all'] },
+  { id: 'phyto', title: 'Phytosanitary Certificate (kiểm dịch thực vật)', desc: 'Bắt buộc cho: gạo, gia vị, hạt thô, trái cây sấy, rau củ. Do Cục Bảo vệ Thực vật VN (PPVMO) cấp. Phải kèm theo lô hàng.', tag: 'Với thực vật', tagClass: 'tag-amber', types: ['all', 'fresh', 'grains'] },
+  { id: 'coo', title: 'Certificate of Origin (C/O) — Xuất xứ Việt Nam', desc: 'CPTPP Form E do VCCI cấp để hưởng thuế ưu đãi CPTPP. Khai "Made in Vietnam" trên nhãn và tờ khai cần có C/O hợp lệ.', tag: 'CPTPP', tagClass: 'tag-green', types: ['all'] },
+  { id: 'transit', title: 'Commercial Invoice đúng format', desc: 'Invoice phải ghi đầy đủ: tên/địa chỉ buyer-seller, HS code, description, quantity, unit price, total value, Incoterm (FOB/CIF/EXW), currency.', tag: 'Bắt buộc', tagClass: 'tag-red', types: ['all'] },
+  { id: 'packinglist', title: 'Packing List chi tiết', desc: 'Kèm theo invoice: số kiện, trọng lượng gross/net từng kiện, kích thước, marks & numbers. CBSA customs sẽ kiểm tra khớp với pre-notification.', tag: 'Bắt buộc', tagClass: 'tag-red', types: ['all'] },
+  { id: 'seafood_coa', title: 'Health Certificate / CoA từ cơ quan có thẩm quyền VN', desc: 'Với hải sản và thịt: cần Health Certificate từ NAFIQAD (Cục Quản lý Chất lượng Nông Lâm Thủy sản). Với thực phẩm chế biến: CoA (Certificate of Analysis) từ phòng lab được công nhận.', tag: 'Hải sản / Thịt', tagClass: 'tag-amber', types: ['all', 'seafood', 'meat', 'processed'] },
+];
+
+function renderChecklist() {
+  const list = document.getElementById('cfia-checklist');
+  list.innerHTML = CFIA_ITEMS.map((item, i) => `
+    <li class="check-item" data-types="${item.types.join(',')}">
+      <div class="check-box" id="cb-${item.id}" onclick="toggleCheck('${item.id}')"></div>
+      <div class="check-content">
+        <div class="check-title">${i+1}. ${item.title}</div>
+        <div class="check-desc">${item.desc}</div>
+        <div class="check-badge"><span class="tag ${item.tagClass}">${item.tag}</span></div>
+      </div>
+    </li>
+  `).join('');
+}
+
+function toggleCheck(id) {
+  state.cfiaChecked[id] = !state.cfiaChecked[id];
+  const box = document.getElementById('cb-' + id);
+  box.classList.toggle('checked', !!state.cfiaChecked[id]);
+  updateCFIAProgress();
+}
+
+function updateCFIAProgress() {
+  const visible = CFIA_ITEMS.filter(item => {
+    const el = document.querySelector(`[data-types*="${document.getElementById('cfia-type').value}"], [data-types*="all"]`);
+    return true;
+  });
+  const total = CFIA_ITEMS.length;
+  const done = Object.values(state.cfiaChecked).filter(Boolean).length;
+  const pct = Math.round((done / total) * 100);
+  document.getElementById('cfia-prog').style.width = pct + '%';
+  document.getElementById('cfia-done-count').textContent = `${done}/${total} bước hoàn thành`;
+  document.getElementById('cfia-pct').textContent = pct + '%';
+
+  const complete = document.getElementById('cfia-complete');
+  if (done === total) {
+    complete.style.display = 'block';
+    complete.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  } else {
+    complete.style.display = 'none';
+  }
+}
+
+function filterChecklist() { /* simplified — all items always shown */ }
+
+// ══════════════════════════════════════════
+// ALLERGEN DATA & LOGIC
+// ══════════════════════════════════════════
+const ALLERGENS = [
+  { id: 'gluten',      name: 'Gluten',        sub: 'Lúa mì, mạch đen, yến mạch' },
+  { id: 'crustacean',  name: 'Crustaceans',   sub: 'Tôm, cua, tôm hùm' },
+  { id: 'egg',         name: 'Eggs',          sub: 'Trứng và sản phẩm' },
+  { id: 'fish',        name: 'Fish',          sub: 'Cá và sản phẩm từ cá' },
+  { id: 'peanut',      name: 'Peanuts',       sub: 'Đậu phộng' },
+  { id: 'treenut',     name: 'Tree Nuts',     sub: 'Hạnh nhân, điều, óc chó...' },
+  { id: 'sesame',      name: 'Sesame',        sub: 'Vừng / mè' },
+  { id: 'soy',         name: 'Soya',          sub: 'Đậu nành và sản phẩm' },
+  { id: 'milk',        name: 'Milk',          sub: 'Sữa và sản phẩm từ sữa' },
+  { id: 'mustard',     name: 'Mustard',       sub: 'Mù tạt và hạt mù tạt' },
+  { id: 'sulphite',    name: 'Sulphites',     sub: '≥10 ppm — sulfur dioxide' },
+  { id: 'lupin',       name: 'Lupin',         sub: 'Hạt đậu lupin' },
+  { id: 'mollusc',     name: 'Molluscs',      sub: 'Sò, mực, bạch tuộc' },
+  { id: 'celery',      name: 'Celery',        sub: 'Cần tây và sản phẩm' },
+];
+
+const FR_ALLERGENS = {
+  gluten: 'gluten (blé, seigle, avoine)',
+  crustacean: 'crustacés',
+  egg: 'œufs',
+  fish: 'poissons',
+  peanut: 'arachides',
+  treenut: 'noix (amandes, noix de cajou...)',
+  sesame: 'graines de sésame',
+  soy: 'soya',
+  milk: 'lait',
+  mustard: 'moutarde',
+  sulphite: 'sulfites (≥10 ppm)',
+  lupin: 'lupin',
+  mollusc: 'mollusques',
+  celery: 'céleri',
+};
+
+function renderAllergenGrid() {
+  const grid = document.getElementById('allergen-grid');
+  grid.innerHTML = ALLERGENS.map(a => `
+    <div class="allergen-item" id="ai-${a.id}" onclick="toggleAllergen('${a.id}')">
+      <div class="a-dot" id="ad-${a.id}"></div>
+      <div>
+        <div class="a-name">${a.name}</div>
+        <div class="a-sub">${a.sub}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleAllergen(id) {
+  if (state.allergens.has(id)) {
+    state.allergens.delete(id);
+  } else {
+    state.allergens.add(id);
+  }
+  document.getElementById('ai-' + id).classList.toggle('selected', state.allergens.has(id));
+}
+
+function buildAllergenDeclaration() {
+  if (state.allergens.size === 0) { alert('Vui lòng chọn ít nhất một allergen có trong sản phẩm của bạn.'); return; }
+  const product = document.getElementById('allergen-product-name').value.trim() || 'Sản phẩm';
+
+  const enList = [...state.allergens].map(id => ALLERGENS.find(a => a.id === id)?.name).filter(Boolean);
+  const frList = [...state.allergens].map(id => FR_ALLERGENS[id]).filter(Boolean);
+
+  const enText = `Contains: ${enList.join(', ')}.`;
+  const frText = `Contient : ${frList.join(', ')}.`;
+
+  document.getElementById('allergen-en-text').textContent = enText;
+  document.getElementById('allergen-fr-text').textContent = frText;
+
+  const result = document.getElementById('allergen-result');
+  result.style.display = 'block';
+  result.classList.add('show');
+  result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function copyAllergen() {
+  const en = document.getElementById('allergen-en-text').textContent;
+  const fr = document.getElementById('allergen-fr-text').textContent;
+  navigator.clipboard.writeText(en + '\n' + fr).then(() => alert('Đã copy cả EN và FR!'));
+}
+
+// ══════════════════════════════════════════
+// LABEL BUILDER
+// ══════════════════════════════════════════
+function buildLabel() {
+  const nameEn = document.getElementById('lbl-name-en').value || '—';
+  const nameFr = document.getElementById('lbl-name-fr').value || '—';
+  const weight = document.getElementById('lbl-weight').value || '—';
+  const ingEn  = document.getElementById('lbl-ing-en').value || '—';
+  const ingFr  = document.getElementById('lbl-ing-fr').value || '—';
+  const origin = document.getElementById('lbl-origin').value || '—';
+  const bb     = document.getElementById('lbl-bb').value || '—';
+  const allergen = document.getElementById('lbl-allergen').value || '';
+  const importer = document.getElementById('lbl-importer').value || '—';
+
+  document.getElementById('lbl-out-name-en').textContent  = nameEn;
+  document.getElementById('lbl-out-name-fr').textContent  = nameFr;
+  document.getElementById('lbl-out-weight-en').textContent = 'Net Weight: ' + weight;
+  document.getElementById('lbl-out-weight-fr').textContent = 'Poids net : ' + weight;
+  document.getElementById('lbl-out-ing-en').textContent   = 'Ingredients: ' + ingEn;
+  document.getElementById('lbl-out-ing-fr').textContent   = 'Ingrédients : ' + ingFr;
+  document.getElementById('lbl-out-origin-en').textContent = origin.split('/')[0]?.trim() || origin;
+  document.getElementById('lbl-out-origin-fr').textContent = origin.split('/')[1]?.trim() || origin;
+  document.getElementById('lbl-out-bb-en').textContent    = bb;
+  document.getElementById('lbl-out-bb-fr').textContent    = bb;
+  document.getElementById('lbl-out-importer-en').textContent = 'Imported by: ' + importer;
+  document.getElementById('lbl-out-importer-fr').textContent = 'Importé par : ' + importer;
+
+  const allergenEnEl = document.getElementById('lbl-out-allergen-en');
+  const allergenFrEl = document.getElementById('lbl-out-allergen-fr');
+  if (allergen) {
+    allergenEnEl.innerHTML = `<strong>ALLERGEN INFORMATION:</strong> ${allergen}`;
+    allergenFrEl.innerHTML = `<strong>INFORMATION SUR LES ALLERGÈNES :</strong> ${allergen}`;
+  } else {
+    allergenEnEl.textContent = 'No allergen statement added.';
+    allergenFrEl.textContent = 'Aucune mention d\'allergènes ajoutée.';
+  }
+
+  const preview = document.getElementById('label-preview');
+  preview.classList.add('show');
+  preview.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// ══════════════════════════════════════════
+// CERT & TRUST SCORE
+// ══════════════════════════════════════════
+const CERTS = [
+  { id: 'haccp', name: 'HACCP', desc: 'Bắt buộc — tiêu chuẩn tối thiểu', pts: 20, cat: 'fs' },
+  { id: 'brc', name: 'BRC Grade A/AA', desc: 'Loblaw, Metro, Sobeys yêu cầu', pts: 20, cat: 'fs' },
+  { id: 'sqf', name: 'SQF Level 2+', desc: 'Costco Canada yêu cầu', pts: 15, cat: 'fs' },
+  { id: 'iso22000', name: 'ISO 22000 / FSSC', desc: 'Tiêu chuẩn quốc tế', pts: 12, cat: 'fs' },
+  { id: 'organic', name: 'Organic (USDA/EU)', desc: 'Tăng giá bán 20–40%', pts: 8, cat: 'spec' },
+  { id: 'kosher', name: 'Kosher', desc: 'Thị trường Do Thái', pts: 5, cat: 'spec' },
+  { id: 'halal', name: 'Halal (JAKIM/MUI)', desc: 'Thị trường Hồi giáo', pts: 5, cat: 'spec' },
+  { id: 'sa8000', name: 'SA8000 (CSR)', desc: 'ESG-focused buyers', pts: 3, cat: 'spec' },
+  { id: 'phyto', name: 'Phytosanitary Cert', desc: 'Kiểm dịch thực vật', pts: 8, cat: 'exp' },
+  { id: 'coo', name: 'C/O Form E (CPTPP)', desc: 'Ưu đãi thuế CPTPP', pts: 10, cat: 'exp' },
+  { id: 'nafiqad', name: 'NAFIQAD / MARD Cert', desc: 'Health cert hải sản, thịt', pts: 7, cat: 'exp' },
+];
+
+function renderCertGrid() {
+  const grid = document.getElementById('cert-grid');
+  grid.innerHTML = CERTS.map(c => `
+    <div class="cert-card">
+      <div class="cert-card-head">
+        <div class="cert-name">${c.name}</div>
+        <span class="tag tag-gray">+${c.pts} pts</span>
+      </div>
+      <div class="cert-desc">${c.desc}</div>
+      <div class="cert-upload ${state.certs.has(c.id) ? 'cert-upload-done' : ''}" id="cu-${c.id}" onclick="toggleCert('${c.id}')">
+        ${state.certs.has(c.id) ? '✓ Đã có chứng chỉ' : '+ Tôi có chứng chỉ này'}
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleCert(id) {
+  if (state.certs.has(id)) {
+    state.certs.delete(id);
+  } else {
+    state.certs.add(id);
+  }
+  const el = document.getElementById('cu-' + id);
+  el.classList.toggle('cert-upload-done', state.certs.has(id));
+  el.textContent = state.certs.has(id) ? '✓ Đã có chứng chỉ' : '+ Tôi có chứng chỉ này';
+}
+
+function calcTrustScore() {
+  let kyc = 30; // base for attempting
+  let fs = 0, exp = 0, spec = 0;
+
+  CERTS.forEach(c => {
+    if (state.certs.has(c.id)) {
+      if (c.cat === 'fs')   fs   = Math.min(fs + c.pts, 30);
+      if (c.cat === 'exp')  exp  = Math.min(exp + c.pts, 20);
+      if (c.cat === 'spec') spec = Math.min(spec + c.pts, 10);
+    }
+  });
+
+  // Cap FS at 30, account age = 5 (new), response time = 5 (assumed)
+  const total = Math.min(kyc + fs + exp + spec + 10, 100);
+
+  document.getElementById('trust-num').textContent = total;
+  document.getElementById('tf-kyc').textContent = '+' + kyc;
+  document.getElementById('tf-fs').textContent  = '+' + fs;
+  document.getElementById('tf-exp').textContent = '+' + exp;
+  document.getElementById('tf-spec').textContent= '+' + spec;
+
+  // Color the circle
+  const circle = document.getElementById('trust-circle');
+  const color = total >= 75 ? 'var(--sage)' : total >= 50 ? 'var(--amber)' : 'var(--rust)';
+  circle.style.borderColor = color;
+  document.getElementById('trust-num').style.color = color;
+
+  const tier = total >= 80 ? '🟢 Excellent — Buyer Canada sẽ ưu tiên bạn'
+             : total >= 60 ? '🟡 Good — Đủ điều kiện vào hầu hết B2B deals'
+             : total >= 40 ? '🟠 Fair — Cần thêm chứng chỉ để tăng uy tín'
+             : '🔴 Low — Bắt đầu với HACCP để tăng điểm nhanh nhất';
+  document.getElementById('trust-tier').textContent = tier;
+
+  // Advice
+  const missing = [];
+  if (!state.certs.has('haccp') && !state.certs.has('brc')) missing.push('→ Ưu tiên cao nhất: lấy HACCP (tăng +20 pts, bắt buộc vào Canada)');
+  if (!state.certs.has('brc') && !state.certs.has('sqf'))   missing.push('→ BRC hoặc SQF mở cửa vào siêu thị lớn (Loblaw, Costco)');
+  if (!state.certs.has('coo')) missing.push('→ C/O Form E CPTPP giúp buyer tiết kiệm thuế — tăng khả năng được chọn');
+  if (!state.certs.has('phyto')) missing.push('→ Phytosanitary Cert bắt buộc cho hạt, gia vị, thực vật');
+  if (missing.length === 0) missing.push('✅ Bạn đã có bộ chứng chỉ rất tốt! Đăng ký Adeptlink để showcase với buyer Canada.');
+
+  const advEl = document.getElementById('trust-advice');
+  document.getElementById('trust-advice-text').innerHTML = missing.join('<br>');
+  advEl.style.display = 'block';
+  advEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// ══════════════════════════════════════════
+// MODAL
+// ══════════════════════════════════════════
+function openModal(tool) {
+  state.currentTool = tool || null;
+  document.getElementById('lead-modal').classList.add('show');
+  document.getElementById('modal-form').style.display = 'block';
+  document.getElementById('modal-success').style.display = 'none';
+}
+function closeModal() {
+  document.getElementById('lead-modal').classList.remove('show');
+}
+function handleOverlayClick(e) {
+  if (e.target.id === 'lead-modal') closeModal();
+}
+function submitLead() {
+  const email = document.getElementById('m-email').value;
+  const company = document.getElementById('m-company').value;
+  const name = document.getElementById('m-name').value;
+  const product = document.getElementById('m-product').value;
+  const volume = document.getElementById('m-volume').value;
+  if (!email || !company) { alert('Vui lòng điền tên công ty và email.'); return; }
+
+  // Build mailto link → directs to support@adept-link.com
+  const subject = encodeURIComponent(`[Compliance Hub] Yêu cầu tư vấn từ ${company}`);
+  const body = encodeURIComponent(
+    `Công ty: ${company}\nNgười liên hệ: ${name}\nEmail: ${email}\nSản phẩm: ${product}\nKim ngạch: ${volume}\n\n` +
+    (window._lastHSResult ? `HS Code tra cứu: ${window._lastHSResult.code} — ${window._lastHSResult.desc}\nPhân loại: ${window._lastHSResult.product_category}` : '')
+  );
+  location.href = `mailto:support@adept-link.com?subject=${subject}&body=${body}`;
+
+  document.getElementById('modal-form').style.display = 'none';
+  document.getElementById('modal-success').style.display = 'block';
+}
+
+// ══════════════════════════════════════════
+// MULTI-SKU PANEL — STATE & CORE
+// ══════════════════════════════════════════
+const skuState = {
+  rows: [],         // [{id, product, cat, st, result}]
+  nextId: 1,
+  pdfReady: false,
+  leadInfo: null
+};
+
+const SKU_CAT_OPTIONS = [
+  { v: 'nuts',       l: 'Nuts & Dried Fruit' },
+  { v: 'seafood',    l: 'Hải sản / Seafood' },
+  { v: 'spices',     l: 'Gia vị / Spices' },
+  { v: 'rice',       l: 'Gạo / Rice' },
+  { v: 'pepper',     l: 'Tiêu / Pepper' },
+  { v: 'grains',     l: 'Ngũ cốc / Grains' },
+  { v: 'oils',       l: 'Dầu thực vật / Oils' },
+  { v: 'processed',  l: 'Thực phẩm chế biến' },
+  { v: 'sauce',      l: 'Nước chấm / Sauces' },
+  { v: 'coffee',     l: 'Cà phê / Coffee' },
+  { v: 'fresh_fruit',l: 'Trái cây tươi' },
+  { v: 'fresh_veg',  l: 'Rau củ tươi' },
+];
+const SKU_STATE_OPTIONS = [
+  { v: 'raw_inshell',    l: 'Thô chưa bóc vỏ' },
+  { v: 'raw_shelled',    l: 'Thô đã bóc vỏ' },
+  { v: 'dried',          l: 'Sấy khô' },
+  { v: 'frozen',         l: 'Đông lạnh' },
+  { v: 'roasted',        l: 'Rang' },
+  { v: 'roasted_salted', l: 'Rang muối' },
+  { v: 'canned',         l: 'Đóng hộp' },
+  { v: 'other_processed',l: 'Chế biến khác' },
+];
+
+function catOpts() {
+  return SKU_CAT_OPTIONS.map(o => `<option value="${o.v}">${o.l}</option>`).join('');
+}
+function stOpts() {
+  return SKU_STATE_OPTIONS.map(o => `<option value="${o.v}">${o.l}</option>`).join('');
+}
+
+function openMultiSKU() {
+  document.getElementById('multi-sku-panel').style.display = 'block';
+  document.getElementById('sku-micro-trigger').style.display = 'none';
+  if (skuState.rows.length === 0) {
+    // Pre-fill row 1 from the single-SKU result if exists
+    const preProduct = document.getElementById('hs-product').value.trim();
+    const preCat     = document.getElementById('hs-category').value;
+    const preSt      = document.getElementById('hs-state').value;
+    addSKURow(preProduct, preCat, preSt, window._lastHSResult || null);
+    addSKURow(); // start row 2 empty
+  }
+  document.getElementById('multi-sku-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function closeMultiSKU() {
+  document.getElementById('multi-sku-panel').style.display = 'none';
+  if (document.getElementById('hs-result').classList.contains('show')) {
+    document.getElementById('sku-micro-trigger').style.display = 'block';
+  }
+}
+
+function addSKURow(product='', cat='', st='', result=null) {
+  const id = skuState.nextId++;
+  skuState.rows.push({ id, product, cat, st, result });
+  renderSKUTable();
+  updateSKUSummary();
+}
+
+function removeSKURow(id) {
+  skuState.rows = skuState.rows.filter(r => r.id !== id);
+  renderSKUTable();
+  updateSKUSummary();
+}
+
+function renderSKUTable() {
+  const tbody = document.getElementById('sku-tbody');
+  tbody.innerHTML = skuState.rows.map((row, idx) => {
+    const res = row.result;
+    const codeCell = res
+      ? `<div class="sku-result-code">${res.code}</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">${res.desc.substring(0,38)}…</div>`
+      : `<span class="sku-result-pending">Chọn danh mục & trạng thái</span>`;
+    const taxCell = res
+      ? `<div class="sku-result-tax">MFN: <strong>${res.mfn}</strong></div><div class="sku-result-tax" style="color:var(--sage)">CPTPP: <strong>${res.cptpp}</strong></div>`
+      : '—';
+    const catTag = res ? renderCatTag(res.product_category) : '';
+    return `
+      <tr id="sku-row-${row.id}">
+        <td style="color:var(--light);font-size:12px;font-family:'DM Mono',monospace;">${idx+1}</td>
+        <td><input class="f-input" placeholder="Tên sản phẩm" value="${row.product}"
+          onchange="updateSKUField(${row.id},'product',this.value)" style="min-width:140px;" /></td>
+        <td>
+          <select class="f-select" onchange="updateSKUField(${row.id},'cat',this.value)" style="min-width:130px;">
+            <option value="">-- Danh mục --</option>${catOpts().replace(`value="${row.cat}"`,`value="${row.cat}" selected`)}
+          </select>
+        </td>
+        <td>
+          <select class="f-select" onchange="updateSKUField(${row.id},'st',this.value)" style="min-width:130px;">
+            <option value="">-- Hình thức --</option>${stOpts().replace(`value="${row.st}"`,`value="${row.st}" selected`)}
+          </select>
+        </td>
+        <td>${codeCell}</td>
+        <td>${taxCell}</td>
+        <td>${catTag}</td>
+        <td>
+          <button class="sku-del-btn" onclick="removeSKURow(${row.id})" title="Xóa">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+          </button>
+        </td>
+      </tr>`;
+  }).join('');
+}
+
+async function updateSKUField(id, field, value) {
+  const row = skuState.rows.find(r => r.id === id);
+  if (!row) return;
+  row[field] = value;
+  // Auto-lookup if both cat + st are filled
+  if (row.cat && row.st) {
+    const catData   = HS_DATA[row.cat] || HS_DATA['processed'];
+    const staticRes = catData[row.st] || catData['other_processed'] || catData['default'];
+    row.result = staticRes || null;
+
+    // Fetch live rate từ Worker nếu đã config
+    if (staticRes?.code && HS_PROXY_URL && !HS_PROXY_URL.includes('YOUR-SUBDOMAIN')) {
+      try {
+        const resp = await fetch(`${HS_PROXY_URL}?code=${encodeURIComponent(staticRes.code)}&origin=VN`);
+        if (resp.ok) {
+          const api = await resp.json();
+          row.result = { ...staticRes, mfn: api.mfn || staticRes.mfn, cptpp: api.cptpp || staticRes.cptpp,
+                         saving: api.saving || staticRes.saving, eligible: api.eligible ?? staticRes.eligible };
+        }
+      } catch (_) { /* giữ static */ }
+    }
+  } else {
+    row.result = null;
+  }
+  renderSKUTable();
+  updateSKUSummary();
+  checkDetectBanner();
+}
+
+function updateSKUSummary() {
+  const done = skuState.rows.filter(r => r.result);
+  const total = done.length;
+  document.getElementById('sku-count-badge').textContent =
+    `${skuState.rows.length} SKU${skuState.rows.length !== 1 ? 's' : ''} · ${total} đã tra cứu`;
+
+  if (total < 2) { document.getElementById('sku-summary-bar').style.display = 'none'; return; }
+  document.getElementById('sku-summary-bar').style.display = 'block';
+
+  const cptpp = done.filter(r => r.result.eligible).length;
+  const agri  = done.filter(r => r.result.product_category === 'agri').length;
+  const proc  = done.filter(r => r.result.product_category === 'processed').length;
+
+  // Rough saving estimate: assume $50K GMV/SKU/year average
+  const avgGMV = 50000;
+  let totalSaving = 0;
+  done.forEach(r => {
+    if (r.result.eligible) {
+      const rate = parseFloat(r.result.saving) / 100;
+      totalSaving += avgGMV * rate;
+    }
+  });
+
+  document.getElementById('sum-total').textContent = total;
+  document.getElementById('sum-cptpp').textContent = cptpp;
+  document.getElementById('sum-agri').textContent  = agri;
+  document.getElementById('sum-proc').textContent  = proc;
+  document.getElementById('sum-saving').textContent =
+    totalSaving > 0 ? `~$${Math.round(totalSaving/1000)}K CAD/năm` : '—';
+}
+
+function checkDetectBanner() {
+  const total = skuState.rows.length;
+  const banner = document.getElementById('sku-detect-banner');
+  if (total >= 10) {
+    banner.style.display = 'block';
+    banner.style.background = '#fdf0ec';
+    banner.style.border = '1px solid rgba(196,72,31,0.25)';
+    banner.innerHTML = `<strong style="color:var(--rust);">Enterprise lead detected:</strong> Bạn đang tra cứu ${total}+ SKU. Đội ngũ Adeptlink sẽ liên hệ trong 24h để hỗ trợ onboarding toàn bộ catalog.`;
+  } else if (total >= 5) {
+    banner.style.display = 'block';
+    banner.style.background = 'var(--sky)';
+    banner.style.border = '1px solid rgba(61,122,82,0.2)';
+    banner.innerHTML = `<strong style="color:var(--forest);">${total} SKUs đã nhập.</strong> Điền thông tin bên dưới để nhận báo cáo PDF đầy đủ với gợi ý AI.`;
+  } else {
+    banner.style.display = 'none';
+  }
+}
+
+// ── PARSE EXCEL ──────────────────────────────
+async function parseExcel(input) {
+  if (!input.files || !input.files[0]) return;
+  const file = input.files[0];
+  // Simple CSV fallback — reads first 3 cols: Name, Category, State
+  const text = await file.text().catch(() => null);
+  if (!text) { alert('Không đọc được file. Vui lòng dùng định dạng CSV hoặc thêm SKU thủ công.'); return; }
+  const lines = text.split('\n').filter(l => l.trim()).slice(1); // skip header
+  lines.forEach(line => {
+    const cols = line.split(/,|\t/).map(c => c.trim().replace(/^"|"$/g,''));
+    const [product, catRaw, stRaw] = cols;
+    if (!product) return;
+    // Fuzzy match category
+    const cat = SKU_CAT_OPTIONS.find(o => o.l.toLowerCase().includes((catRaw||'').toLowerCase()) || o.v === (catRaw||'').toLowerCase())?.v || '';
+    const st  = SKU_STATE_OPTIONS.find(o => o.l.toLowerCase().includes((stRaw||'').toLowerCase()) || o.v === (stRaw||'').toLowerCase())?.v || '';
+    addSKURow(product, cat, st);
+  });
+  input.value = '';
+}
+
+// ── GATE FORM VALIDATION ─────────────────────
+function validateGate() {
+  let ok = true;
+  const email   = document.getElementById('gate-email').value.trim();
+  const company = document.getElementById('gate-company').value.trim();
+  const emailEl = document.getElementById('err-gate-email');
+  const compEl  = document.getElementById('err-gate-company');
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    emailEl.textContent = 'Vui lòng nhập email hợp lệ.'; ok = false;
+  } else emailEl.textContent = '';
+  if (!company) {
+    compEl.textContent = 'Vui lòng nhập tên công ty.'; ok = false;
+  } else compEl.textContent = '';
+  return ok;
+}
+
+// ── GENERATE PDF VIA CLAUDE API ───────────────
+async function generatePDFReport() {
+  if (!validateGate()) return;
+  const doneRows = skuState.rows.filter(r => r.result);
+  if (doneRows.length === 0) { alert('Vui lòng tra cứu ít nhất 1 SKU trước khi tạo báo cáo.'); return; }
+
+  const email   = document.getElementById('gate-email').value.trim();
+  const company = document.getElementById('gate-company').value.trim();
+  const skuCount = document.getElementById('gate-sku-count').value;
+  const market   = document.getElementById('gate-market').value;
+
+  // Store lead info
+  skuState.leadInfo = { email, company, skuCount, market, timestamp: new Date().toISOString(), skus: doneRows.map(r => ({ product: r.product, cat: r.cat, st: r.st, code: r.result.code, pc: r.result.product_category, mfn: r.result.mfn, cptpp: r.result.cptpp, eligible: r.result.eligible })) };
+
+  // Show spinner
+  document.getElementById('gen-pdf-btn').style.display = 'none';
+  document.getElementById('pdf-spinner').style.display = 'flex';
+
+  // Build SKU summary for Claude prompt
+  const skuList = doneRows.map((r,i) => `${i+1}. ${r.product || 'SKU '+(i+1)} — HS ${r.result.code} — ${r.result.product_category === 'agri' ? 'Agri Raw' : 'Processed Food'} — MFN ${r.result.mfn} → CPTPP ${r.result.cptpp} — CPTPP eligible: ${r.result.eligible ? 'Có' : 'Không'}`).join('\n');
+
+  let aiRecs = '';
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 1000,
+        messages: [{
+          role: 'user',
+          content: `Bạn là chuyên gia compliance xuất khẩu thực phẩm Việt Nam → Canada (CFIA, CPTPP, CBSA).
+Công ty: ${company}
+Thị trường mục tiêu: ${market}
+Tổng SKU catalog: ${skuCount || 'chưa xác định'}
+
+Danh sách SKU đã tra cứu:
+${skuList}
+
+Viết ngắn gọn bằng tiếng Việt (tối đa 300 từ):
+1. Tóm tắt: bao nhiêu SKU eligible CPTPP, tổng tiết kiệm thuế ước tính (giả sử GMV trung bình $50,000 USD/SKU/năm)
+2. Top 3 rủi ro compliance cần lưu ý ngay
+3. Bước tiếp theo cụ thể để xuất khẩu sang Canada (ưu tiên form E, CFIA pre-notification, allergen)
+4. Một câu CTA ngắn về Adeptlink marketplace
+
+Trả lời dạng plain text, không dùng markdown heading.`
+        }]
+      })
+    });
+    const data = await resp.json();
+    aiRecs = data.content?.[0]?.text || '';
+  } catch(e) {
+    aiRecs = 'Không thể kết nối AI lúc này. Vui lòng xem báo cáo bên dưới và liên hệ support@adept-link.com để nhận tư vấn chi tiết.';
+  }
+
+  // Send lead email (mailto)
+  const emailSubject = encodeURIComponent(`[Multi-SKU Report] ${company} — ${doneRows.length} SKUs`);
+  const emailBody = encodeURIComponent(
+    `Công ty: ${company}\nEmail: ${email}\nSKU catalog: ${skuCount}\nThị trường: ${market}\n\n` +
+    `SKU đã tra cứu:\n${skuList}\n\nGợi ý AI:\n${aiRecs}`
+  );
+  location.href = `mailto:support@adept-link.com?subject=${emailSubject}&body=${emailBody}`;
+
+  // Generate & open PDF
+  openPrintReport(company, email, doneRows, aiRecs);
+
+  // UI update
+  document.getElementById('pdf-spinner').style.display = 'none';
+  document.getElementById('sku-gate-form').style.display = 'none';
+  document.getElementById('sku-gate-success').style.display = 'block';
+  skuState.pdfReady = true;
+}
+
+// ── BUILD & OPEN PRINT WINDOW ─────────────────
+function openPrintReport(company, email, rows, aiRecs) {
+  const date = new Date().toLocaleDateString('vi-VN', { day:'2-digit', month:'2-digit', year:'numeric' });
+  const cptppCount = rows.filter(r => r.result.eligible).length;
+  const totalSaving = rows.reduce((acc, r) => {
+    if (r.result.eligible) acc += 50000 * parseFloat(r.result.saving) / 100;
+    return acc;
+  }, 0);
+
+  const rowsHTML = rows.map((r, i) => {
+    const pc = r.result.product_category === 'agri' ? 'Agri Raw' : 'Processed Food';
+    const pcColor = r.result.product_category === 'agri' ? '#3b6d11' : '#a05a00';
+    const saving = r.result.eligible ? `<span style="color:#c4481f;font-weight:700;">Tiết kiệm ${r.result.saving}</span>` : '<span style="color:#888;">—</span>';
+    return `<tr>
+      <td>${i+1}</td>
+      <td><strong>${r.product || '(chưa đặt tên)'}</strong></td>
+      <td style="font-family:monospace;font-weight:700;">${r.result.code}</td>
+      <td style="color:${pcColor};font-weight:600;">${pc}</td>
+      <td>${r.result.mfn}</td>
+      <td style="color:#3d7a52;font-weight:700;">${r.result.cptpp}</td>
+      <td>${saving}</td>
+      <td>${r.result.eligible ? '✓ Có' : '—'}</td>
+    </tr>`;
+  }).join('');
+
+  const html = `<!DOCTYPE html><html lang="vi"><head><meta charset="UTF-8">
+<title>HS Code Report — ${company}</title>
+<style>
+  @page { margin: 20mm 16mm; }
+  body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 12px; color: #1a1a1a; line-height: 1.5; }
+  .header { display:flex; justify-content:space-between; align-items:flex-start; border-bottom: 3px solid #1a3320; padding-bottom: 14px; margin-bottom: 20px; }
+  .brand { font-size: 22px; font-weight: 700; color: #1a3320; letter-spacing: -0.5px; }
+  .brand span { color: #c9941a; }
+  .meta { text-align:right; font-size: 11px; color: #666; }
+  h2 { font-size: 15px; color: #1a3320; margin: 20px 0 10px; border-left: 4px solid #3d7a52; padding-left: 10px; }
+  .summary-grid { display:grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 20px; }
+  .summary-box { background: #f7f3ec; border: 1px solid #e0d8cc; border-radius: 8px; padding: 12px; text-align:center; }
+  .summary-box .num { font-size: 24px; font-weight: 700; color: #1a3320; font-family: monospace; }
+  .summary-box .lbl { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.6px; margin-top: 2px; }
+  table { width:100%; border-collapse: collapse; margin-bottom: 20px; font-size: 11px; }
+  th { background: #1a3320; color: white; padding: 8px 10px; text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  td { padding: 8px 10px; border-bottom: 1px solid #e0d8cc; }
+  tr:nth-child(even) td { background: #f7f3ec; }
+  .ai-box { background: #e8f4f0; border: 1px solid #3d7a52; border-radius: 8px; padding: 16px; margin-bottom: 20px; white-space: pre-wrap; font-size: 12px; line-height: 1.7; }
+  .footer { border-top: 1px solid #e0d8cc; padding-top: 12px; font-size: 10px; color: #999; display:flex; justify-content:space-between; }
+  .cta-box { background: #1a3320; color: white; border-radius: 8px; padding: 14px 18px; margin-top: 16px; }
+  .cta-box a { color: #f0d980; font-weight: 700; }
+  @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style></head><body>
+<div class="header">
+  <div><div class="brand">ADEPT<span>LINK</span></div><div style="font-size:11px;color:#666;margin-top:4px;">Canada ↔ Vietnam · AgriFood Trade Compliance</div></div>
+  <div class="meta"><div style="font-weight:700;font-size:13px;">HS Code Classification Report</div><div>Công ty: <strong>${company}</strong></div><div>Email: ${email}</div><div>Ngày tạo: ${date}</div><div style="color:#3d7a52;font-weight:600;">Dữ liệu: CBSA Canada 2026 · CPTPP Schedule</div></div>
+</div>
+
+<div class="summary-grid">
+  <div class="summary-box"><div class="num">${rows.length}</div><div class="lbl">Tổng SKU</div></div>
+  <div class="summary-box"><div class="num" style="color:#3d7a52;">${cptppCount}</div><div class="lbl">CPTPP Eligible</div></div>
+  <div class="summary-box"><div class="num" style="color:#3b6d11;">${rows.filter(r=>r.result.product_category==='agri').length}</div><div class="lbl">Agri Raw</div></div>
+  <div class="summary-box"><div class="num" style="color:#c4481f;">~$${totalSaving>0?Math.round(totalSaving/1000)+'K':0}</div><div class="lbl">Tiết kiệm thuế/năm*</div></div>
+</div>
+
+<h2>Chi tiết HS Code theo SKU</h2>
+<table>
+  <tr><th>#</th><th>Sản phẩm</th><th>HS Code</th><th>Phân loại</th><th>Thuế MFN</th><th>Thuế CPTPP</th><th>Tiết kiệm</th><th>Form E</th></tr>
+  ${rowsHTML}
+</table>
+
+<h2>Phân tích & Gợi ý từ AI (Adeptlink)</h2>
+<div class="ai-box">${aiRecs || 'Đang xử lý gợi ý AI...'}</div>
+
+<div class="cta-box">
+  <strong>Bước tiếp theo:</strong> Đăng ký tài khoản Adeptlink miễn phí để kết nối với buyer Canada đã verified, quản lý RFQ, và tracking compliance toàn bộ catalog.<br>
+  <a href="https://adept-link.com/registration/">→ adept-link.com/registration</a> &nbsp;|&nbsp; support@adept-link.com
+</div>
+
+<div style="font-size:10px;color:#999;margin-top:12px;">* Ước tính tiết kiệm thuế dựa trên GMV trung bình $50,000 USD/SKU/năm. Số liệu thực tế phụ thuộc vào kim ngạch và điều kiện xuất xứ CPTPP. Báo cáo này chỉ mang tính tham khảo — vui lòng xác nhận với customs broker trước khi khai báo chính thức.</div>
+<div class="footer"><span>© ${new Date().getFullYear()} Adeptlink — compliance.adept-link.com</span><span>Trang 1/1 · Báo cáo tự động · Không phải tư vấn pháp lý</span></div>
+</body></html>`;
+
+  const w = window.open('', '_blank', 'width=900,height=700');
+  if (w) {
+    w.document.write(html);
+    w.document.close();
+    setTimeout(() => w.print(), 800);
+  }
+}
+
+function printReport() {
+  // Re-trigger print on the already-opened window if possible
+  // Simplified: just re-generate
+  if (skuState.leadInfo) {
+    const doneRows = skuState.rows.filter(r => r.result);
+    openPrintReport(skuState.leadInfo.company, skuState.leadInfo.email, doneRows, '(Xem gợi ý AI trong email đã gửi.)');
+  }
+}
+
+// Show micro-trigger after first single-SKU result
+function showMicroTrigger() {
+  const trigger = document.getElementById('sku-micro-trigger');
+  if (trigger && document.getElementById('multi-sku-panel').style.display === 'none') {
+    trigger.style.display = 'block';
+  }
+}
+</script>
+</body>
+</html>
