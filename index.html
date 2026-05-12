@@ -198,7 +198,7 @@ header {
   align-items: center;
   gap: 8px;
   background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.22);
   color: white;
   padding: 8px 16px;
   border-radius: 8px;
@@ -206,7 +206,6 @@ header {
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
-  border: none;
 }
 .hero-tool:hover {
   background: rgba(255,255,255,0.18);
@@ -1484,7 +1483,7 @@ header {
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage)"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>
                 </div>
                 <div>
-                  <div class="card-title">Multi-SKU HS Code Lookup</div>
+                  <div class="card-title" data-i18n="card_title_multisku">Tra cứu nhiều SKU</div>
                   <div class="card-sub">Tra cứu hàng loạt · Nhận báo cáo PDF · Gợi ý AI</div>
                 </div>
               </div>
@@ -1785,7 +1784,7 @@ header {
 
         <div class="form-grid-3">
           <div>
-            <label class="f-label">Net Weight</label>
+            <label class="f-label" data-i18n="label_lbl_weight">Khối lượng tịnh</label>
             <input class="f-input" id="lbl-weight" placeholder="500 g" />
           </div>
           <div>
@@ -1793,29 +1792,29 @@ header {
             <input class="f-input" id="lbl-origin" value="Product of Vietnam / Produit du Viêtnam" />
           </div>
           <div>
-            <label class="f-label">Best Before</label>
+            <label class="f-label" data-i18n="label_lbl_bb">Hạn sử dụng</label>
             <input class="f-input" id="lbl-bb" placeholder="BB: 2027-06-30" />
           </div>
         </div>
 
         <div class="form-grid">
           <div>
-            <label class="f-label">Ingredients (EN)</label>
+            <label class="f-label" data-i18n="label_lbl_ing_en">Thành phần (Anh)</label>
             <input class="f-input" id="lbl-ing-en" placeholder="Cashews, sea salt." />
           </div>
           <div>
-            <label class="f-label">Ingredients (FR)</label>
+            <label class="f-label" data-i18n="label_lbl_ing_fr">Thành phần (Pháp)</label>
             <input class="f-input" id="lbl-ing-fr" placeholder="Noix de cajou, sel de mer." />
           </div>
         </div>
 
         <div class="form-grid">
           <div>
-            <label class="f-label">Importer / Distributor Canada</label>
+            <label class="f-label" data-i18n="label_lbl_importer">Nhà nhập khẩu / Phân phối tại Canada</label>
             <input class="f-input" id="lbl-importer" placeholder="ABC Foods Canada Inc., Vancouver BC" />
           </div>
           <div>
-            <label class="f-label">Allergen statement (EN)</label>
+            <label class="f-label" data-i18n="label_lbl_allergen_en">Khai báo Allergen (EN)</label>
             <input class="f-input" id="lbl-allergen" placeholder="Contains: tree nuts (cashew)." />
           </div>
         </div>
@@ -1905,10 +1904,10 @@ header {
             <div id="trust-tier" style="font-size:13px;color:var(--muted);" data-i18n="cert_tier_hint">Chọn chứng chỉ và bấm tính →</div>
           </div>
           <div class="trust-factors" id="trust-factors">
-            <div class="tf-item"><div class="tf-name">KYC Verified</div><div class="tf-val" id="tf-kyc">+0</div></div>
-            <div class="tf-item"><div class="tf-name">Food Safety Cert</div><div class="tf-val" id="tf-fs">+0</div></div>
-            <div class="tf-item"><div class="tf-name">Export Certs</div><div class="tf-val" id="tf-exp">+0</div></div>
-            <div class="tf-item"><div class="tf-name">Specialty Certs</div><div class="tf-val" id="tf-spec">+0</div></div>
+            <div class="tf-item"><div class="tf-name" data-i18n="tf_kyc">KYC Verified</div><div class="tf-val" id="tf-kyc">+0</div></div>
+            <div class="tf-item"><div class="tf-name" data-i18n="tf_fs">Food Safety</div><div class="tf-val" id="tf-fs">+0</div></div>
+            <div class="tf-item"><div class="tf-name" data-i18n="tf_exp">Chứng chỉ XK</div><div class="tf-val" id="tf-exp">+0</div></div>
+            <div class="tf-item"><div class="tf-name" data-i18n="tf_spec">Chứng chỉ đặc thù</div><div class="tf-val" id="tf-spec">+0</div></div>
           </div>
 
           <div class="result-box result-success" id="trust-advice" style="margin-top:16px;display:none">
@@ -2049,7 +2048,8 @@ function switchTab(id, btnEl) {
   document.getElementById('panel-' + id).classList.add('active');
   const tb = document.getElementById('tab-' + id);
   if (tb) tb.classList.add('active');
-  if (btnEl && btnEl.classList.contains('hn')) btnEl.classList.add('active');
+  const hnBtn = document.querySelector(`.hn[data-i18n="nav_${id}"]`);
+  if (hnBtn) hnBtn.classList.add('active');
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -2246,7 +2246,7 @@ function onProductInput(val) {
     <div class="suggest-item" onclick="applySuggest('${m.cat}','${m.label.replace(/'/g,"\\'")}')">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage);flex-shrink:0"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
       <span>${m.label}</span>
-      <span class="s-cat">${CAT_TYPE[m.cat] === 'agri' ? 'Agri Raw' : 'Processed'}</span>
+      <span class="s-cat">${CAT_TYPE[m.cat] === 'agri' ? t('cat_agri_tag') : t('cat_proc_tag')}</span>
     </div>
   `).join('');
   box.style.display = 'block';
@@ -2495,6 +2495,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderChecklist();
   renderAllergenGrid();
   renderCertGrid();
+  setLang(_lang);
 });
 
 // ══════════════════════════════════════════
@@ -3326,7 +3327,7 @@ const T = {
     hs_btn_lookup: 'Tra cứu HS Code',
     hs_searching: 'Đang tra cứu...',
     hs_result_label: 'Kết quả HS Code',
-    hs_save_consult: 'Lưu & Yêu cầu tư vấn',
+    hs_save_consult: 'Lưu kết quả',
     hs_btn_save: 'Lưu kết quả',
     hs_th_criteria: 'Chỉ tiêu',
     hs_th_mfn: 'MFN (Thông thường)',
@@ -3356,7 +3357,7 @@ const T = {
     hs_cptpp_saving: 'Tiết kiệm thuế cho buyer Canada:',
     hs_cptpp_no_benefit: 'Form E CPTPP không tạo thêm lợi ích đáng kể ở giai đoạn này.',
     // CFIA
-    cfia_title: 'CFIA Import Checklist',
+    cfia_title: 'Checklist Nhập khẩu CFIA',
     cfia_intro: 'Danh sách đầy đủ các bước cần hoàn thành trước khi lô hàng thực phẩm được nhập vào Canada theo Safe Food for Canadians Act (SFCA).',
     cfia_card_sub: 'Theo Safe Food for Canadians Regulations 2019 · Cập nhật 2026',
     tag_required: 'Bắt buộc',
@@ -3373,7 +3374,7 @@ const T = {
     cfia_done_title: 'Bạn đã sẵn sàng xuất khẩu sang Canada!',
     cfia_done_sub: 'Tất cả yêu cầu CFIA đã được hoàn thành. Bước tiếp theo: đăng ký trên Adeptlink để kết nối với buyer Canada.',
     // ALLERGEN
-    allergen_title: 'Allergen Declaration Builder',
+    allergen_title: 'Khai báo Allergen',
     allergen_intro: 'Canada yêu cầu khai báo bắt buộc 14 chất gây dị ứng ưu tiên (Priority Food Allergens) trên nhãn sản phẩm theo Health Canada regulations.',
     allergen_card_sub: 'Theo Health Canada · Safe Food for Canadians Act · 14 allergens bắt buộc',
     tag_label_required: 'Bắt buộc trên nhãn',
@@ -3390,7 +3391,7 @@ const T = {
     allergen_alert: 'Vui lòng chọn ít nhất một allergen có trong sản phẩm của bạn.',
     allergen_copy_done: 'Đã copy cả EN và FR!',
     // LABEL
-    label_title: 'Bilingual Label Builder (EN/FR)',
+    label_title: 'Tạo nhãn song ngữ EN/FR',
     label_intro: 'Canada yêu cầu <strong>tất cả nhãn sản phẩm phải song ngữ</strong> Anh-Pháp theo Official Languages Act và Food and Drug Regulations (FDR).',
     label_card_title: 'Tạo nhãn song ngữ EN/FR',
     label_banner: 'Tất cả thông tin bắt buộc trên nhãn (tên sản phẩm, net weight, ingredients, allergens, địa chỉ nhà sản xuất/nhập khẩu) <strong>phải có cả tiếng Anh lẫn tiếng Pháp</strong>. Nhãn chỉ có tiếng Anh sẽ bị từ chối ở border.',
@@ -3439,8 +3440,8 @@ const T = {
     cta_h3: 'Sẵn sàng xuất khẩu sang Canada?',
     cta_p: 'Đăng ký Adeptlink miễn phí — kết nối với buyer Canada đã verified, quản lý RFQ và compliance trong một nền tảng.',
     // MODAL
-    modal_title: 'Yêu cầu tư vấn',
-    modal_sub: 'Đội ngũ Adeptlink sẽ liên hệ trong vòng 24h để hỗ trợ bạn chuẩn bị hồ sơ xuất khẩu sang Canada.',
+    modal_title: 'Đăng ký miễn phí',
+    modal_sub: 'Đăng ký Adeptlink — kết nối với buyer Canada đã verified, quản lý RFQ và compliance trong một nền tảng.',
     modal_lbl_company: 'Tên công ty',
     modal_ph_company: 'Tên công ty của bạn',
     modal_lbl_name: 'Người liên hệ',
@@ -3455,7 +3456,7 @@ const T = {
     modal_vol2: '$10K – $50K/tháng',
     modal_vol3: '$50K – $200K/tháng',
     modal_vol4: '$200K+/tháng',
-    modal_btn_submit: 'Gửi yêu cầu tư vấn →',
+    modal_btn_submit: 'Đăng ký ngay →',
     modal_sending: 'Đang gửi…',
     modal_success_title: 'Đã nhận! Chúng tôi sẽ liên hệ trong 24h.',
     modal_success_sub: 'Trong lúc chờ, bạn có thể đăng ký tài khoản Adeptlink miễn phí để khám phá buyer Canada.',
@@ -3463,6 +3464,20 @@ const T = {
     modal_required_alert: 'Vui lòng điền đầy đủ: Tên công ty, Người liên hệ và Email.',
     modal_send_fail: 'Gửi thất bại: ',
     modal_retry: '\nVui lòng thử lại hoặc liên hệ support@adept-link.com',
+    // TRUST FACTORS
+    tf_kyc: 'KYC Verified',
+    tf_fs: 'An toàn thực phẩm',
+    tf_exp: 'Chứng chỉ XK',
+    tf_spec: 'Chứng chỉ đặc thù',
+    // LABEL FORM
+    label_lbl_weight: 'Khối lượng tịnh',
+    label_lbl_bb: 'Hạn sử dụng',
+    label_lbl_ing_en: 'Thành phần (Anh)',
+    label_lbl_ing_fr: 'Thành phần (Pháp)',
+    label_lbl_importer: 'Nhà nhập khẩu tại Canada',
+    label_lbl_allergen_en: 'Khai báo Allergen (EN)',
+    // MULTISKU
+    card_title_multisku: 'Tra cứu nhiều SKU',
   },
   en: {
     // NAV
@@ -3687,6 +3702,20 @@ const T = {
     modal_required_alert: 'Please fill in: Company Name, Contact Person and Email.',
     modal_send_fail: 'Send failed: ',
     modal_retry: '\nPlease try again or contact support@adept-link.com',
+    // TRUST FACTORS
+    tf_kyc: 'KYC Verified',
+    tf_fs: 'Food Safety Cert',
+    tf_exp: 'Export Certs',
+    tf_spec: 'Specialty Certs',
+    // LABEL FORM
+    label_lbl_weight: 'Net Weight',
+    label_lbl_bb: 'Best Before',
+    label_lbl_ing_en: 'Ingredients (EN)',
+    label_lbl_ing_fr: 'Ingredients (FR)',
+    label_lbl_importer: 'Importer / Distributor Canada',
+    label_lbl_allergen_en: 'Allergen Statement (EN)',
+    // MULTISKU
+    card_title_multisku: 'Multi-SKU HS Code Lookup',
   }
 };
 
