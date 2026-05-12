@@ -7,7 +7,7 @@ app = Flask(__name__, static_folder=".")
 
 BREVO_API_KEY = os.environ.get("BREVO_API_KEY", "")
 BREVO_URL = "https://api.brevo.com/v3/smtp/email"
-SENDER_EMAIL = "compliance@adept-link.com"
+SENDER_EMAIL = "support@adept-link.com"
 SENDER_NAME = "Compliance Hub — Adeptlink"
 NOTIFY_EMAIL = "support@adept-link.com"
 
