@@ -309,6 +309,8 @@ header {
 }
 .f-input {
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   padding: 10px 14px;
   border: 1.5px solid var(--border);
   border-radius: 7px;
@@ -321,6 +323,8 @@ header {
 .f-input:focus { border-color: var(--sage); }
 .f-select {
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   padding: 10px 14px;
   border: 1.5px solid var(--border);
   border-radius: 7px;
@@ -864,6 +868,8 @@ header {
   box-shadow: 0 8px 24px rgba(15,26,15,0.12);
   z-index: 50;
   overflow: hidden;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 .suggest-item {
   padding: 10px 14px;
@@ -958,6 +964,8 @@ header {
   .card-head { padding: 16px 18px 14px; }
   .card-body { padding: 18px; }
   .form-grid-3 { grid-template-columns: 1fr 1fr; }
+  /* Prevent iOS Safari auto-zoom (triggers when font-size < 16px) */
+  .f-input, .f-select, textarea { font-size: 16px !important; touch-action: manipulation; }
 }
 
 /* ══════════════════════════════════════════
