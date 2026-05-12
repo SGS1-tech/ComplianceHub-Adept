@@ -1106,9 +1106,9 @@ header {
     </div>
   </a>
   <div class="header-nav">
-    <button class="hn active" onclick="switchTab('hs', this)">HS Code</button>
-    <button class="hn" onclick="switchTab('cfia', this)">CFIA Checklist</button>
-    <button class="hn" onclick="switchTab('allergen', this)">Allergen</button>
+    <button class="hn active" onclick="switchTab('hs', this)" data-i18n="nav_hs">HS Code</button>
+    <button class="hn" onclick="switchTab('cfia', this)" data-i18n="nav_cfia">CFIA Checklist</button>
+    <button class="hn" onclick="switchTab('allergen', this)" data-i18n="nav_allergen">Allergen</button>
     <button class="hn" onclick="switchTab('label', this)" data-i18n="nav_label">Nhãn EN/FR</button>
     <button class="hn" onclick="switchTab('cert', this)" data-i18n="nav_cert">Chứng chỉ</button>
   </div>
@@ -1133,15 +1133,15 @@ header {
     <div class="hero-tools">
       <button class="hero-tool" onclick="switchTab('hs', null)">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-        HS Code Lookup
+        <span data-i18n="hero_hs_lookup">Tra cứu HS Code</span>
       </button>
       <button class="hero-tool" onclick="switchTab('cfia', null)">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-        CFIA Checklist
+        <span data-i18n="hero_cfia">Checklist CFIA</span>
       </button>
       <button class="hero-tool" onclick="switchTab('allergen', null)">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        Allergen Builder
+        <span data-i18n="hero_allergen">Khai báo Allergen</span>
       </button>
       <button class="hero-tool" onclick="switchTab('label', null)">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
@@ -1162,15 +1162,15 @@ header {
   <div class="tool-tabs">
     <button class="tab-btn active" id="tab-hs" onclick="switchTab('hs', this)">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-      HS Code
+      <span data-i18n="tab_hs">HS Code</span>
     </button>
     <button class="tab-btn" id="tab-cfia" onclick="switchTab('cfia', this)">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-      CFIA Checklist
+      <span data-i18n="tab_cfia">Checklist CFIA</span>
     </button>
     <button class="tab-btn" id="tab-allergen" onclick="switchTab('allergen', this)">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      Allergen Builder
+      <span data-i18n="tab_allergen">Khai báo Allergen</span>
     </button>
     <button class="tab-btn" id="tab-label" onclick="switchTab('label', this)">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
@@ -1199,7 +1199,7 @@ header {
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage)"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
             </div>
             <div>
-              <div class="card-title">HS Code Lookup</div>
+              <div class="card-title" data-i18n="card_title_hs">Tra cứu HS Code</div>
               <div class="card-sub" data-i18n="hs_card_sub">Dữ liệu từ CBSA Canada · Cập nhật 2026</div>
             </div>
           </div>
@@ -1699,7 +1699,7 @@ header {
         <div class="card-title-row">
           <div class="card-ico">⚠️</div>
           <div>
-            <div class="card-title">Priority Food Allergens — Canada</div>
+            <div class="card-title" data-i18n="card_title_allergen">Chất gây dị ứng ưu tiên — Canada</div>
             <div class="card-sub" data-i18n="allergen_card_sub">Theo Health Canada · Safe Food for Canadians Act · 14 allergens bắt buộc</div>
           </div>
         </div>
@@ -2353,8 +2353,8 @@ function validateHS() {
 
 // ── CATEGORY TAG HTML ────────────────────────────
 function renderCatTag(pc) {
-  if (pc === 'agri') return `<span class="cat-tag-agri"><svg class="cat-tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Agri – Raw</span>`;
-  return `<span class="cat-tag-processed"><svg class="cat-tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>Processed Food</span>`;
+  if (pc === 'agri') return `<span class="cat-tag-agri"><svg class="cat-tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>${t('cat_agri_tag')}</span>`;
+  return `<span class="cat-tag-processed"><svg class="cat-tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>${t('cat_proc_tag')}</span>`;
 }
 
 // ── MAIN LOOKUP ─────────────────────────────────
@@ -3242,9 +3242,22 @@ let _lang = localStorage.getItem('adeptlink_lang') || 'vi';
 const T = {
   vi: {
     // NAV
+    nav_hs: 'HS Code',
+    nav_cfia: 'Checklist CFIA',
+    nav_allergen: 'Allergen',
     nav_label: 'Nhãn EN/FR',
     nav_cert: 'Chứng chỉ',
+    tab_hs: 'HS Code',
+    tab_cfia: 'Checklist CFIA',
+    tab_allergen: 'Khai báo Allergen',
     tab_cert_full: 'Chứng chỉ & Trust Score',
+    hero_hs_lookup: 'Tra cứu HS Code',
+    hero_cfia: 'Checklist CFIA',
+    hero_allergen: 'Khai báo Allergen',
+    card_title_hs: 'Tra cứu HS Code',
+    card_title_allergen: 'Chất gây dị ứng ưu tiên — Canada',
+    cat_agri_tag: 'Nông sản thô',
+    cat_proc_tag: 'Thực phẩm chế biến',
     cta_consult: 'Yêu cầu tư vấn',
     cta_register: 'Đăng ký miễn phí →',
     cta_register_free: 'Đăng ký Adeptlink miễn phí →',
@@ -3453,9 +3466,22 @@ const T = {
   },
   en: {
     // NAV
+    nav_hs: 'HS Code',
+    nav_cfia: 'CFIA Checklist',
+    nav_allergen: 'Allergen',
     nav_label: 'EN/FR Label',
     nav_cert: 'Certificates',
+    tab_hs: 'HS Code',
+    tab_cfia: 'CFIA Checklist',
+    tab_allergen: 'Allergen Builder',
     tab_cert_full: 'Certificates & Trust Score',
+    hero_hs_lookup: 'HS Code Lookup',
+    hero_cfia: 'CFIA Checklist',
+    hero_allergen: 'Allergen Builder',
+    card_title_hs: 'HS Code Lookup',
+    card_title_allergen: 'Priority Food Allergens — Canada',
+    cat_agri_tag: 'Agri – Raw',
+    cat_proc_tag: 'Processed Food',
     cta_consult: 'Request Consultation',
     cta_register: 'Register Free →',
     cta_register_free: 'Register on Adeptlink Free →',
