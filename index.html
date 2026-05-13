@@ -1906,7 +1906,7 @@ header {
     <div class="card">
       <div class="card-head">
         <div class="card-title-row">
-          <div class="card-ico">📋</div>
+          <div class="card-ico"></div>
           <div>
             <div class="card-title">SFCA / CFIA Import Requirements</div>
             <div class="card-sub" data-i18n="cfia_card_sub">Theo Safe Food for Canadians Regulations 2019 · Cập nhật 2026</div>
@@ -1946,7 +1946,7 @@ header {
 
         <div class="result-box" id="cfia-complete" style="display:none;">
           <div style="text-align:center;padding:10px 0;">
-            <div style="font-size:40px;margin-bottom:8px;">✅</div>
+            <div style="font-size:40px;margin-bottom:8px;"></div>
             <div style="font-family:'Fraunces',serif;font-size:20px;color:var(--forest);margin-bottom:6px;" data-i18n="cfia_done_title">Bạn đã sẵn sàng xuất khẩu sang Canada!</div>
             <div style="font-size:13px;color:var(--muted);margin-bottom:16px;" data-i18n="cfia_done_sub">Tất cả yêu cầu CFIA đã được hoàn thành. Bước tiếp theo: đăng ký trên Adeptlink để kết nối với buyer Canada.</div>
             <button class="btn-run" onclick="openModal()" data-i18n="cta_register_free">Đăng ký Adeptlink miễn phí →</button>
@@ -1968,7 +1968,7 @@ header {
     <div class="card">
       <div class="card-head">
         <div class="card-title-row">
-          <div class="card-ico">⚠️</div>
+          <div class="card-ico"></div>
           <div>
             <div class="card-title" data-i18n="card_title_allergen">Chất gây dị ứng ưu tiên — Canada</div>
             <div class="card-sub" data-i18n="allergen_card_sub">Theo Health Canada · Safe Food for Canadians Act · 14 allergens bắt buộc</div>
@@ -1994,7 +1994,7 @@ header {
           <input class="f-input" id="allergen-product-name" data-i18n-placeholder="allergen_ph_product" placeholder="VD: ABC Foods Roasted Cashews with Sea Salt" />
         </div>
 
-        <button class="btn-run" onclick="buildAllergenDeclaration()">⚠️ <span data-i18n="allergen_btn_build">Tạo Allergen Declaration</span></button>
+        <button class="btn-run" onclick="buildAllergenDeclaration()"><span data-i18n="allergen_btn_build">Tạo Allergen Declaration</span></button>
 
         <div class="result-box result-warn" id="allergen-result" style="display:none">
           <div class="r-label" data-i18n="allergen_result_label">Allergen Declaration — Theo chuẩn Health Canada</div>
@@ -2007,8 +2007,8 @@ header {
             <div style="background:var(--white);border:1.5px solid var(--border);border-radius:7px;padding:14px 16px;font-family:'DM Mono',monospace;font-size:13px;color:var(--ink);line-height:1.6;" id="allergen-fr-text">—</div>
           </div>
           <div style="margin-top:14px;display:flex;gap:10px;">
-            <button class="btn-secondary" onclick="copyAllergen()">📋 <span data-i18n="allergen_btn_copy">Copy text</span></button>
-            <button class="btn-secondary" onclick="switchTab('label', null)">🏷️ <span data-i18n="allergen_btn_add_label">Thêm vào nhãn EN/FR →</span></button>
+            <button class="btn-secondary" onclick="copyAllergen()"><span data-i18n="allergen_btn_copy">Copy text</span></button>
+            <button class="btn-secondary" onclick="switchTab('label', null)"><span data-i18n="allergen_btn_add_label">Thêm vào nhãn EN/FR →</span></button>
           </div>
         </div>
       </div>
@@ -2027,7 +2027,7 @@ header {
     <div class="card">
       <div class="card-head">
         <div class="card-title-row">
-          <div class="card-ico">🏷️</div>
+          <div class="card-ico"></div>
           <div>
             <div class="card-title" data-i18n="label_card_title">Tạo nhãn song ngữ EN/FR</div>
             <div class="card-sub">Theo Canada Food and Drug Regulations (FDR) · Official Languages Act</div>
@@ -2091,7 +2091,7 @@ header {
           </div>
         </div>
 
-        <button class="btn-run" onclick="buildLabel()">🏷️ <span data-i18n="label_btn_preview">Xem trước nhãn EN/FR</span></button>
+        <button class="btn-run" onclick="buildLabel()"><span data-i18n="label_btn_preview">Xem trước nhãn EN/FR</span></button>
 
         <div class="label-preview" id="label-preview">
           <div class="label-flag">
@@ -2123,7 +2123,7 @@ header {
         </div>
 
         <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
-          <button class="btn-secondary" onclick="openModal('label')">📥 <span data-i18n="label_btn_consult">Lưu & Yêu cầu tư vấn nhãn chính thức</span></button>
+          <button class="btn-secondary" onclick="openModal('label')"><span data-i18n="label_btn_consult">Lưu & Yêu cầu tư vấn nhãn chính thức</span></button>
         </div>
       </div>
     </div>
@@ -2142,7 +2142,7 @@ header {
       <div class="card">
         <div class="card-head">
           <div class="card-title-row">
-            <div class="card-ico">📜</div>
+            <div class="card-ico"></div>
             <div>
               <div class="card-title" data-i18n="cert_card1_title">Chứng chỉ hiện có</div>
               <div class="card-sub" data-i18n="cert_card1_sub">Tick vào chứng chỉ bạn đang sở hữu</div>
@@ -2153,7 +2153,7 @@ header {
           <div class="cert-grid" id="cert-grid">
             <!-- Rendered by JS -->
           </div>
-          <button class="btn-run" style="width:100%" onclick="calcTrustScore()">📊 <span data-i18n="cert_btn_calc">Tính Trust Score</span></button>
+          <button class="btn-run" style="width:100%" onclick="calcTrustScore()"><span data-i18n="cert_btn_calc">Tính Trust Score</span></button>
         </div>
       </div>
 
@@ -2290,7 +2290,7 @@ header {
     </div>
 
     <div class="m-success" id="modal-success">
-      <div class="m-success-ico">✅</div>
+      <div class="m-success-ico"></div>
       <h4 data-i18n="modal_success_title">Đã nhận! Chúng tôi sẽ liên hệ trong 24h.</h4>
       <p data-i18n="modal_success_sub">Trong lúc chờ, bạn có thể đăng ký tài khoản Adeptlink miễn phí để khám phá buyer Canada.</p>
       <div style="margin-top:16px;">
@@ -3053,10 +3053,10 @@ function calcTrustScore() {
   circle.style.borderColor = color;
   document.getElementById('trust-num').style.color = color;
 
-  const tier = total >= 80 ? '🟢 Excellent — Buyer Canada sẽ ưu tiên bạn'
-             : total >= 60 ? '🟡 Good — Đủ điều kiện vào hầu hết B2B deals'
-             : total >= 40 ? '🟠 Fair — Cần thêm chứng chỉ để tăng uy tín'
-             : '🔴 Low — Bắt đầu với HACCP để tăng điểm nhanh nhất';
+  const tier = total >= 80 ? 'Excellent — Buyer Canada sẽ ưu tiên bạn'
+             : total >= 60 ? 'Good — Đủ điều kiện vào hầu hết B2B deals'
+             : total >= 40 ? 'Fair — Cần thêm chứng chỉ để tăng uy tín'
+             : 'Low — Bắt đầu với HACCP để tăng điểm nhanh nhất';
   document.getElementById('trust-tier').textContent = tier;
 
   // Advice
@@ -3065,7 +3065,7 @@ function calcTrustScore() {
   if (!state.certs.has('brc') && !state.certs.has('sqf'))   missing.push('→ BRC hoặc SQF mở cửa vào siêu thị lớn (Loblaw, Costco)');
   if (!state.certs.has('coo')) missing.push('→ C/O Form E CPTPP giúp buyer tiết kiệm thuế — tăng khả năng được chọn');
   if (!state.certs.has('phyto')) missing.push('→ Phytosanitary Cert bắt buộc cho hạt, gia vị, thực vật');
-  if (missing.length === 0) missing.push('✅ Bạn đã có bộ chứng chỉ rất tốt! Đăng ký Adeptlink để showcase với buyer Canada.');
+  if (missing.length === 0) missing.push('Bạn đã có bộ chứng chỉ rất tốt! Đăng ký Adeptlink để showcase với buyer Canada.');
 
   const advEl = document.getElementById('trust-advice');
   document.getElementById('trust-advice-text').innerHTML = missing.join('<br>');
@@ -3725,15 +3725,15 @@ const T = {
     cert_sa8000_note: 'Tăng uy tín, không bắt buộc',
     cert_have: '✓ Đã có chứng chỉ',
     cert_add: '+ Tôi có chứng chỉ này',
-    cert_tier_excellent: '🟢 Excellent — Buyer Canada sẽ ưu tiên bạn',
-    cert_tier_good: '🟡 Good — Đủ điều kiện vào hầu hết B2B deals',
-    cert_tier_fair: '🟠 Fair — Cần thêm chứng chỉ để tăng uy tín',
-    cert_tier_low: '🔴 Low — Bắt đầu với HACCP để tăng điểm nhanh nhất',
+    cert_tier_excellent: 'Excellent — Buyer Canada sẽ ưu tiên bạn',
+    cert_tier_good: 'Good — Đủ điều kiện vào hầu hết B2B deals',
+    cert_tier_fair: 'Fair — Cần thêm chứng chỉ để tăng uy tín',
+    cert_tier_low: 'Low — Bắt đầu với HACCP để tăng điểm nhanh nhất',
     cert_advice_haccp: '→ Ưu tiên cao nhất: lấy HACCP (tăng +20 pts, bắt buộc vào Canada)',
     cert_advice_brc: '→ BRC hoặc SQF mở cửa vào siêu thị lớn (Loblaw, Costco)',
     cert_advice_coo: '→ C/O Form E CPTPP giúp buyer tiết kiệm thuế — tăng khả năng được chọn',
     cert_advice_phyto: '→ Phytosanitary Cert bắt buộc cho hạt, gia vị, thực vật',
-    cert_advice_full: '✅ Bạn đã có bộ chứng chỉ rất tốt! Đăng ký Adeptlink để showcase với buyer Canada.',
+    cert_advice_full: 'Bạn đã có bộ chứng chỉ rất tốt! Đăng ký Adeptlink để showcase với buyer Canada.',
     // CTA
     cta_h3: 'Sẵn sàng xuất khẩu sang Canada?',
     cta_p: 'Đăng ký Adeptlink miễn phí — kết nối với buyer Canada đã verified, quản lý RFQ và compliance trong một nền tảng.',
@@ -3963,15 +3963,15 @@ const T = {
     cert_sa8000_note: 'Enhances reputation, not mandatory',
     cert_have: '✓ I have this certificate',
     cert_add: '+ I have this certificate',
-    cert_tier_excellent: '🟢 Excellent — Canadian buyers will prioritize you',
-    cert_tier_good: '🟡 Good — Eligible for most B2B deals',
-    cert_tier_fair: '🟠 Fair — Need more certifications to build credibility',
-    cert_tier_low: '🔴 Low — Start with HACCP for the fastest score increase',
+    cert_tier_excellent: 'Excellent — Canadian buyers will prioritize you',
+    cert_tier_good: 'Good — Eligible for most B2B deals',
+    cert_tier_fair: 'Fair — Need more certifications to build credibility',
+    cert_tier_low: 'Low — Start with HACCP for the fastest score increase',
     cert_advice_haccp: '→ Top priority: obtain HACCP (+20 pts, mandatory for Canada)',
     cert_advice_brc: '→ BRC or SQF opens doors to major retailers (Loblaw, Costco)',
     cert_advice_coo: '→ C/O Form E CPTPP saves duty for buyers — increases your chances of being selected',
     cert_advice_phyto: '→ Phytosanitary Cert is mandatory for nuts, spices, and plant products',
-    cert_advice_full: '✅ You have an excellent set of certifications! Register on Adeptlink to showcase to Canadian buyers.',
+    cert_advice_full: 'You have an excellent set of certifications! Register on Adeptlink to showcase to Canadian buyers.',
     // CTA
     cta_h3: 'Ready to Export to Canada?',
     cta_p: 'Register on Adeptlink for free — connect with verified Canadian buyers, manage RFQs and compliance in one platform.',

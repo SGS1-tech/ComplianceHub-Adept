@@ -80,7 +80,7 @@ def contact():
     internal_html = f"""
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
       <div style="background:#1a3320;padding:20px 28px;border-radius:8px 8px 0 0;">
-        <h2 style="color:#e6a820;margin:0;font-size:18px;">📋 Yêu cầu tư vấn mới</h2>
+        <h2 style="color:#e6a820;margin:0;font-size:18px;">Yêu cầu tư vấn mới</h2>
         <p style="color:rgba(255,255,255,0.7);margin:4px 0 0;font-size:13px;">Compliance Hub — Adeptlink</p>
       </div>
       <div style="background:#f7f3ec;padding:24px 28px;border-radius:0 0 8px 8px;border:1px solid #ede6d6;">
@@ -115,7 +115,7 @@ def contact():
     confirm_html = f"""
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
       <div style="background:#1a3320;padding:20px 28px;border-radius:8px 8px 0 0;">
-        <h2 style="color:#e6a820;margin:0;font-size:18px;">✅ Đã nhận yêu cầu tư vấn!</h2>
+        <h2 style="color:#e6a820;margin:0;font-size:18px;">Đã nhận yêu cầu tư vấn!</h2>
         <p style="color:rgba(255,255,255,0.7);margin:4px 0 0;font-size:13px;">Compliance Hub — Adeptlink</p>
       </div>
       <div style="background:#f7f3ec;padding:24px 28px;border-radius:0 0 8px 8px;border:1px solid #ede6d6;">
