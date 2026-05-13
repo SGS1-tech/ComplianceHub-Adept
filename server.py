@@ -17,9 +17,10 @@ BREVO_URL = "https://api.brevo.com/v3/smtp/email"
 SENDER_EMAIL = "support@adept-link.com"
 SENDER_NAME = "Compliance Hub — Adeptlink"
 NOTIFY_EMAIL = "support@adept-link.com"
+NOTIFY_SENDER_EMAIL = "noreply@adept-link.com"   # khác recipient để tránh spam filter
 
 
-def send_email(to_email, to_name, subject, html_content):
+def send_email(to_email, to_name, subject, html_content, sender_email=None, reply_to=None):
     if not BREVO_API_KEY:
         log.error("BREVO_API_KEY is not set — cannot send email")
         return 500, "No API key"
@@ -28,12 +29,15 @@ def send_email(to_email, to_name, subject, html_content):
         "api-key": BREVO_API_KEY,
         "content-type": "application/json",
     }
+    from_email = sender_email or SENDER_EMAIL
     payload = {
-        "sender": {"name": SENDER_NAME, "email": SENDER_EMAIL},
+        "sender": {"name": SENDER_NAME, "email": from_email},
         "to": [{"email": to_email, "name": to_name}],
         "subject": subject,
         "htmlContent": html_content,
     }
+    if reply_to:
+        payload["replyTo"] = {"email": reply_to}
     try:
         resp = requests.post(BREVO_URL, headers=headers, json=payload, timeout=10)
         log.info("Brevo → %s | status=%s | to=%s | subj=%s", to_email, resp.status_code, to_email, subject)
@@ -99,7 +103,9 @@ def contact():
     status1, body1 = send_email(
         NOTIFY_EMAIL, "Adeptlink Support",
         f"[Compliance Hub] Yêu cầu tư vấn từ {company}",
-        internal_html
+        internal_html,
+        sender_email=NOTIFY_SENDER_EMAIL,
+        reply_to=email
     )
     if status1 not in (200, 201):
         log.error("Internal notify email FAILED: status=%s body=%s", status1, body1[:200])
