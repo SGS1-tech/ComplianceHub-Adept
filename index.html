@@ -1137,6 +1137,8 @@ header {
   display: none;
 }
 @media (max-width: 900px) { .tabs-wrap::after { display: block; } }
+.tool-tabs.drag-scroll { cursor: grab; user-select: none; }
+.tool-tabs.drag-scroll.dragging { cursor: grabbing; }
 
 /* ── LANG TOGGLE (header inline) ── */
 .lang-toggle {
@@ -4607,6 +4609,45 @@ function buildCustomSelects() {
   }
 }
 
+// ── DRAG-TO-SCROLL: tab bar (desktop mouse drag) ──
+function initTabDragScroll() {
+  const el = document.querySelector('.tool-tabs');
+  if (!el) return;
+  let isDown = false, startX = 0, scrollLeft = 0, moved = false;
+
+  el.addEventListener('mousedown', e => {
+    isDown = true; moved = false;
+    startX = e.pageX - el.getBoundingClientRect().left;
+    scrollLeft = el.scrollLeft;
+    el.classList.add('dragging');
+  });
+  document.addEventListener('mouseup', () => {
+    if (!isDown) return;
+    isDown = false;
+    el.classList.remove('dragging');
+  });
+  document.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - el.getBoundingClientRect().left;
+    const walk = x - startX;
+    if (Math.abs(walk) > 4) moved = true;
+    el.scrollLeft = scrollLeft - walk;
+  });
+  // Block click on tab buttons if mouse was dragged
+  el.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', e => { if (moved) { e.stopImmediatePropagation(); moved = false; } });
+  });
+
+  // Show grab cursor only when tabs actually overflow
+  function updateCursor() {
+    if (el.scrollWidth > el.clientWidth + 2) el.classList.add('drag-scroll');
+    else el.classList.remove('drag-scroll');
+  }
+  updateCursor();
+  window.addEventListener('resize', updateCursor);
+}
+
 // Init — single handler, correct order
 document.addEventListener('DOMContentLoaded', () => {
   renderChecklist();
@@ -4614,6 +4655,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCertGrid();
   buildCustomSelects();   // must run before setLang so labels sync correctly
   setLang(_lang);         // always apply lang (updates i18n + syncs custom select labels)
+  initTabDragScroll();    // enable mouse drag-to-scroll on tab bar
 });
 </script>
 </body>
