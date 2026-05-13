@@ -750,7 +750,7 @@ header {
   padding: 20px 0;
   display: none;
 }
-.m-success-ico { font-size: 48px; margin-bottom: 12px; }
+.m-success-ico { font-size: 48px; margin-bottom: 12px; display:flex; align-items:center; justify-content:center; }
 .m-success h4 { font-family: 'Fraunces', serif; font-size: 20px; color: var(--forest); margin-bottom: 6px; }
 .m-success p { font-size: 14px; color: var(--muted); }
 
@@ -1906,7 +1906,7 @@ header {
     <div class="card">
       <div class="card-head">
         <div class="card-title-row">
-          <div class="card-ico"></div>
+          <div class="card-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage)"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12l2 2 4-4"/></svg></div>
           <div>
             <div class="card-title">SFCA / CFIA Import Requirements</div>
             <div class="card-sub" data-i18n="cfia_card_sub">Theo Safe Food for Canadians Regulations 2019 · Cập nhật 2026</div>
@@ -1968,7 +1968,7 @@ header {
     <div class="card">
       <div class="card-head">
         <div class="card-title-row">
-          <div class="card-ico"></div>
+          <div class="card-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage)"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
           <div>
             <div class="card-title" data-i18n="card_title_allergen">Chất gây dị ứng ưu tiên — Canada</div>
             <div class="card-sub" data-i18n="allergen_card_sub">Theo Health Canada · Safe Food for Canadians Act · 14 allergens bắt buộc</div>
@@ -1994,7 +1994,7 @@ header {
           <input class="f-input" id="allergen-product-name" data-i18n-placeholder="allergen_ph_product" placeholder="VD: ABC Foods Roasted Cashews with Sea Salt" />
         </div>
 
-        <button class="btn-run" onclick="buildAllergenDeclaration()"><span data-i18n="allergen_btn_build">Tạo Allergen Declaration</span></button>
+        <button class="btn-run" onclick="buildAllergenDeclaration()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px;"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><span data-i18n="allergen_btn_build">Tạo Allergen Declaration</span></button>
 
         <div class="result-box result-warn" id="allergen-result" style="display:none">
           <div class="r-label" data-i18n="allergen_result_label">Allergen Declaration — Theo chuẩn Health Canada</div>
@@ -2007,8 +2007,8 @@ header {
             <div style="background:var(--white);border:1.5px solid var(--border);border-radius:7px;padding:14px 16px;font-family:'DM Mono',monospace;font-size:13px;color:var(--ink);line-height:1.6;" id="allergen-fr-text">—</div>
           </div>
           <div style="margin-top:14px;display:flex;gap:10px;">
-            <button class="btn-secondary" onclick="copyAllergen()"><span data-i18n="allergen_btn_copy">Copy text</span></button>
-            <button class="btn-secondary" onclick="switchTab('label', null)"><span data-i18n="allergen_btn_add_label">Thêm vào nhãn EN/FR →</span></button>
+            <button class="btn-secondary" onclick="copyAllergen()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg><span data-i18n="allergen_btn_copy">Copy text</span></button>
+            <button class="btn-secondary" onclick="switchTab('label', null)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px;"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><span data-i18n="allergen_btn_add_label">Thêm vào nhãn EN/FR →</span></button>
           </div>
         </div>
       </div>
@@ -2027,7 +2027,7 @@ header {
     <div class="card">
       <div class="card-head">
         <div class="card-title-row">
-          <div class="card-ico"></div>
+          <div class="card-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage)"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
           <div>
             <div class="card-title" data-i18n="label_card_title">Tạo nhãn song ngữ EN/FR</div>
             <div class="card-sub">Theo Canada Food and Drug Regulations (FDR) · Official Languages Act</div>
@@ -2091,7 +2091,7 @@ header {
           </div>
         </div>
 
-        <button class="btn-run" onclick="buildLabel()"><span data-i18n="label_btn_preview">Xem trước nhãn EN/FR</span></button>
+        <button class="btn-run" onclick="buildLabel()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span data-i18n="label_btn_preview">Xem trước nhãn EN/FR</span></button>
 
         <div class="label-preview" id="label-preview">
           <div class="label-flag">
@@ -2123,7 +2123,7 @@ header {
         </div>
 
         <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
-          <button class="btn-secondary" onclick="openModal('label')"><span data-i18n="label_btn_consult">Lưu & Yêu cầu tư vấn nhãn chính thức</span></button>
+          <button class="btn-secondary" onclick="openModal('label')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span data-i18n="label_btn_consult">Lưu & Yêu cầu tư vấn nhãn chính thức</span></button>
         </div>
       </div>
     </div>
@@ -2142,7 +2142,7 @@ header {
       <div class="card">
         <div class="card-head">
           <div class="card-title-row">
-            <div class="card-ico"></div>
+            <div class="card-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage)"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div>
             <div>
               <div class="card-title" data-i18n="cert_card1_title">Chứng chỉ hiện có</div>
               <div class="card-sub" data-i18n="cert_card1_sub">Tick vào chứng chỉ bạn đang sở hữu</div>
@@ -2153,14 +2153,14 @@ header {
           <div class="cert-grid" id="cert-grid">
             <!-- Rendered by JS -->
           </div>
-          <button class="btn-run" style="width:100%" onclick="calcTrustScore()"><span data-i18n="cert_btn_calc">Tính Trust Score</span></button>
+          <button class="btn-run" style="width:100%" onclick="calcTrustScore()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span data-i18n="cert_btn_calc">Tính Trust Score</span></button>
         </div>
       </div>
 
       <div class="card">
         <div class="card-head">
           <div class="card-title-row">
-            <div class="card-ico"></div>
+            <div class="card-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage)"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
             <div>
               <div class="card-title" data-i18n="cert_card2_title">Trust Score ước tính</div>
               <div class="card-sub" data-i18n="cert_card2_sub">Điểm tín nhiệm trên Adeptlink (0–100)</div>
@@ -2194,7 +2194,7 @@ header {
     <div class="card" style="margin-top:4px;">
       <div class="card-head">
         <div class="card-title-row">
-          <div class="card-ico">ℹ️</div>
+          <div class="card-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage)"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
           <div>
             <div class="card-title" data-i18n="cert_table_title">Chứng chỉ nào quan trọng với buyer Canada?</div>
             <div class="card-sub" data-i18n="cert_table_sub">Yêu cầu của chuỗi siêu thị và nhà nhập khẩu Canada</div>
@@ -2290,7 +2290,7 @@ header {
     </div>
 
     <div class="m-success" id="modal-success">
-      <div class="m-success-ico"></div>
+      <div class="m-success-ico"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage)"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
       <h4 data-i18n="modal_success_title">Đã nhận! Chúng tôi sẽ liên hệ trong 24h.</h4>
       <p data-i18n="modal_success_sub">Trong lúc chờ, bạn có thể đăng ký tài khoản Adeptlink miễn phí để khám phá buyer Canada.</p>
       <div style="margin-top:16px;">
