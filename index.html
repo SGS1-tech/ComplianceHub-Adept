@@ -1201,6 +1201,109 @@ header {
   box-shadow: 0 1px 4px rgba(0,0,0,.15);
 }
 
+/* ══════════════════════════════════════════
+   CUSTOM SELECT DROPDOWN (replaces native select)
+   Uses position:fixed panel — never overflows viewport
+══════════════════════════════════════════ */
+.cs-wrap { position: relative; display: block; }
+.cs-btn {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 10px 36px 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 7px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--ink);
+  background: var(--white);
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: border-color 0.15s;
+  position: relative;
+}
+.cs-btn::after {
+  content: '';
+  position: absolute;
+  right: 14px; top: 50%;
+  transform: translateY(-50%);
+  width: 12px; height: 8px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a6b5a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  flex-shrink: 0;
+  transition: transform 0.15s;
+}
+.cs-btn.open::after { transform: translateY(-50%) rotate(180deg); }
+.cs-btn:focus { border-color: var(--sage); }
+.cs-btn.error { border-color: var(--rust); background: var(--error-bg); }
+.cs-btn .cs-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+.cs-btn .cs-placeholder { color: #9aab9a; }
+
+/* Fixed dropdown panel — appended to body, always in viewport */
+.cs-panel {
+  position: fixed;
+  z-index: 999999;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(15,26,15,0.18), 0 2px 8px rgba(15,26,15,0.08);
+  overflow: hidden;
+  display: none;
+  flex-direction: column;
+  max-height: 55vh;
+}
+.cs-panel.open { display: flex; }
+.cs-panel-scroll { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.cs-optgroup {
+  padding: 8px 14px 5px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--sage);
+  background: var(--sky);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0;
+}
+.cs-optgroup:first-child { border-radius: 8px 8px 0 0; }
+.cs-item {
+  padding: 11px 14px;
+  font-size: 13px;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  transition: background 0.1s;
+  white-space: normal;
+  line-height: 1.4;
+}
+.cs-item:last-child { border-bottom: none; }
+.cs-item:hover { background: var(--sky); }
+.cs-item.selected { background: rgba(61,122,82,0.08); color: var(--forest); font-weight: 600; }
+.cs-item.selected::before {
+  content: '✓';
+  font-size: 12px;
+  color: var(--sage);
+  flex-shrink: 0;
+  font-weight: 700;
+}
+.cs-item:not(.selected)::before { content: ''; width: 12px; flex-shrink: 0; }
+/* Mobile: larger tap targets */
+@media (max-width: 900px) {
+  .cs-btn { font-size: 16px; }
+  .cs-item { padding: 13px 14px; font-size: 14px; }
+  .cs-optgroup { font-size: 11px; padding: 9px 14px 6px; }
+}
+
 </style>
 </head>
 <body>
@@ -2476,13 +2579,22 @@ function showError(fieldId, msg) {
   const el = document.getElementById('err-' + fieldId);
   if (el) el.textContent = msg;
   const inp = document.getElementById(fieldId);
-  if (inp) inp.classList.add('error');
+  if (inp) {
+    inp.classList.add('error');
+    // Sync to custom select button if present
+    const btn = inp.parentElement && inp.parentElement.querySelector('.cs-btn');
+    if (btn) btn.classList.add('error');
+  }
 }
 function clearError(fieldId) {
   const el = document.getElementById('err-' + fieldId);
   if (el) el.textContent = '';
   const inp = document.getElementById(fieldId);
-  if (inp) inp.classList.remove('error');
+  if (inp) {
+    inp.classList.remove('error');
+    const btn = inp.parentElement && inp.parentElement.querySelector('.cs-btn');
+    if (btn) btn.classList.remove('error');
+  }
 }
 function validateHS() {
   let ok = true;
@@ -2649,14 +2761,8 @@ async function runHSLookup() {
 }
 
 // ══════════════════════════════════════════
-// INIT
+// INIT — merged into one handler below (end of file)
 // ══════════════════════════════════════════
-document.addEventListener('DOMContentLoaded', () => {
-  renderChecklist();
-  renderAllergenGrid();
-  renderCertGrid();
-  setLang(_lang);
-});
 
 // ══════════════════════════════════════════
 // CFIA CHECKLIST
@@ -3933,6 +4039,8 @@ function setLang(lang) {
   renderAllergenGrid();
   renderCertGrid();
   updateCFIAProgress();
+  // Resync custom select button labels after option text changes
+  syncAllCustomSelectLabels();
 }
 
 // Patch renderChecklist to use language
@@ -4287,13 +4395,195 @@ function validateGate() {
   return ok;
 }
 
-// Init language on page load
+// ══════════════════════════════════════════
+// CUSTOM SELECT — replaces native <select> with
+// a position:fixed panel that never overflows viewport
+// ══════════════════════════════════════════
+let _openPanel = null;
+
+// Re-sync all custom select button labels (call after i18n option text change)
+function syncAllCustomSelectLabels() {
+  document.querySelectorAll('select.f-select[data-cs-built]').forEach(sel => {
+    const wrap = sel.parentElement;
+    if (!wrap || !wrap.classList.contains('cs-wrap')) return;
+    const btn = wrap.querySelector('.cs-btn');
+    if (!btn) return;
+    const labelEl = btn.querySelector('.cs-label');
+    if (!labelEl) return;
+    const opt = sel.options[sel.selectedIndex];
+    const txt = opt ? opt.textContent.trim() : '';
+    labelEl.textContent = txt;
+    if (!opt || opt.value === '') {
+      labelEl.classList.add('cs-placeholder');
+    } else {
+      labelEl.classList.remove('cs-placeholder');
+    }
+  });
+}
+
+function buildCustomSelects() {
+  document.querySelectorAll('select.f-select').forEach(sel => {
+    if (sel.dataset.csBuilt) return;
+    // Skip selects inside .sku-table — those live in overflow-x scroll
+    if (sel.closest('.sku-table')) return;
+    sel.dataset.csBuilt = '1';
+
+    // Wrap
+    const wrap = document.createElement('div');
+    wrap.className = 'cs-wrap';
+    sel.parentNode.insertBefore(wrap, sel);
+    wrap.appendChild(sel);
+    sel.style.display = 'none';
+
+    // Trigger button
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'cs-btn';
+    btn.innerHTML = '<span class="cs-label cs-placeholder"></span>';
+    wrap.insertBefore(btn, sel);
+
+    // Scrollable inner div for panel
+    const panel = document.createElement('div');
+    panel.className = 'cs-panel';
+    const scroll = document.createElement('div');
+    scroll.className = 'cs-panel-scroll';
+    panel.appendChild(scroll);
+    document.body.appendChild(panel);
+
+    const labelEl = btn.querySelector('.cs-label');
+
+    const syncLabel = () => {
+      const opt = sel.options[sel.selectedIndex];
+      const txt = opt ? opt.textContent.trim() : '';
+      labelEl.textContent = txt;
+      if (!opt || opt.value === '') {
+        labelEl.classList.add('cs-placeholder');
+      } else {
+        labelEl.classList.remove('cs-placeholder');
+      }
+    };
+    syncLabel();
+
+    const buildScroll = () => {
+      scroll.innerHTML = '';
+      Array.from(sel.children).forEach(child => {
+        if (child.tagName === 'OPTGROUP') {
+          const grp = document.createElement('div');
+          grp.className = 'cs-optgroup';
+          grp.textContent = child.getAttribute('label') || '';
+          scroll.appendChild(grp);
+          Array.from(child.children).forEach(opt => scroll.appendChild(makeItem(opt)));
+        } else if (child.tagName === 'OPTION') {
+          scroll.appendChild(makeItem(child));
+        }
+      });
+    };
+
+    const makeItem = (opt) => {
+      const item = document.createElement('div');
+      item.className = 'cs-item' + (opt.value === sel.value ? ' selected' : '');
+      item.textContent = opt.textContent.trim();
+      item.dataset.value = opt.value;
+      item.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        sel.value = opt.value;
+        sel.dispatchEvent(new Event('change', { bubbles: true }));
+        syncLabel();
+        closePanel();
+        btn.classList.remove('open');
+      });
+      return item;
+    };
+
+    const openPanel = () => {
+      if (_openPanel && _openPanel !== panel) {
+        _openPanel.classList.remove('open');
+        _openPanel.style.display = 'none';
+        document.querySelectorAll('.cs-btn.open').forEach(b => b.classList.remove('open'));
+      }
+      buildScroll();
+
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const panelW = Math.min(320, vw - 24);
+      const rect = btn.getBoundingClientRect();
+
+      let left = rect.left;
+      if (left + panelW > vw - 12) left = vw - panelW - 12;
+      if (left < 12) left = 12;
+
+      const spaceBelow = vh - rect.bottom - 8;
+      const spaceAbove = rect.top - 8;
+      const maxH = Math.min(Math.floor(vh * 0.55), Math.max(spaceBelow, spaceAbove));
+
+      panel.style.width = panelW + 'px';
+      panel.style.left = left + 'px';
+      panel.style.maxHeight = maxH + 'px';
+
+      if (spaceBelow >= 160 || spaceBelow >= spaceAbove) {
+        panel.style.top = (rect.bottom + 4) + 'px';
+        panel.style.bottom = '';
+      } else {
+        panel.style.bottom = (vh - rect.top + 4) + 'px';
+        panel.style.top = '';
+      }
+
+      panel.classList.add('open');
+      btn.classList.add('open');
+      _openPanel = panel;
+
+      // Scroll selected item into view
+      const sel2 = scroll.querySelector('.cs-item.selected');
+      if (sel2) sel2.scrollIntoView({ block: 'nearest' });
+    };
+
+    const closePanel = () => {
+      panel.classList.remove('open');
+      btn.classList.remove('open');
+      if (_openPanel === panel) _openPanel = null;
+    };
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (panel.classList.contains('open')) { closePanel(); } else { openPanel(); }
+    });
+
+    // Observe option changes (for i18n re-render, programmatic value changes)
+    new MutationObserver(() => { syncLabel(); }).observe(sel, { childList: true, subtree: true, characterData: true });
+    // Also re-sync on 'change' event (covers programmatic sel.value = x; sel.dispatchEvent(change))
+    sel.addEventListener('change', () => syncLabel());
+  });
+
+  // Global close on click/Escape
+  if (!window._csGlobalListeners) {
+    window._csGlobalListeners = true;
+    document.addEventListener('click', () => {
+      if (_openPanel) { _openPanel.classList.remove('open'); _openPanel = null; }
+      document.querySelectorAll('.cs-btn.open').forEach(b => b.classList.remove('open'));
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && _openPanel) {
+        _openPanel.classList.remove('open');
+        _openPanel = null;
+        document.querySelectorAll('.cs-btn.open').forEach(b => b.classList.remove('open'));
+      }
+    });
+    window.addEventListener('resize', () => {
+      if (_openPanel) { _openPanel.classList.remove('open'); _openPanel = null; }
+    });
+    window.addEventListener('scroll', () => {
+      if (_openPanel) { _openPanel.classList.remove('open'); _openPanel = null; }
+    }, { passive: true });
+  }
+}
+
+// Init — single handler, correct order
 document.addEventListener('DOMContentLoaded', () => {
   renderChecklist();
   renderAllergenGrid();
   renderCertGrid();
-  // Apply saved language (default vi)
-  if (_lang !== 'vi') setLang(_lang);
+  buildCustomSelects();   // must run before setLang so labels sync correctly
+  setLang(_lang);         // always apply lang (updates i18n + syncs custom select labels)
 });
 </script>
 </body>
