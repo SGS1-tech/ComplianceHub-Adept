@@ -52,6 +52,7 @@ body {
   min-height: 100vh;
   font-size: 15px;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 /* ── HEADER ── */
@@ -966,6 +967,14 @@ header {
   .form-grid-3 { grid-template-columns: 1fr 1fr; }
   /* Prevent iOS Safari auto-zoom (triggers when font-size < 16px) */
   .f-input, .f-select, textarea { font-size: 16px !important; touch-action: manipulation; }
+  /* Restore native OS picker on mobile — prevents dropdown mis-positioning caused by
+     appearance:none + overflow:hidden parents (Android Chrome bug) */
+  .f-select {
+    appearance: auto;
+    -webkit-appearance: auto;
+    background-image: none;
+    padding-right: 14px;
+  }
 }
 
 /* ══════════════════════════════════════════
