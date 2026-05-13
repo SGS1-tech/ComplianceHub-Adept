@@ -1138,7 +1138,7 @@ header {
 
 /* ── LANG TOGGLE (header inline) ── */
 .lang-toggle {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 2px;
   background: var(--parch);
@@ -1200,6 +1200,34 @@ header {
   color: white;
   box-shadow: 0 1px 4px rgba(0,0,0,.15);
 }
+
+/* ══════════════════════════════════════════
+   SMART SCROLLBARS — thin, auto-hide, styled
+══════════════════════════════════════════ */
+/* Firefox */
+* { scrollbar-width: thin; scrollbar-color: rgba(61,122,82,0.35) transparent; }
+
+/* Chrome / Safari / Edge */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(61,122,82,0.35);
+  border-radius: 99px;
+  transition: background 0.2s;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(61,122,82,0.65); }
+::-webkit-scrollbar-corner { background: transparent; }
+
+/* Auto-hide: show thumb only on hover/scroll of the container */
+.tool-tabs::-webkit-scrollbar-thumb,
+.cs-panel-scroll::-webkit-scrollbar-thumb,
+.r-table-wrap::-webkit-scrollbar-thumb {
+  background: rgba(61,122,82,0.0);
+  transition: background 0.3s;
+}
+.tool-tabs:hover::-webkit-scrollbar-thumb,
+.cs-panel-scroll:hover::-webkit-scrollbar-thumb,
+.r-table-wrap:hover::-webkit-scrollbar-thumb { background: rgba(61,122,82,0.45); }
 
 /* ══════════════════════════════════════════
    CUSTOM SELECT DROPDOWN (replaces native select)
@@ -1630,7 +1658,7 @@ header {
 
           <div class="r-name" id="hs-desc-out" style="margin-bottom:16px;">—</div>
 
-          <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+          <div class="r-table-wrap" style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
           <table class="r-table">
             <thead>
               <tr>
@@ -1740,7 +1768,7 @@ header {
               <div id="sku-detect-banner" style="display:none;margin-bottom:16px;padding:10px 14px;border-radius:8px;font-size:13px;line-height:1.5;"></div>
 
               <!-- SKU Table -->
-              <div style="overflow-x:auto;margin-bottom:16px;">
+              <div class="r-table-wrap" style="overflow-x:auto;margin-bottom:16px;">
                 <table class="sku-table" id="sku-table">
                   <thead>
                     <tr>
@@ -2170,7 +2198,7 @@ header {
         </div>
       </div>
       <div class="card-body">
-        <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+        <div class="r-table-wrap" style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
         <table class="r-table">
           <thead>
             <tr>
