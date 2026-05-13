@@ -997,8 +997,10 @@ header {
   .hero-tool { font-size: 11px; padding: 6px 10px; gap: 5px; }
 
   .shell { padding: 0 12px 50px; }
-  .tool-tabs { padding: 4px; gap: 3px; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
-  .tab-btn { min-width: 90px; font-size: 11px; padding: 8px 8px; white-space: nowrap; flex-shrink: 0; }
+  .tool-tabs { padding: 4px 6px; gap: 6px; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .tool-tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { min-width: unset; font-size: 12px; padding: 9px 14px; white-space: nowrap; flex-shrink: 0; gap: 0; }
+  .tab-btn svg { display: none; }
 
   .card-head { padding: 14px 14px 12px; flex-wrap: wrap; gap: 8px; }
   .card-title { font-size: 15px; }
