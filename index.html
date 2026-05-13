@@ -1292,7 +1292,7 @@ header {
   max-height: 55vh;
 }
 .cs-panel.open { display: flex; }
-.cs-panel-scroll { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.cs-panel-scroll { overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; touch-action: pan-y; }
 .cs-optgroup {
   padding: 8px 14px 5px;
   font-size: 10px;
@@ -4482,6 +4482,12 @@ function buildCustomSelects() {
     panel.appendChild(scroll);
     document.body.appendChild(panel);
 
+    // Prevent panel scroll from bubbling to window (iOS overscroll fix)
+    panel.addEventListener('touchstart', () => { window._csPanelTouching = true; }, { passive: true });
+    panel.addEventListener('touchend',   () => { window._csPanelTouching = false; }, { passive: true });
+    panel.addEventListener('touchcancel',() => { window._csPanelTouching = false; }, { passive: true });
+    scroll.addEventListener('touchmove', (e) => { e.stopPropagation(); }, { passive: true });
+
     const labelEl = btn.querySelector('.cs-label');
 
     const syncLabel = () => {
@@ -4604,6 +4610,8 @@ function buildCustomSelects() {
       if (_openPanel) { _openPanel.classList.remove('open'); _openPanel = null; }
     });
     window.addEventListener('scroll', () => {
+      // Don't close panel if the scroll originated from inside the panel (mobile touch)
+      if (window._csPanelTouching) return;
       if (_openPanel) { _openPanel.classList.remove('open'); _openPanel = null; }
     }, { passive: true });
   }
