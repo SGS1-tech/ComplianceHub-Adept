@@ -2160,7 +2160,7 @@ header {
       <div class="card">
         <div class="card-head">
           <div class="card-title-row">
-            <div class="card-ico">⭐</div>
+            <div class="card-ico"></div>
             <div>
               <div class="card-title" data-i18n="cert_card2_title">Trust Score ước tính</div>
               <div class="card-sub" data-i18n="cert_card2_sub">Điểm tín nhiệm trên Adeptlink (0–100)</div>
@@ -3009,7 +3009,7 @@ function renderCertGrid() {
       </div>
       <div class="cert-desc">${c.desc}</div>
       <div class="cert-upload ${state.certs.has(c.id) ? 'cert-upload-done' : ''}" id="cu-${c.id}" onclick="toggleCert('${c.id}')">
-        ${state.certs.has(c.id) ? '✓ Đã có chứng chỉ' : '+ Tôi có chứng chỉ này'}
+        ${state.certs.has(c.id) ? 'Đã có chứng chỉ' : '+ Tôi có chứng chỉ này'}
       </div>
     </div>
   `).join('');
@@ -3023,7 +3023,7 @@ function toggleCert(id) {
   }
   const el = document.getElementById('cu-' + id);
   el.classList.toggle('cert-upload-done', state.certs.has(id));
-  el.textContent = state.certs.has(id) ? '✓ Đã có chứng chỉ' : '+ Tôi có chứng chỉ này';
+  el.textContent = state.certs.has(id) ? 'Đã có chứng chỉ' : '+ Tôi có chứng chỉ này';
 }
 
 function calcTrustScore() {
@@ -3723,7 +3723,7 @@ const T = {
     cert_organic_note: 'Tăng giá bán 20–40%',
     cert_kosher_note: 'Mở thêm kênh bán',
     cert_sa8000_note: 'Tăng uy tín, không bắt buộc',
-    cert_have: '✓ Đã có chứng chỉ',
+    cert_have: 'Đã có chứng chỉ',
     cert_add: '+ Tôi có chứng chỉ này',
     cert_tier_excellent: 'Excellent — Buyer Canada sẽ ưu tiên bạn',
     cert_tier_good: 'Good — Đủ điều kiện vào hầu hết B2B deals',
@@ -3961,7 +3961,7 @@ const T = {
     cert_organic_note: 'Increases selling price 20–40%',
     cert_kosher_note: 'Opens additional sales channels',
     cert_sa8000_note: 'Enhances reputation, not mandatory',
-    cert_have: '✓ I have this certificate',
+    cert_have: 'I have this certificate',
     cert_add: '+ I have this certificate',
     cert_tier_excellent: 'Excellent — Canadian buyers will prioritize you',
     cert_tier_good: 'Good — Eligible for most B2B deals',
