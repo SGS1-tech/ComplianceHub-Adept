@@ -1,7 +1,14 @@
 import os
 import json
+import logging
 import requests
 from flask import Flask, request, jsonify, send_from_directory
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s"
+)
+log = logging.getLogger(__name__)
 
 app = Flask(__name__, static_folder=".")
 
@@ -13,6 +20,9 @@ NOTIFY_EMAIL = "support@adept-link.com"
 
 
 def send_email(to_email, to_name, subject, html_content):
+    if not BREVO_API_KEY:
+        log.error("BREVO_API_KEY is not set — cannot send email")
+        return 500, "No API key"
     headers = {
         "accept": "application/json",
         "api-key": BREVO_API_KEY,
@@ -24,8 +34,15 @@ def send_email(to_email, to_name, subject, html_content):
         "subject": subject,
         "htmlContent": html_content,
     }
-    resp = requests.post(BREVO_URL, headers=headers, json=payload, timeout=10)
-    return resp.status_code, resp.text
+    try:
+        resp = requests.post(BREVO_URL, headers=headers, json=payload, timeout=10)
+        log.info("Brevo → %s | status=%s | to=%s | subj=%s", to_email, resp.status_code, to_email, subject)
+        if resp.status_code not in (200, 201):
+            log.error("Brevo error body: %s", resp.text[:300])
+        return resp.status_code, resp.text
+    except Exception as exc:
+        log.exception("Brevo request failed: %s", exc)
+        return 0, str(exc)
 
 
 @app.route("/api/contact", methods=["POST"])
@@ -40,10 +57,13 @@ def contact():
     volume  = data.get("volume", "").strip()
     hs_info = data.get("hs_info", "").strip()
 
+    log.info("Contact form received: company=%s name=%s email=%s", company, name, email)
+
     if not email or not company or not name:
         return jsonify({"ok": False, "error": "Thiếu thông tin bắt buộc"}), 400
 
     if not BREVO_API_KEY:
+        log.error("BREVO_API_KEY missing in environment")
         return jsonify({"ok": False, "error": "Chưa cấu hình BREVO_API_KEY"}), 500
 
     def row(label, value, mono=False):
@@ -76,7 +96,14 @@ def contact():
       </div>
     </div>
     """
-    send_email(NOTIFY_EMAIL, "Adeptlink Support", f"[Compliance Hub] Yêu cầu tư vấn từ {company}", internal_html)
+    status1, body1 = send_email(
+        NOTIFY_EMAIL, "Adeptlink Support",
+        f"[Compliance Hub] Yêu cầu tư vấn từ {company}",
+        internal_html
+    )
+    if status1 not in (200, 201):
+        log.error("Internal notify email FAILED: status=%s body=%s", status1, body1[:200])
+        return jsonify({"ok": False, "error": f"Lỗi gửi email thông báo (Brevo {status1})"}), 500
 
     # ── Email 2: xác nhận gửi đến khách hàng ──
     confirm_html = f"""
@@ -110,8 +137,16 @@ def contact():
       </div>
     </div>
     """
-    send_email(email, name, "Adeptlink đã nhận yêu cầu tư vấn của bạn", confirm_html)
+    status2, body2 = send_email(
+        email, name,
+        "Adeptlink đã nhận yêu cầu tư vấn của bạn",
+        confirm_html
+    )
+    if status2 not in (200, 201):
+        log.warning("Confirmation email to customer FAILED: status=%s body=%s", status2, body2[:200])
+        # Still return ok — internal notify already sent successfully
 
+    log.info("Contact form processed OK: company=%s email=%s", company, email)
     return jsonify({"ok": True})
 
 
