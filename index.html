@@ -4239,19 +4239,39 @@ function renderChecklist() {
   const list = document.getElementById('cfia-checklist');
   if (!list) return;
   const l = _lang;
+  // Build a quick lookup map for mainLink & links from CFIA_ITEMS
+  const mainLinkMap = {};
+  const linksMap = {};
+  CFIA_ITEMS.forEach(it => { mainLinkMap[it.id] = it.mainLink || null; linksMap[it.id] = it.links || null; });
+
   list.innerHTML = CFIA_ORDER.map((id, i) => {
     const item = CFIA_ITEMS_DATA[id];
     if (!item) return '';
     const title = item[`title_${l}`] || item.title_vi;
     const desc  = item[`desc_${l}`]  || item.desc_vi;
     const tag   = item[`tag_${l}`]   || item.tag_vi;
+    const ml    = mainLinkMap[id];
+    const lks   = linksMap[id];
+    const extIco = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
     return `
     <li class="check-item" data-types="all">
       <div class="check-box ${state.cfiaChecked[id] ? 'checked' : ''}" id="cb-${id}" onclick="toggleCheck('${id}')"></div>
       <div class="check-content">
         <div class="check-title">${i+1}. ${title}</div>
         <div class="check-desc">${desc}</div>
-        <div class="check-badge"><span class="tag ${item.tagClass}">${tag}</span></div>
+        <div class="check-badge" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span class="tag ${item.tagClass}">${tag}</span>
+          ${ml ? `<button class="cpanel-toggle-btn" id="cpanel-btn-${id}" onclick="toggleCheckPanel('${id}')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="cpanel-btn-text">Xem tài liệu chính thức</span></button>` : ''}
+        </div>
+        ${ml ? `
+        <div class="check-panel" id="cpanel-${id}" style="display:none;">
+          <div class="cpanel-note">${ml.note}</div>
+          <div class="cpanel-row">
+            <div class="cpanel-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg> Nguồn chính thức</div>
+            <a class="cpanel-main-link" href="${ml.url}" target="_blank" rel="noopener noreferrer">${ml.label} ${extIco}</a>
+          </div>
+        </div>` : ''}
+        ${lks ? `<div class="check-links">${lks.map(lk => `<a class="check-link" href="${lk.url}" target="_blank" rel="noopener noreferrer">${extIco}${lk.label}</a>`).join('')}</div>` : ''}
       </div>
     </li>`;
   }).join('');
