@@ -2008,7 +2008,7 @@ header {
           </div>
           <div style="margin-top:14px;display:flex;gap:10px;">
             <button class="btn-secondary" onclick="copyAllergen()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg><span data-i18n="allergen_btn_copy">Copy text</span></button>
-            <button class="btn-secondary" onclick="switchTab('label', null)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px;"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><span data-i18n="allergen_btn_add_label">Thêm vào nhãn EN/FR →</span></button>
+            <button class="btn-secondary" onclick="addAllergenToLabel()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px;"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><span data-i18n="allergen_btn_add_label">Thêm vào nhãn EN/FR →</span></button>
           </div>
         </div>
       </div>
@@ -2089,6 +2089,11 @@ header {
             <label class="f-label" data-i18n="label_lbl_allergen_en">Khai báo Allergen (EN)</label>
             <input class="f-input" id="lbl-allergen" placeholder="Contains: tree nuts (cashew)." />
           </div>
+        </div>
+
+        <div class="form-full">
+          <label class="f-label" data-i18n="label_lbl_allergen_fr">Khai báo Allergen (FR)</label>
+          <input class="f-input" id="lbl-allergen-fr" placeholder="Contient : noix d'acajou." />
         </div>
 
         <button class="btn-run" onclick="buildLabel()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span data-i18n="label_btn_preview">Xem trước nhãn EN/FR</span></button>
@@ -2940,6 +2945,19 @@ function copyAllergen() {
   navigator.clipboard.writeText(en + '\n' + fr).then(() => alert('Đã copy cả EN và FR!'));
 }
 
+function addAllergenToLabel() {
+  const enText = document.getElementById('allergen-en-text').textContent;
+  const frText = document.getElementById('allergen-fr-text').textContent;
+  if (!enText || enText === '—') { alert('Vui lòng tạo Allergen Declaration trước.'); return; }
+  document.getElementById('lbl-allergen').value = enText;
+  document.getElementById('lbl-allergen-fr').value = frText;
+  switchTab('label', null);
+  setTimeout(() => {
+    const field = document.getElementById('lbl-allergen');
+    if (field) { field.focus(); field.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+  }, 300);
+}
+
 // ══════════════════════════════════════════
 // LABEL BUILDER
 // ══════════════════════════════════════════
@@ -2951,7 +2969,8 @@ function buildLabel() {
   const ingFr  = document.getElementById('lbl-ing-fr').value || '—';
   const origin = document.getElementById('lbl-origin').value || '—';
   const bb     = document.getElementById('lbl-bb').value || '—';
-  const allergen = document.getElementById('lbl-allergen').value || '';
+  const allergenEn = document.getElementById('lbl-allergen').value || '';
+  const allergenFr = document.getElementById('lbl-allergen-fr').value || '';
   const importer = document.getElementById('lbl-importer').value || '—';
 
   document.getElementById('lbl-out-name-en').textContent  = nameEn;
@@ -2969,11 +2988,14 @@ function buildLabel() {
 
   const allergenEnEl = document.getElementById('lbl-out-allergen-en');
   const allergenFrEl = document.getElementById('lbl-out-allergen-fr');
-  if (allergen) {
-    allergenEnEl.innerHTML = `<strong>ALLERGEN INFORMATION:</strong> ${allergen}`;
-    allergenFrEl.innerHTML = `<strong>INFORMATION SUR LES ALLERGÈNES :</strong> ${allergen}`;
+  if (allergenEn) {
+    allergenEnEl.innerHTML = `<strong>ALLERGEN INFORMATION:</strong> ${allergenEn}`;
   } else {
     allergenEnEl.textContent = 'No allergen statement added.';
+  }
+  if (allergenFr) {
+    allergenFrEl.innerHTML = `<strong>INFORMATION SUR LES ALLERGÈNES :</strong> ${allergenFr}`;
+  } else {
     allergenFrEl.textContent = 'Aucune mention d\'allergènes ajoutée.';
   }
 
@@ -3774,6 +3796,7 @@ const T = {
     label_lbl_ing_fr: 'Thành phần (Pháp)',
     label_lbl_importer: 'Nhà nhập khẩu tại Canada',
     label_lbl_allergen_en: 'Khai báo Allergen (EN)',
+    label_lbl_allergen_fr: 'Khai báo Allergen (FR)',
     // MULTISKU
     card_title_multisku: 'Tra cứu nhiều SKU',
   },
@@ -4012,6 +4035,7 @@ const T = {
     label_lbl_ing_fr: 'Ingredients (FR)',
     label_lbl_importer: 'Importer / Distributor Canada',
     label_lbl_allergen_en: 'Allergen Statement (EN)',
+    label_lbl_allergen_fr: 'Allergen Statement (FR)',
     // MULTISKU
     card_title_multisku: 'Multi-SKU HS Code Lookup',
   }
