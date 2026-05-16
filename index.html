@@ -489,6 +489,19 @@ header {
 .check-title { font-weight: 600; font-size: 14px; color: var(--forest); margin-bottom: 3px; }
 .check-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
 .check-badge { margin-top: 6px; }
+.check-links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.check-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11px; font-weight: 600;
+  color: var(--sage);
+  background: var(--sky);
+  border: 1px solid rgba(61,122,82,0.2);
+  border-radius: 5px;
+  padding: 3px 8px;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.check-link:hover { background: rgba(61,122,82,0.12); border-color: var(--sage); color: var(--forest); }
 
 /* ── ALLERGEN GRID ── */
 .allergen-grid {
@@ -2805,16 +2818,46 @@ async function runHSLookup() {
 // CFIA CHECKLIST
 // ══════════════════════════════════════════
 const CFIA_ITEMS = [
-  { id: 'sfca', title: 'Xác minh Importer Canada có SFCA License', desc: 'Importer tại Canada phải có Safe Food for Canadians License từ CFIA. Không có license → lô hàng bị từ chối ngay tại border.', tag: 'Bắt buộc', tagClass: 'tag-red', types: ['all'] },
-  { id: 'prenotif', title: '72-hour Pre-notification trên My CFIA Portal', desc: 'Phải submit thông báo nhập khẩu qua hệ thống My CFIA tối thiểu 72 giờ trước khi lô hàng đến. Bao gồm: tên sản phẩm, HS code, nhà sản xuất, số lượng, cửa khẩu.', tag: 'Bắt buộc', tagClass: 'tag-red', types: ['all'] },
+  { id: 'sfca', title: 'Xác minh Importer Canada có SFCA License', desc: 'Importer tại Canada phải có Safe Food for Canadians License từ CFIA. Không có license → lô hàng bị từ chối ngay tại border. Yêu cầu bên mua cung cấp số License và tên doanh nghiệp đúng như đăng ký với CFIA trước khi ký hợp đồng.', tag: 'Bắt buộc', tagClass: 'tag-red', types: ['all'],
+    links: [
+      { label: 'Tra cứu SFCA License (CFIA)', url: 'https://www.inspection.gc.ca/food-safety-for-industry/toolkit-for-food-businesses/sfca/licence-search/eng/1511807691179/1511808204755' },
+      { label: 'Hướng dẫn SFCA License — Canada.ca', url: 'https://www.canada.ca/en/public-health/services/publications/food-safety/understanding-safe-food-canadians-act.html' },
+      { label: 'My CFIA Portal (đăng nhập)', url: 'https://www.inspection.gc.ca/about-the-cfia/mycfia-my-cfia/eng/1358533268952/1358533364385' },
+    ]
+  },
+  { id: 'prenotif', title: '72-hour Pre-notification trên My CFIA Portal', desc: 'Phải submit thông báo nhập khẩu qua hệ thống My CFIA tối thiểu 72 giờ trước khi lô hàng đến cửa khẩu Canada. Thông tin cần có: tên sản phẩm, HS code, tên & địa chỉ nhà sản xuất, số lượng/trọng lượng, cửa khẩu dự kiến, ngày đến dự kiến. Nộp trễ hoặc thiếu thông tin → lô hàng bị giữ tại border.', tag: 'Bắt buộc', tagClass: 'tag-red', types: ['all'],
+    links: [
+      { label: 'My CFIA Portal — Nộp Pre-notification', url: 'https://www.inspection.gc.ca/about-the-cfia/mycfia-my-cfia/eng/1358533268952/1358533364385' },
+      { label: 'Hướng dẫn Import Notification (CFIA)', url: 'https://www.inspection.gc.ca/food-safety-for-industry/food-import-requirements/en/1500659461866/1500659512647' },
+      { label: 'SFCA Import Requirements — Canada.ca', url: 'https://www.canada.ca/en/public-health/services/publications/food-safety/safe-food-canadians-act-overview.html' },
+    ]
+  },
   { id: 'haccp', title: 'Nhà máy có HACCP hoặc GMP được công nhận', desc: 'CFIA yêu cầu thực phẩm nhập khẩu phải được sản xuất trong điều kiện an toàn tương đương tiêu chuẩn Canada. HACCP, BRC, SQF, FSSC 22000 đều được công nhận.', tag: 'Bắt buộc', tagClass: 'tag-red', types: ['all'] },
   { id: 'label', title: 'Nhãn sản phẩm song ngữ EN/FR', desc: 'Tất cả thông tin bắt buộc (tên sp, ingredients, allergens, net weight, country of origin, importer address) phải có cả tiếng Anh lẫn tiếng Pháp.', tag: 'Bắt buộc', tagClass: 'tag-red', types: ['all'] },
-  { id: 'allergen', title: 'Khai báo đầy đủ 14 Priority Allergens', desc: 'Health Canada quy định 14 allergen phải khai báo: gluten grains, crustaceans, eggs, fish, peanuts, tree nuts, sesame, soya, milk, mustard, sulphites. Thiếu một allergen có thể bị thu hồi toàn bộ lô.', tag: 'Bắt buộc', tagClass: 'tag-red', types: ['all'] },
-  { id: 'phyto', title: 'Phytosanitary Certificate (kiểm dịch thực vật)', desc: 'Bắt buộc cho: gạo, gia vị, hạt thô, trái cây sấy, rau củ. Do Cục Bảo vệ Thực vật VN (PPVMO) cấp. Phải kèm theo lô hàng.', tag: 'Với thực vật', tagClass: 'tag-amber', types: ['all', 'fresh', 'grains'] },
+  { id: 'allergen', title: 'Khai báo đầy đủ 14 Priority Allergens', desc: 'Health Canada quy định 14 allergen bắt buộc khai báo trên nhãn: gluten (wheat/rye/barley/oats), crustaceans, eggs, fish, peanuts, tree nuts (almonds, cashews, walnuts…), sesame, soya, milk, mustard, sulphites (≥10ppm), lupin, molluscs, celery. Phải in chữ in đậm hoặc liệt kê riêng sau ingredient list. Thiếu một allergen → có thể bị thu hồi toàn bộ lô.', tag: 'Bắt buộc', tagClass: 'tag-red', types: ['all'],
+    links: [
+      { label: 'Danh sách 14 Allergens — Health Canada', url: 'https://www.canada.ca/en/health-canada/services/food-nutrition/food-safety/food-allergies-intolerances/food-allergies.html' },
+      { label: 'Hướng dẫn Allergen Labelling — CFIA', url: 'https://www.inspection.gc.ca/food-labels/labelling/industry/allergens-and-gluten/eng/1388152325341/1388152326591' },
+      { label: 'Safe Food for Canadians Regulations — Allergens', url: 'https://laws-lois.justice.gc.ca/eng/regulations/SOR-2018-108/page-1.html' },
+    ]
+  },
+  { id: 'phyto', title: 'Phytosanitary Certificate (kiểm dịch thực vật)', desc: 'Bắt buộc cho: gạo, gia vị, hạt thô, trái cây sấy, rau củ. Do Cục Bảo vệ Thực vật Việt Nam (PPVMO — Bộ NN&PTNT) cấp và đóng dấu trước khi xuất khẩu. Phải kèm bản gốc theo lô hàng. Canada yêu cầu cert ghi rõ tên khoa học, xử lý kiểm dịch (nếu có), và tình trạng không có sâu bệnh kiểm dịch.', tag: 'Với thực vật', tagClass: 'tag-amber', types: ['all', 'fresh', 'grains'],
+    links: [
+      { label: 'Cục Bảo vệ Thực vật VN (PPVMO)', url: 'https://www.ppd.gov.vn/' },
+      { label: 'Plant Import Requirements — CFIA', url: 'https://inspection.canada.ca/plant-health/plants-and-seeds/imports/eng/1343854748929/1343854825167' },
+      { label: 'Danh sách hàng hóa cần Phyto — CFIA', url: 'https://inspection.canada.ca/plant-health/plants-and-seeds/imports/conditions-for-importing/eng/1323752204428/1323752408155' },
+    ]
+  },
   { id: 'coo', title: 'Certificate of Origin (C/O) — Xuất xứ Việt Nam', desc: 'CPTPP Form E do VCCI cấp để hưởng thuế ưu đãi CPTPP. Khai "Made in Vietnam" trên nhãn và tờ khai cần có C/O hợp lệ.', tag: 'CPTPP', tagClass: 'tag-green', types: ['all'] },
   { id: 'transit', title: 'Commercial Invoice đúng format', desc: 'Invoice phải ghi đầy đủ: tên/địa chỉ buyer-seller, HS code, description, quantity, unit price, total value, Incoterm (FOB/CIF/EXW), currency.', tag: 'Bắt buộc', tagClass: 'tag-red', types: ['all'] },
   { id: 'packinglist', title: 'Packing List chi tiết', desc: 'Kèm theo invoice: số kiện, trọng lượng gross/net từng kiện, kích thước, marks & numbers. CBSA customs sẽ kiểm tra khớp với pre-notification.', tag: 'Bắt buộc', tagClass: 'tag-red', types: ['all'] },
-  { id: 'seafood_coa', title: 'Health Certificate / CoA từ cơ quan có thẩm quyền VN', desc: 'Với hải sản và thịt: cần Health Certificate từ NAFIQAD (Cục Quản lý Chất lượng Nông Lâm Thủy sản). Với thực phẩm chế biến: CoA (Certificate of Analysis) từ phòng lab được công nhận.', tag: 'Hải sản / Thịt', tagClass: 'tag-amber', types: ['all', 'seafood', 'meat', 'processed'] },
+  { id: 'seafood_coa', title: 'Health Certificate / CoA từ cơ quan có thẩm quyền VN', desc: 'Với hải sản và thịt: cần Health Certificate từ NAFIQAD (Cục Quản lý Chất lượng Nông Lâm Thủy sản — Bộ NN&PTNT). Với thực phẩm chế biến: Certificate of Analysis (CoA) từ phòng lab được VILAS hoặc quốc tế công nhận. Cert phải ghi rõ các chỉ tiêu vi sinh, kim loại nặng, và dư lượng kháng sinh/thuốc BVTV.', tag: 'Hải sản / Thịt', tagClass: 'tag-amber', types: ['all', 'seafood', 'meat', 'processed'],
+    links: [
+      { label: 'NAFIQAD — Cục Chất lượng Nông Lâm Thủy sản', url: 'https://nafiqad.gov.vn/' },
+      { label: 'Fish & Seafood Import — CFIA', url: 'https://inspection.canada.ca/food-safety-for-industry/food-import-requirements/aquatic-animals/eng/1328291820029/1328291859471' },
+      { label: 'Danh sách lab kiểm nghiệm được CFIA công nhận', url: 'https://inspection.canada.ca/food-safety-for-industry/laboratories/eng/1526575645064/1526575828517' },
+    ]
+  },
 ];
 
 function renderChecklist() {
@@ -2826,6 +2869,7 @@ function renderChecklist() {
         <div class="check-title">${i+1}. ${item.title}</div>
         <div class="check-desc">${item.desc}</div>
         <div class="check-badge"><span class="tag ${item.tagClass}">${item.tag}</span></div>
+        ${item.links ? `<div class="check-links">${item.links.map(l => `<a class="check-link" href="${l.url}" target="_blank" rel="noopener noreferrer"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>${l.label}</a>`).join('')}</div>` : ''}
       </div>
     </li>
   `).join('');
