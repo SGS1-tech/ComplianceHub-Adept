@@ -89,21 +89,7 @@ header {
   letter-spacing: 1.4px;
   text-transform: uppercase;
 }
-.header-nav { display: flex; gap: 2px; }
-.hn {
-  padding: 7px 13px;
-  border-radius: var(--r-sm);
-  font-size: 13.5px;
-  font-weight: 500;
-  color: var(--muted);
-  cursor: pointer;
-  border: none;
-  background: none;
-  transition: all 0.15s;
-}
-.hn:hover { color: var(--ink); }
-.hn.active { background: var(--mint); color: var(--forest); font-weight: 600; }
-.header-cta { display: flex; gap: 10px; align-items: center; }
+.header-cta { display: flex; gap: 10px; align-items: center; margin-left: auto; }
 .btn-outline {
   padding: 8px 16px;
   border-radius: var(--r-sm);
@@ -131,7 +117,7 @@ header {
 .hero {
   background: var(--white);
   border-bottom: 1px solid var(--border);
-  padding: 72px 32px 60px;
+  padding: 84px 32px 72px;
   position: relative;
   overflow: hidden;
 }
@@ -169,35 +155,9 @@ header {
   color: var(--muted);
   font-size: 16px;
   max-width: 560px;
-  margin: 0 auto 32px;
+  margin: 0 auto;
   line-height: 1.7;
 }
-.hero-tools {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.hero-tool {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--white);
-  border: 1px solid var(--border-2);
-  color: var(--ink);
-  padding: 9px 18px;
-  border-radius: 30px;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.hero-tool:hover {
-  border-color: var(--sage);
-  color: var(--forest);
-  background: var(--mint);
-}
-.hero-tool-ico { font-size: 16px; }
 
 /* ── MAIN LAYOUT ── */
 .shell {
@@ -206,16 +166,23 @@ header {
   padding: 0 24px 96px;
 }
 
-/* ── TOOL TABS — underline style, tối giản ── */
+/* ── TOOL TABS — underline style, sticky, tối giản ── */
+.tabs-wrap {
+  position: sticky;
+  top: 60px;
+  z-index: 50;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px);
+}
 .tool-tabs {
   display: flex;
   gap: 4px;
-  background: var(--white);
+  background: none;
   border: none;
   border-bottom: 1px solid var(--border);
   border-radius: 0;
   padding: 0;
-  margin: 28px 0 36px;
+  margin: 0 0 40px;
   overflow-x: auto;
   box-shadow: none;
 }
@@ -808,16 +775,16 @@ header {
 .m-success p { font-size: 14px; color: var(--muted); }
 
 /* ── MISC ── */
-.section-intro { margin-bottom: 24px; }
+.section-intro { margin-bottom: 28px; }
 .section-intro h2 {
   font-family: 'Fraunces', serif;
   font-size: 24px;
   color: var(--ink);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   font-weight: 600;
   letter-spacing: -0.3px;
 }
-.section-intro p { font-size: 14px; color: var(--muted); }
+.section-intro p { font-size: 14.5px; color: var(--muted); max-width: 620px; line-height: 1.7; }
 
 .info-banner {
   background: var(--cream);
@@ -991,19 +958,16 @@ header {
 /* ── RESPONSIVE — TABLET (max 900px) ── */
 @media (max-width: 900px) {
   header { padding: 0 20px; }
-  .header-nav { display: none; }
   .header-cta .btn-outline { display: none; }
   .shell { padding: 0 20px 60px; }
   .hero { padding: 48px 24px 44px; }
   .hero-in { max-width: 100%; }
   .hero h1 { font-size: 32px; }
   .hero-sub { font-size: 15px; }
-  .hero-tools { gap: 8px; }
-  .hero-tool { font-size: 12px; padding: 8px 14px; }
   .two-col { grid-template-columns: 1fr; }
   .cert-grid { grid-template-columns: 1fr 1fr; }
   .cta-strip { padding: 24px 20px; }
-  .tool-tabs { padding: 0; }
+  .tabs-wrap { top: 60px; }
   .tab-btn { font-size: 12.5px; padding: 10px 12px; min-width: 100px; }
   .card-head { padding: 16px 18px 14px; }
   .card-body { padding: 18px; }
@@ -1025,19 +989,17 @@ header {
   header { padding: 0 14px; height: 56px; }
   .logo-name { font-size: 15px; }
   .logo-sub { display: none; }
-  .header-nav { display: none; }
   .header-cta { gap: 6px; }
   .header-cta .btn-outline { display: none; }
   .btn-primary { padding: 7px 12px; font-size: 12px; }
 
   .hero { padding: 36px 16px 36px; }
   .hero h1 { font-size: clamp(24px, 7vw, 30px); }
-  .hero-sub { font-size: 13px; margin-bottom: 24px; }
+  .hero-sub { font-size: 13px; margin-bottom: 0; }
   .hero-badge { font-size: 11px; padding: 4px 10px; }
-  .hero-tools { gap: 6px; }
-  .hero-tool { font-size: 11px; padding: 6px 12px; gap: 5px; }
 
   .shell { padding: 0 12px 50px; }
+  .tabs-wrap { top: 56px; }
   .tool-tabs { padding: 0; gap: 6px; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
   .tool-tabs::-webkit-scrollbar { display: none; }
   .tab-btn { min-width: unset; font-size: 12px; padding: 9px 14px; white-space: nowrap; flex-shrink: 0; gap: 0; border-bottom-width: 2px; }
@@ -1079,8 +1041,6 @@ header {
   .summary-box .num { font-size: 18px; }
   .lang-toggle { margin-right: 0; }
   .header-cta .btn-primary { display: none; }
-  .hero-tools { display: grid; grid-template-columns: 1fr 1fr; }
-  .hero-tool { justify-content: flex-start; }
 }
 
 /* ── MOBILE HAMBURGER BUTTON ── */
@@ -1164,7 +1124,6 @@ header {
 }
 
 /* ── TAB BAR SCROLL HINT ── */
-.tabs-wrap { position: relative; }
 .tabs-wrap::after {
   content: '';
   position: absolute;
@@ -1378,13 +1337,6 @@ header {
       <div class="logo-sub">Compliance Hub</div>
     </div>
   </a>
-  <div class="header-nav">
-    <button class="hn active" onclick="switchTab('hs', this)" data-i18n="nav_hs">HS Code</button>
-    <button class="hn" onclick="switchTab('cfia', this)" data-i18n="nav_cfia">CFIA Checklist</button>
-    <button class="hn" onclick="switchTab('allergen', this)" data-i18n="nav_allergen">Allergen</button>
-    <button class="hn" onclick="switchTab('label', this)" data-i18n="nav_label">Nhãn EN/FR</button>
-    <button class="hn" onclick="switchTab('cert', this)" data-i18n="nav_cert">Chứng chỉ</button>
-  </div>
   <div class="header-cta">
     <button class="mobile-menu-btn" id="mob-menu-btn" onclick="toggleMobileNav()" aria-label="Menu">
       <svg width="20" height="16" viewBox="0 0 20 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="0" y1="2" x2="20" y2="2"/><line x1="0" y1="8" x2="20" y2="8"/><line x1="0" y1="14" x2="20" y2="14"/></svg>
@@ -1420,28 +1372,6 @@ header {
     </div>
     <h1 data-i18n-html="hero_h1">Xuất khẩu thực phẩm sang Canada<br><em>đúng chuẩn, nhanh hơn</em></h1>
     <p class="hero-sub" data-i18n="hero_sub">5 công cụ compliance cho nhà xuất khẩu Việt Nam: tra HS Code, CFIA checklist, khai báo allergen, tạo nhãn EN/FR, và quản lý chứng chỉ. Tất cả theo chuẩn CFIA · SFCA · CPTPP.</p>
-    <div class="hero-tools">
-      <button class="hero-tool" onclick="switchTab('hs', null)">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-        <span data-i18n="hero_hs_lookup">Tra cứu HS Code</span>
-      </button>
-      <button class="hero-tool" onclick="switchTab('cfia', null)">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-        <span data-i18n="hero_cfia">Checklist CFIA</span>
-      </button>
-      <button class="hero-tool" onclick="switchTab('allergen', null)">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        <span data-i18n="hero_allergen">Khai báo Allergen</span>
-      </button>
-      <button class="hero-tool" onclick="switchTab('label', null)">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-        <span data-i18n="nav_label">Nhãn EN/FR</span>
-      </button>
-      <button class="hero-tool" onclick="switchTab('cert', null)">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
-        <span data-i18n="nav_cert">Chứng chỉ</span>
-      </button>
-    </div>
   </div>
 </div>
 
@@ -1484,21 +1414,6 @@ header {
     </div>
 
     <div class="card">
-      <div class="card-head">
-        <div>
-          <div class="card-title-row">
-            <div class="card-ico">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage)"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-            </div>
-            <div>
-              <div class="card-title" data-i18n="card_title_hs">Tra cứu HS Code</div>
-              <div class="card-sub" data-i18n="hs_card_sub">Dữ liệu từ CBSA Canada · Cập nhật 2026</div>
-            </div>
-          </div>
-        </div>
-        <span class="tag tag-green">CBSA 2026</span>
-      </div>
-
       <div class="card-body">
         <!-- INFO BANNER -->
         <div class="info-banner">
@@ -1927,16 +1842,6 @@ header {
     </div>
 
     <div class="card">
-      <div class="card-head">
-        <div class="card-title-row">
-          <div class="card-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage)"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12l2 2 4-4"/></svg></div>
-          <div>
-            <div class="card-title">SFCA / CFIA Import Requirements</div>
-            <div class="card-sub" data-i18n="cfia_card_sub">Theo Safe Food for Canadians Regulations 2019 · Cập nhật 2026</div>
-          </div>
-        </div>
-        <span class="tag tag-amber" data-i18n="tag_required">Bắt buộc</span>
-      </div>
       <div class="card-body">
         <div class="form-grid">
           <div>
@@ -1989,16 +1894,6 @@ header {
     </div>
 
     <div class="card">
-      <div class="card-head">
-        <div class="card-title-row">
-          <div class="card-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage)"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-          <div>
-            <div class="card-title" data-i18n="card_title_allergen">Chất gây dị ứng ưu tiên — Canada</div>
-            <div class="card-sub" data-i18n="allergen_card_sub">Theo Health Canada · Safe Food for Canadians Act · 14 allergens bắt buộc</div>
-          </div>
-        </div>
-        <span class="tag tag-red" data-i18n="tag_label_required">Bắt buộc trên nhãn</span>
-      </div>
       <div class="card-body">
         <div class="info-banner">
           <span class="bn-icon">
@@ -2048,16 +1943,6 @@ header {
     </div>
 
     <div class="card">
-      <div class="card-head">
-        <div class="card-title-row">
-          <div class="card-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage)"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
-          <div>
-            <div class="card-title" data-i18n="label_card_title">Tạo nhãn song ngữ EN/FR</div>
-            <div class="card-sub">Theo Canada Food and Drug Regulations (FDR) · Official Languages Act</div>
-          </div>
-        </div>
-        <span class="tag tag-amber" data-i18n="tag_required">Bắt buộc</span>
-      </div>
       <div class="card-body">
         <div class="info-banner">
           <span class="bn-icon">
@@ -2168,15 +2053,6 @@ header {
 
     <div class="two-col">
       <div class="card">
-        <div class="card-head">
-          <div class="card-title-row">
-            <div class="card-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage)"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div>
-            <div>
-              <div class="card-title" data-i18n="cert_card1_title">Chứng chỉ hiện có</div>
-              <div class="card-sub" data-i18n="cert_card1_sub">Tick vào chứng chỉ bạn đang sở hữu</div>
-            </div>
-          </div>
-        </div>
         <div class="card-body">
           <div class="cert-grid" id="cert-grid">
             <!-- Rendered by JS -->
@@ -2186,15 +2062,6 @@ header {
       </div>
 
       <div class="card">
-        <div class="card-head">
-          <div class="card-title-row">
-            <div class="card-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage)"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
-            <div>
-              <div class="card-title" data-i18n="cert_card2_title">Trust Score ước tính</div>
-              <div class="card-sub" data-i18n="cert_card2_sub">Điểm tín nhiệm trên Adeptlink (0–100)</div>
-            </div>
-          </div>
-        </div>
         <div class="card-body">
           <div class="trust-display">
             <div class="trust-circle" id="trust-circle">
@@ -2220,16 +2087,9 @@ header {
 
     <!-- What certs mean -->
     <div class="card" style="margin-top:4px;">
-      <div class="card-head">
-        <div class="card-title-row">
-          <div class="card-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage)"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-          <div>
-            <div class="card-title" data-i18n="cert_table_title">Chứng chỉ nào quan trọng với buyer Canada?</div>
-            <div class="card-sub" data-i18n="cert_table_sub">Yêu cầu của chuỗi siêu thị và nhà nhập khẩu Canada</div>
-          </div>
-        </div>
-      </div>
       <div class="card-body">
+        <h3 style="font-family:'Fraunces',serif;font-size:17px;font-weight:600;color:var(--ink);margin-bottom:4px;" data-i18n="cert_table_title">Chứng chỉ nào quan trọng với buyer Canada?</h3>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:16px;" data-i18n="cert_table_sub">Yêu cầu của chuỗi siêu thị và nhà nhập khẩu Canada</p>
         <div class="r-table-wrap" style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
         <table class="r-table">
           <thead>
