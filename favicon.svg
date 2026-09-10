@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-labelledby="title">
+  <title id="title">AdeptLink</title>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20.3 27.7 16.8 31.2a7.3 7.3 0 0 1-10.3-10.3l5.8-5.8a7.3 7.3 0 0 1 10.3 0" stroke="#2f9d73" stroke-width="5.5"/>
+    <path d="m27.7 20.3 3.5-3.5a7.3 7.3 0 0 1 10.3 10.3l-5.8 5.8a7.3 7.3 0 0 1-10.3 0" stroke="#1d3a2a" stroke-width="5.5"/>
+    <path d="m17.6 30.4 12.8-12.8" stroke="#2f6b4f" stroke-width="5.5"/>
+  </g>
+</svg>
