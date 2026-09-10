@@ -1463,7 +1463,7 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
     </button>
     <button class="tab-btn" id="tab-cert" onclick="switchTab('cert', this)">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
-      <span data-i18n="tab_cert_full">Chứng chỉ &amp; Trust Score</span>
+    <span data-i18n="tab_cert_full">Chứng chỉ &amp; Điểm uy tín</span>
     </button>
   </div>
   </div>
@@ -1474,7 +1474,7 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
   <div class="panel active" id="panel-hs">
     <div class="section-intro">
       <h2 data-i18n="hs_title">Tra cứu mã HS Code</h2>
-      <p data-i18n-html="hs_intro">Tìm mã HS Code đúng cho sản phẩm, xem mức thuế nhập khẩu Canada và mức tiết kiệm nhờ CPTPP. Tự động phân loại <strong>Agri (Raw)</strong> hoặc <strong>Processed Food</strong>.</p>
+      <p data-i18n-html="hs_intro">Tìm mã HS Code đúng cho sản phẩm, xem mức thuế nhập khẩu Canada và mức tiết kiệm nhờ CPTPP. Tự động phân loại <strong>nông sản thô</strong> hoặc <strong>thực phẩm chế biến</strong>.</p>
     </div>
 
     <div class="card">
@@ -1508,7 +1508,7 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
             </label>
             <select class="f-select" id="hs-category" onchange="onCategoryChange()">
               <option value="" data-i18n-opt="hs_opt_cat_default">-- Chọn danh mục --</option>
-              <optgroup data-i18n-optgroup="hs_og_agri" label="Nông sản tươi / Agri Raw">
+              <optgroup data-i18n-optgroup="hs_og_agri" label="Nông sản tươi">
                 <option value="fresh_fruit" data-i18n-opt="hs_opt_fresh_fruit">Trái cây tươi / Fresh Fruit</option>
                 <option value="fresh_veg" data-i18n-opt="hs_opt_fresh_veg">Rau củ tươi / Fresh Vegetables</option>
                 <option value="fresh_herb" data-i18n-opt="hs_opt_fresh_herb">Rau thơm, lá tươi / Fresh Herbs</option>
@@ -1526,8 +1526,8 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
               <optgroup data-i18n-optgroup="hs_og_seafood" label="Hải sản / Seafood">
                 <option value="seafood" data-i18n-opt="hs_opt_seafood">Seafood / Hải sản, thủy sản</option>
               </optgroup>
-              <optgroup data-i18n-optgroup="hs_og_proc" label="Thực phẩm chế biến / Processed">
-                <option value="processed" data-i18n-opt="hs_opt_processed">Processed Food / Thực phẩm chế biến đóng gói</option>
+              <optgroup data-i18n-optgroup="hs_og_proc" label="Thực phẩm chế biến">
+                <option value="processed" data-i18n-opt="hs_opt_processed">Thực phẩm chế biến đóng gói</option>
                 <option value="sauce" data-i18n-opt="hs_opt_sauce">Sauces & Condiments / Nước chấm, gia vị đóng chai</option>
                 <option value="coffee" data-i18n-opt="hs_opt_coffee">Coffee & Tea / Cà phê, trà chế biến</option>
               </optgroup>
@@ -1546,14 +1546,14 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
               <select class="f-select" id="hs-nut-form" onchange="livePreview()">
                 <option value="" data-i18n-opt="hs_opt_choose">-- Chọn --</option>
                 <option value="inshell" data-i18n-opt="hs_nut_inshell">Chưa bóc vỏ / In Shell (WW, SW)</option>
-                <option value="kernel" data-i18n-opt="hs_nut_kernel">Đã bóc vỏ / Kernels (W180, W240, W320...)</option>
-                <option value="split" data-i18n-opt="hs_nut_split">Nhân vỡ / Split & Broken</option>
-                <option value="pieces" data-i18n-opt="hs_nut_pieces">Vụn / Pieces & Scorched</option>
+                <option value="kernel" data-i18n-opt="hs_nut_kernel">Đã bóc vỏ (W180, W240, W320...)</option>
+                <option value="split" data-i18n-opt="hs_nut_split">Nhân vỡ</option>
+                <option value="pieces" data-i18n-opt="hs_nut_pieces">Vụn & hạt cháy</option>
               </select>
               <div class="f-err" id="err-hs-nut-form"></div>
             </div>
             <div class="hs-field-wrap">
-              <label class="f-label">Grade / <span data-i18n="hs_lbl_grade">Loại hạt</span> <span style="color:var(--light);font-weight:400;" data-i18n="optional">(tùy chọn)</span></label>
+              <label class="f-label"><span data-i18n="hs_lbl_grade">Loại hạt</span> <span style="color:var(--light);font-weight:400;" data-i18n="optional">(tùy chọn)</span></label>
               <input class="f-input" id="hs-nut-grade" placeholder="VD: W180, W240, W320, LBW..." oninput="livePreview()" />
             </div>
           </div>
@@ -1567,14 +1567,14 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
             </label>
             <select class="f-select" id="hs-state" onchange="livePreview()">
               <option value="" data-i18n-opt="hs_opt_choose">-- Chọn --</option>
-              <option value="raw_inshell" data-i18n-opt="hs_st_raw_inshell">Nguyên liệu thô chưa bóc vỏ (Raw – In Shell)</option>
-              <option value="raw_shelled" data-i18n-opt="hs_st_raw_shelled">Nguyên liệu thô đã bóc vỏ (Raw – Shelled / Kernels)</option>
-              <option value="dried" data-i18n-opt="hs_st_dried">Sấy khô / Dried</option>
-              <option value="frozen" data-i18n-opt="hs_st_frozen">Đông lạnh / Frozen</option>
-              <option value="roasted" data-i18n-opt="hs_st_roasted">Đã rang / Roasted</option>
-              <option value="roasted_salted" data-i18n-opt="hs_st_roasted_salted">Rang muối / Roasted &amp; Salted</option>
-              <option value="canned" data-i18n-opt="hs_st_canned">Đóng hộp / Canned</option>
-              <option value="other_processed" data-i18n-opt="hs_st_other">Chế biến khác / Other Processed</option>
+              <option value="raw_inshell" data-i18n-opt="hs_st_raw_inshell">Nguyên liệu thô chưa bóc vỏ</option>
+              <option value="raw_shelled" data-i18n-opt="hs_st_raw_shelled">Nguyên liệu thô đã bóc vỏ</option>
+              <option value="dried" data-i18n-opt="hs_st_dried">Sấy khô</option>
+              <option value="frozen" data-i18n-opt="hs_st_frozen">Đông lạnh</option>
+              <option value="roasted" data-i18n-opt="hs_st_roasted">Đã rang</option>
+              <option value="roasted_salted" data-i18n-opt="hs_st_roasted_salted">Rang muối</option>
+              <option value="canned" data-i18n-opt="hs_st_canned">Đóng hộp</option>
+              <option value="other_processed" data-i18n-opt="hs_st_other">Chế biến khác</option>
             </select>
             <div class="f-err" id="err-hs-state"></div>
           </div>
@@ -1584,9 +1584,9 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
             </label>
             <select class="f-select" id="hs-purpose" onchange="livePreview()">
               <option value="" data-i18n-opt="hs_opt_choose">-- Chọn --</option>
-              <option value="human" data-i18n-opt="hs_pur_human">Human Consumption / Dùng cho người</option>
-              <option value="industrial" data-i18n-opt="hs_pur_industrial">Industrial Use / Nguyên liệu công nghiệp</option>
-              <option value="feed" data-i18n-opt="hs_pur_feed">Animal Feed / Thức ăn chăn nuôi</option>
+              <option value="human" data-i18n-opt="hs_pur_human">Dùng cho người</option>
+              <option value="industrial" data-i18n-opt="hs_pur_industrial">Nguyên liệu công nghiệp</option>
+              <option value="feed" data-i18n-opt="hs_pur_feed">Thức ăn chăn nuôi</option>
             </select>
             <div class="f-err" id="err-hs-purpose"></div>
           </div>
@@ -1607,7 +1607,7 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
           </div>
           <div class="hs-field-wrap">
             <label class="f-label">
-              <span data-i18n="hs_lbl_upload">Upload nhãn mác / CoA</span>
+              <span data-i18n="hs_lbl_upload">Tải nhãn mác / CoA</span>
               <span style="color:var(--light);font-weight:400;" data-i18n="optional">(tùy chọn)</span>
             </label>
             <label class="upload-zone" id="upload-zone" for="hs-file-input">
@@ -1737,7 +1737,7 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>
               </div>
               <div>
-                <div style="font-weight:700;font-size:14px;color:var(--forest);">Có nhiều SKU cần kiểm tra?</div>
+              <div style="font-weight:700;font-size:14px;color:var(--forest);">Có nhiều mã sản phẩm cần kiểm tra?</div>
                 <div style="font-size:12px;color:var(--muted);margin-top:2px;">Nhập hàng loạt và nhận báo cáo PDF đầy đủ</div>
               </div>
             </div>
@@ -1762,7 +1762,7 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
                 </div>
               </div>
               <div style="display:flex;align-items:center;gap:8px;">
-                <span class="tag tag-gray">Multi-SKU</span>
+                  <span class="tag tag-gray">Nhiều mã sản phẩm</span>
                 <button onclick="closeMultiSKU()" style="background:var(--parch);border:none;width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                 </button>
@@ -1800,12 +1800,12 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                   Thêm SKU
                 </button>
-                <label class="btn-secondary" style="cursor:pointer;" title="Upload file Excel danh sách SKU">
+                <label class="btn-secondary" style="cursor:pointer;" title="Tải file Excel danh sách mã sản phẩm">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-                  Upload Excel (.xlsx)
+                  Tải Excel (.xlsx)
                   <input type="file" accept=".xlsx,.xls,.csv" style="display:none;" onchange="parseExcel(this)" />
                 </label>
-                <span style="font-size:12px;color:var(--light);">Format: Tên SP | Danh mục | Trạng thái</span>
+                <span style="font-size:12px;color:var(--light);">Định dạng: Tên SP | Danh mục | Trạng thái</span>
                 <span id="sku-count-badge" style="margin-left:auto;font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);"></span>
               </div>
 
@@ -1813,9 +1813,9 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
               <div id="sku-summary-bar" style="display:none;margin-bottom:20px;padding:14px 18px;background:var(--sky);border:1px solid rgba(61,122,82,0.2);border-radius:8px;">
                 <div style="display:flex;gap:24px;flex-wrap:wrap;">
                   <div><div style="font-size:11px;color:var(--light);text-transform:uppercase;letter-spacing:0.7px;">Tổng SKU</div><div style="font-family:'DM Mono',monospace;font-size:20px;font-weight:600;color:var(--forest);" id="sum-total">0</div></div>
-                  <div><div style="font-size:11px;color:var(--light);text-transform:uppercase;letter-spacing:0.7px;">CPTPP Eligible</div><div style="font-family:'DM Mono',monospace;font-size:20px;font-weight:600;color:var(--sage);" id="sum-cptpp">0</div></div>
-                  <div><div style="font-size:11px;color:var(--light);text-transform:uppercase;letter-spacing:0.7px;">Agri Raw</div><div style="font-family:'DM Mono',monospace;font-size:20px;font-weight:600;color:var(--moss);" id="sum-agri">0</div></div>
-                  <div><div style="font-size:11px;color:var(--light);text-transform:uppercase;letter-spacing:0.7px;">Processed</div><div style="font-family:'DM Mono',monospace;font-size:20px;font-weight:600;color:var(--gold);" id="sum-proc">0</div></div>
+                  <div><div style="font-size:11px;color:var(--light);text-transform:uppercase;letter-spacing:0.7px;">Đủ điều kiện CPTPP</div><div style="font-family:'DM Mono',monospace;font-size:20px;font-weight:600;color:var(--sage);" id="sum-cptpp">0</div></div>
+                  <div><div style="font-size:11px;color:var(--light);text-transform:uppercase;letter-spacing:0.7px;">Nông sản thô</div><div style="font-family:'DM Mono',monospace;font-size:20px;font-weight:600;color:var(--moss);" id="sum-agri">0</div></div>
+                  <div><div style="font-size:11px;color:var(--light);text-transform:uppercase;letter-spacing:0.7px;">Đã chế biến</div><div style="font-family:'DM Mono',monospace;font-size:20px;font-weight:600;color:var(--gold);" id="sum-proc">0</div></div>
                   <div><div style="font-size:11px;color:var(--light);text-transform:uppercase;letter-spacing:0.7px;">Tiết kiệm thuế ước tính</div><div style="font-family:'DM Mono',monospace;font-size:20px;font-weight:600;color:var(--rust);" id="sum-saving">—</div></div>
                 </div>
               </div>
@@ -1844,10 +1844,10 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
                     <label class="f-label">Tổng số SKU của công ty</label>
                     <select class="f-select" id="gate-sku-count">
                       <option value="">-- Tùy chọn --</option>
-                      <option value="1-10">1–10 SKUs</option>
-                      <option value="11-50">11–50 SKUs</option>
-                      <option value="51-200">51–200 SKUs</option>
-                      <option value="200+">200+ SKUs</option>
+                      <option value="1-10">1–10 mã</option>
+                      <option value="11-50">11–50 mã</option>
+                      <option value="51-200">51–200 mã</option>
+                      <option value="200+">Trên 200 mã</option>
                     </select>
                   </div>
                   <div>
@@ -1861,12 +1861,12 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
                   </div>
                 </div>
                 <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
-                  <button class="btn-run" id="gen-pdf-btn" onclick="generatePDFReport()">
+                   <button class="btn-run" id="gen-pdf-btn" onclick="generatePDFReport()">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                    Tạo báo cáo PDF ngay
+                     Tạo báo cáo PDF
                   </button>
-                  <div id="pdf-spinner" style="display:none;align-items:center;gap:8px;font-size:13px;color:var(--muted);"><div class="spinner"></div> Đang phân tích với AI...</div>
-                  <span style="font-size:12px;color:var(--light);">Báo cáo mở ngay trong tab · Không cần cài đặt</span>
+                   <div id="pdf-spinner" style="display:none;align-items:center;gap:8px;font-size:13px;color:var(--muted);"><div class="spinner"></div> Đang phân tích bằng AI...</div>
+                   <span style="font-size:12px;color:var(--light);">Báo cáo mở ngay trong tab · Không cần cài đặt</span>
                 </div>
               </div>
 
@@ -1883,7 +1883,7 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
                     In / Lưu PDF lại
                   </button>
                   <button class="btn-secondary" onclick="openModal()">
-                    Đăng ký AdeptLink để kết nối buyer Canada →
+                    Đăng ký AdeptLink để kết nối bên mua Canada →
                   </button>
                 </div>
               </div>
@@ -1996,7 +1996,7 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
             <div style="background:var(--white);border:1.5px solid var(--border);border-radius:7px;padding:14px 16px;font-family:'DM Mono',monospace;font-size:13px;color:var(--ink);line-height:1.6;" id="allergen-fr-text">—</div>
           </div>
           <div style="margin-top:14px;display:flex;gap:10px;">
-            <button class="btn-secondary" onclick="copyAllergen()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg><span data-i18n="allergen_btn_copy">Copy text</span></button>
+            <button class="btn-secondary" onclick="copyAllergen()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg><span data-i18n="allergen_btn_copy">Sao chép nội dung</span></button>
             <button class="btn-secondary" onclick="addAllergenToLabel()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px;"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><span data-i18n="allergen_btn_add_label">Thêm vào nhãn EN/FR →</span></button>
           </div>
         </div>
@@ -2152,8 +2152,8 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
             <div id="trust-tier" style="font-size:13px;color:var(--muted);" data-i18n="cert_tier_hint">Chọn chứng chỉ và bấm tính →</div>
           </div>
           <div class="trust-factors" id="trust-factors">
-            <div class="tf-item"><div class="tf-name" data-i18n="tf_kyc">KYC Verified</div><div class="tf-val" id="tf-kyc">+0</div></div>
-            <div class="tf-item"><div class="tf-name" data-i18n="tf_fs">Food Safety</div><div class="tf-val" id="tf-fs">+0</div></div>
+            <div class="tf-item"><div class="tf-name" data-i18n="tf_kyc">Đã xác minh KYC</div><div class="tf-val" id="tf-kyc">+0</div></div>
+            <div class="tf-item"><div class="tf-name" data-i18n="tf_fs">An toàn thực phẩm</div><div class="tf-val" id="tf-fs">+0</div></div>
             <div class="tf-item"><div class="tf-name" data-i18n="tf_exp">Chứng chỉ XK</div><div class="tf-val" id="tf-exp">+0</div></div>
             <div class="tf-item"><div class="tf-name" data-i18n="tf_spec">Chứng chỉ đặc thù</div><div class="tf-val" id="tf-spec">+0</div></div>
           </div>
@@ -2183,11 +2183,11 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
           </thead>
           <tbody>
             <tr><td><strong>HACCP</strong></td><td data-i18n="cert_haccp_buyer">Hầu hết food manufacturers</td><td><span class="tag tag-red" data-i18n="tag_required">Bắt buộc</span></td><td data-i18n="cert_haccp_note">Tiêu chuẩn tối thiểu vào Canada</td></tr>
-            <tr><td><strong>BRC Grade A/AA</strong></td><td>Loblaw, Metro, Sobeys</td><td><span class="tag tag-red" data-i18n="cert_level_high">Cao</span></td><td data-i18n="cert_brc_note">Top 3 chuỗi siêu thị Canada</td></tr>
-            <tr><td><strong>SQF Level 2+</strong></td><td>Costco Canada</td><td><span class="tag tag-amber" data-i18n="cert_level_high">Cao</span></td><td data-i18n="cert_sqf_note">Costco chỉ accept SQF hoặc BRC AA</td></tr>
-            <tr><td><strong>Organic (USDA/EU)</strong></td><td>Health food, organic stores</td><td><span class="tag tag-amber" data-i18n="cert_level_mid">Trung bình</span></td><td data-i18n="cert_organic_note">Tăng giá bán 20–40%</td></tr>
-            <tr><td><strong>Kosher / Halal</strong></td><td>Ethnic food distributors</td><td><span class="tag tag-gray" data-i18n="cert_level_niche">Thị trường ngách</span></td><td data-i18n="cert_kosher_note">Mở thêm kênh bán</td></tr>
-            <tr><td><strong>SA8000</strong></td><td>ESG-focused buyers</td><td><span class="tag tag-gray">Nice to have</span></td><td data-i18n="cert_sa8000_note">Tăng uy tín, không bắt buộc</td></tr>
+            <tr><td><strong>BRC Grade A/AA</strong></td><td>Loblaw, Metro, Sobeys</td><td><span class="tag tag-red" data-i18n="cert_level_high">Cao</span></td><td data-i18n="cert_brc_note">3 chuỗi siêu thị lớn tại Canada</td></tr>
+            <tr><td><strong>SQF Level 2+</strong></td><td>Costco Canada</td><td><span class="tag tag-amber" data-i18n="cert_level_high">Cao</span></td><td data-i18n="cert_sqf_note">Costco chỉ chấp nhận SQF hoặc BRC AA</td></tr>
+            <tr><td><strong>Organic (USDA/EU)</strong></td><td>Cửa hàng thực phẩm lành mạnh, hữu cơ</td><td><span class="tag tag-amber" data-i18n="cert_level_mid">Trung bình</span></td><td data-i18n="cert_organic_note">Tăng giá bán 20–40%</td></tr>
+            <tr><td><strong>Kosher / Halal</strong></td><td>Nhà phân phối thực phẩm đặc sản</td><td><span class="tag tag-gray" data-i18n="cert_level_niche">Thị trường ngách</span></td><td data-i18n="cert_kosher_note">Mở thêm kênh bán</td></tr>
+            <tr><td><strong>SA8000</strong></td><td>Nhà mua hàng quan tâm ESG</td><td><span class="tag tag-gray" data-i18n="cert_level_nice">Ưu tiên thêm</span></td><td data-i18n="cert_sa8000_note">Tăng uy tín, không bắt buộc</td></tr>
           </tbody>
         </table>
         </div>
@@ -2965,7 +2965,7 @@ function renderAllergenGrid() {
     <div class="allergen-item" id="ai-${a.id}" onclick="toggleAllergen('${a.id}')">
       <div class="a-dot" id="ad-${a.id}"></div>
       <div>
-        <div class="a-name">${a.name}</div>
+        <div class="a-name">${a[`name_${_lang}`] || a.name_vi || a.name}</div>
         <div class="a-sub">${a.sub}</div>
       </div>
     </div>
@@ -3647,6 +3647,7 @@ Trả lời dạng plain text, không dùng markdown heading.`
 // ── BUILD & OPEN PRINT WINDOW ─────────────────
 function openPrintReport(company, email, rows, aiRecs) {
   const date = new Date().toLocaleDateString('vi-VN', { day:'2-digit', month:'2-digit', year:'numeric' });
+  const reportVi = _lang !== 'en';
   const cptppCount = rows.filter(r => r.result.eligible).length;
   const totalSaving = rows.reduce((acc, r) => {
     if (r.result.eligible) acc += 50000 * parseFloat(r.result.saving) / 100;
@@ -3654,7 +3655,9 @@ function openPrintReport(company, email, rows, aiRecs) {
   }, 0);
 
   const rowsHTML = rows.map((r, i) => {
-    const pc = r.result.product_category === 'agri' ? 'Agri Raw' : 'Processed Food';
+    const pc = r.result.product_category === 'agri'
+      ? (reportVi ? 'Nông sản thô' : 'Agri Raw')
+      : (reportVi ? 'Thực phẩm chế biến' : 'Processed Food');
     const pcColor = r.result.product_category === 'agri' ? '#3b6d11' : '#a05a00';
     const saving = r.result.eligible ? `<span style="color:#c4481f;font-weight:700;">Tiết kiệm ${r.result.saving}</span>` : '<span style="color:#888;">—</span>';
     return `<tr>
@@ -3694,14 +3697,14 @@ function openPrintReport(company, email, rows, aiRecs) {
   @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
 </style></head><body>
 <div class="header">
-  <div><div class="brand">ADEPT<span>LINK</span></div><div style="font-size:11px;color:#666;margin-top:4px;">Canada ↔ Vietnam · AgriFood Trade Compliance</div></div>
-  <div class="meta"><div style="font-weight:700;font-size:13px;">HS Code Classification Report</div><div>Công ty: <strong>${company}</strong></div><div>Email: ${email}</div><div>Ngày tạo: ${date}</div><div style="color:#3d7a52;font-weight:600;">Dữ liệu: CBSA Canada 2026 · CPTPP Schedule</div></div>
+  <div><div class="brand">ADEPT<span>LINK</span></div><div style="font-size:11px;color:#666;margin-top:4px;">${reportVi ? 'Canada ↔ Việt Nam · Tuân thủ thương mại thực phẩm' : 'Canada ↔ Vietnam · AgriFood Trade Compliance'}</div></div>
+  <div class="meta"><div style="font-weight:700;font-size:13px;">${reportVi ? 'Báo cáo phân loại HS Code' : 'HS Code Classification Report'}</div><div>Công ty: <strong>${company}</strong></div><div>Email: ${email}</div><div>Ngày tạo: ${date}</div><div style="color:#3d7a52;font-weight:600;">${reportVi ? 'Dữ liệu: CBSA Canada 2026 · Biểu thuế CPTPP' : 'Dữ liệu: CBSA Canada 2026 · CPTPP Schedule'}</div></div>
 </div>
 
 <div class="summary-grid">
   <div class="summary-box"><div class="num">${rows.length}</div><div class="lbl">Tổng SKU</div></div>
-  <div class="summary-box"><div class="num" style="color:#3d7a52;">${cptppCount}</div><div class="lbl">CPTPP Eligible</div></div>
-  <div class="summary-box"><div class="num" style="color:#3b6d11;">${rows.filter(r=>r.result.product_category==='agri').length}</div><div class="lbl">Agri Raw</div></div>
+  <div class="summary-box"><div class="num" style="color:#3d7a52;">${cptppCount}</div><div class="lbl">${reportVi ? 'Đủ điều kiện CPTPP' : 'CPTPP Eligible'}</div></div>
+  <div class="summary-box"><div class="num" style="color:#3b6d11;">${rows.filter(r=>r.result.product_category==='agri').length}</div><div class="lbl">${reportVi ? 'Nông sản thô' : 'Agri Raw'}</div></div>
   <div class="summary-box"><div class="num" style="color:#c4481f;">~$${totalSaving>0?Math.round(totalSaving/1000)+'K':0}</div><div class="lbl">Tiết kiệm thuế/năm*</div></div>
 </div>
 
@@ -3711,16 +3714,16 @@ function openPrintReport(company, email, rows, aiRecs) {
   ${rowsHTML}
 </table>
 
-<h2>Phân tích & Gợi ý từ AI (AdeptLink)</h2>
-<div class="ai-box">${aiRecs || 'Đang xử lý gợi ý AI...'}</div>
+  <h2>${reportVi ? 'Phân tích & Gợi ý từ AI (AdeptLink)' : 'AI Analysis & Recommendations (AdeptLink)'}</h2>
+  <div class="ai-box">${aiRecs || (reportVi ? 'Đang xử lý gợi ý AI...' : 'AI recommendations are being prepared...')}</div>
 
 <div class="cta-box">
-  <strong>Bước tiếp theo:</strong> Đăng ký tài khoản AdeptLink miễn phí để kết nối với buyer Canada đã verified, quản lý RFQ, và tracking compliance toàn bộ catalog.<br>
+  <strong>${reportVi ? 'Bước tiếp theo:' : 'Next step:'}</strong> ${reportVi ? 'Đăng ký tài khoản AdeptLink miễn phí để kết nối với bên mua Canada đã xác minh, quản lý yêu cầu báo giá và theo dõi tuân thủ toàn bộ danh mục.' : 'Register for a free AdeptLink account to connect with verified Canadian buyers, manage RFQs, and track compliance across your catalog.'}<br>
   <a href="https://adept-link.com/registration/">→ adept-link.com/registration</a> &nbsp;|&nbsp; support@adept-link.com
 </div>
 
-<div style="font-size:10px;color:#999;margin-top:12px;">* Ước tính tiết kiệm thuế dựa trên GMV trung bình $50,000 USD/SKU/năm. Số liệu thực tế phụ thuộc vào kim ngạch và điều kiện xuất xứ CPTPP. Báo cáo này chỉ mang tính tham khảo — vui lòng xác nhận với customs broker trước khi khai báo chính thức.</div>
-<div class="footer"><span>© ${new Date().getFullYear()} AdeptLink — compliance.adept-link.com</span><span>Trang 1/1 · Báo cáo tự động · Không phải tư vấn pháp lý</span></div>
+<div style="font-size:10px;color:#999;margin-top:12px;">${reportVi ? '* Ước tính tiết kiệm thuế dựa trên GMV trung bình $50,000 USD/SKU/năm. Số liệu thực tế phụ thuộc vào kim ngạch và điều kiện xuất xứ CPTPP. Báo cáo chỉ mang tính tham khảo — vui lòng xác nhận với đại lý hải quan trước khi khai báo chính thức.' : '* Estimated duty savings use an average GMV of $50,000 USD/SKU/year. Actual figures depend on trade value and CPTPP origin requirements. This report is for reference only — verify with a customs broker before filing.'}</div>
+<div class="footer"><span>© ${new Date().getFullYear()} AdeptLink — compliance.adept-link.com</span><span>${reportVi ? 'Trang 1/1 · Báo cáo tự động · Không phải tư vấn pháp lý' : 'Page 1/1 · Automated report · Not legal advice'}</span></div>
 </body></html>`;
 
   const w = window.open('', '_blank', 'width=900,height=700');
@@ -3758,16 +3761,16 @@ const T = {
     // NAV
     nav_hs: 'HS Code',
     nav_cfia: 'Checklist CFIA',
-    nav_allergen: 'Allergen',
+    nav_allergen: 'Khai báo dị ứng',
     nav_label: 'Nhãn EN/FR',
     nav_cert: 'Chứng chỉ',
     tab_hs: 'HS Code',
     tab_cfia: 'Checklist CFIA',
-    tab_allergen: 'Khai báo Allergen',
-    tab_cert_full: 'Chứng chỉ & Trust Score',
+    tab_allergen: 'Khai báo chất dị ứng',
+    tab_cert_full: 'Chứng chỉ & Điểm uy tín',
     hero_hs_lookup: 'Tra cứu HS Code',
     hero_cfia: 'Checklist CFIA',
-    hero_allergen: 'Khai báo Allergen',
+    hero_allergen: 'Khai báo chất dị ứng',
     card_title_hs: 'Tra cứu HS Code',
     card_title_allergen: 'Chất gây dị ứng ưu tiên — Canada',
     cat_agri_tag: 'Nông sản thô',
@@ -3776,57 +3779,57 @@ const T = {
     cta_register: 'Đăng ký miễn phí →',
     cta_register_free: 'Đăng ký AdeptLink miễn phí →',
     // HERO
-    hero_badge: 'Compliance Tools · Canada Import · CFIA · CPTPP',
+    hero_badge: 'Công cụ tuân thủ · Nhập khẩu Canada · CFIA · CPTPP',
     hero_h1: 'Xuất khẩu thực phẩm sang Canada<br><em>đúng chuẩn, nhanh hơn</em>',
-    hero_sub: '5 công cụ compliance cho nhà xuất khẩu Việt Nam: tra HS Code, CFIA checklist, khai báo allergen, tạo nhãn EN/FR, và quản lý chứng chỉ. Tất cả theo chuẩn CFIA · SFCA · CPTPP.',
+    hero_sub: '5 công cụ tuân thủ cho nhà xuất khẩu Việt Nam: tra HS Code, danh sách CFIA, khai báo chất dị ứng, tạo nhãn EN/FR và quản lý chứng chỉ. Tất cả theo chuẩn CFIA · SFCA · CPTPP.',
     // HS CODE
     hs_title: 'Tra cứu mã HS Code',
-    hs_intro: 'Tìm mã HS Code đúng cho sản phẩm, xem mức thuế nhập khẩu Canada và mức tiết kiệm nhờ CPTPP. Tự động phân loại <strong>Agri (Raw)</strong> hoặc <strong>Processed Food</strong>.',
+    hs_intro: 'Tìm mã HS Code đúng cho sản phẩm, xem mức thuế nhập khẩu Canada và mức tiết kiệm nhờ CPTPP. Tự động phân loại <strong>nông sản thô</strong> hoặc <strong>thực phẩm chế biến</strong>.',
     hs_card_sub: 'Dữ liệu từ CBSA Canada · Cập nhật 2026',
     hs_banner: 'Khai sai mã HS có thể dẫn đến bị phạt hoặc nộp thuế cao hơn cần thiết. Với CPTPP, sản phẩm đủ điều kiện xuất xứ VN có thể được giảm thuế <strong>0–12%</strong>. Điền đầy đủ các trường bên dưới để nhận kết quả chính xác nhất.',
     hs_lbl_product: 'Tên sản phẩm',
-    hs_ph_product: 'VD: cashew nuts, roasted, salted',
+    hs_ph_product: 'VD: hạt điều rang, rang muối',
     hs_lbl_category: 'Danh mục sản phẩm',
     hs_opt_cat_default: '-- Chọn danh mục --',
-    hs_og_agri: 'Nông sản tươi / Agri Raw',
-    hs_opt_fresh_fruit: 'Trái cây tươi / Fresh Fruit',
-    hs_opt_fresh_veg: 'Rau củ tươi / Fresh Vegetables',
-    hs_opt_fresh_herb: 'Rau thơm, lá tươi / Fresh Herbs',
-    hs_og_nuts: 'Hạt & Nông sản khô / Nuts & Dried',
-    hs_opt_nuts: 'Nuts & Dried Fruit — Hạt điều, hạnh nhân, trái cây sấy',
-    hs_opt_pepper: 'Pepper / Tiêu hạt',
-    hs_opt_rice: 'Rice / Gạo',
-    hs_opt_grains: 'Grains & Cereals / Ngũ cốc, hạt',
-    hs_og_spice: 'Gia vị & Dầu / Spices & Oils',
-    hs_opt_spices: 'Spices & Herbs / Gia vị, thảo mộc',
-    hs_opt_oils: 'Edible Oils / Dầu thực vật',
-    hs_og_seafood: 'Hải sản / Seafood',
-    hs_opt_seafood: 'Seafood / Hải sản, thủy sản',
-    hs_og_proc: 'Thực phẩm chế biến / Processed',
-    hs_opt_processed: 'Processed Food / Thực phẩm chế biến đóng gói',
-    hs_opt_sauce: 'Sauces & Condiments / Nước chấm, gia vị đóng chai',
-    hs_opt_coffee: 'Coffee & Tea / Cà phê, trà chế biến',
+    hs_og_agri: 'Nông sản tươi',
+    hs_opt_fresh_fruit: 'Trái cây tươi',
+    hs_opt_fresh_veg: 'Rau củ tươi',
+    hs_opt_fresh_herb: 'Rau thơm, lá tươi',
+    hs_og_nuts: 'Hạt & nông sản khô',
+    hs_opt_nuts: 'Hạt & trái cây sấy — hạt điều, hạnh nhân',
+    hs_opt_pepper: 'Tiêu hạt',
+    hs_opt_rice: 'Gạo',
+    hs_opt_grains: 'Ngũ cốc, các loại hạt',
+    hs_og_spice: 'Gia vị & dầu',
+    hs_opt_spices: 'Gia vị & thảo mộc',
+    hs_opt_oils: 'Dầu thực vật',
+    hs_og_seafood: 'Hải sản',
+    hs_opt_seafood: 'Hải sản, thủy sản',
+    hs_og_proc: 'Thực phẩm chế biến',
+    hs_opt_processed: 'Thực phẩm chế biến đóng gói',
+    hs_opt_sauce: 'Nước chấm & gia vị đóng chai',
+    hs_opt_coffee: 'Cà phê & trà chế biến',
     hs_lbl_nutform: 'Hình thức hạt điều',
     hs_opt_choose: '-- Chọn --',
-    hs_nut_inshell: 'Chưa bóc vỏ / In Shell (WW, SW)',
-    hs_nut_kernel: 'Đã bóc vỏ / Kernels (W180, W240, W320...)',
-    hs_nut_split: 'Nhân vỡ / Split & Broken',
-    hs_nut_pieces: 'Vụn / Pieces & Scorched',
+    hs_nut_inshell: 'Chưa bóc vỏ (WW, SW)',
+    hs_nut_kernel: 'Đã bóc vỏ (W180, W240, W320...)',
+    hs_nut_split: 'Nhân vỡ',
+    hs_nut_pieces: 'Vụn & hạt cháy',
     hs_lbl_grade: 'Loại hạt',
     optional: '(tùy chọn)',
     hs_lbl_state: 'Hình thức / Trạng thái chế biến',
-    hs_st_raw_inshell: 'Nguyên liệu thô chưa bóc vỏ (Raw – In Shell)',
-    hs_st_raw_shelled: 'Nguyên liệu thô đã bóc vỏ (Raw – Shelled / Kernels)',
-    hs_st_dried: 'Sấy khô / Dried',
-    hs_st_frozen: 'Đông lạnh / Frozen',
-    hs_st_roasted: 'Đã rang / Roasted',
-    hs_st_roasted_salted: 'Rang muối / Roasted & Salted',
-    hs_st_canned: 'Đóng hộp / Canned',
-    hs_st_other: 'Chế biến khác / Other Processed',
+    hs_st_raw_inshell: 'Nguyên liệu thô chưa bóc vỏ',
+    hs_st_raw_shelled: 'Nguyên liệu thô đã bóc vỏ',
+    hs_st_dried: 'Sấy khô',
+    hs_st_frozen: 'Đông lạnh',
+    hs_st_roasted: 'Đã rang',
+    hs_st_roasted_salted: 'Rang muối',
+    hs_st_canned: 'Đóng hộp',
+    hs_st_other: 'Chế biến khác',
     hs_lbl_purpose: 'Mục đích sử dụng',
-    hs_pur_human: 'Human Consumption / Dùng cho người',
-    hs_pur_industrial: 'Industrial Use / Nguyên liệu công nghiệp',
-    hs_pur_feed: 'Animal Feed / Thức ăn chăn nuôi',
+    hs_pur_human: 'Dùng cho người',
+    hs_pur_industrial: 'Nguyên liệu công nghiệp',
+    hs_pur_feed: 'Thức ăn chăn nuôi',
     hs_lbl_additive: 'Có chứa muối, đường hoặc phụ gia?',
     chip_none: 'Không có',
     chip_salted: 'Muối',
@@ -3834,7 +3837,7 @@ const T = {
     chip_flavored: 'Hương liệu',
     chip_preservative: 'Chất bảo quản',
     chip_colorant: 'Phẩm màu',
-    hs_lbl_upload: 'Upload nhãn mác / CoA',
+    hs_lbl_upload: 'Tải nhãn mác / CoA',
     hs_upload_hint: 'Kéo thả hoặc click để chọn file (PDF, JPG, PNG)',
     hs_preview_hint: 'Gợi ý HS Code:',
     hs_btn_lookup: 'Tra cứu HS Code',
@@ -3851,23 +3854,23 @@ const T = {
     hs_disclaimer_body: 'Vui lòng xác nhận thuế suất chính xác trước khi khai báo hải quan tại:',
     // HS dynamic result strings
     hs_import_tax: 'Thuế nhập khẩu',
-    hs_prenotif: 'CFIA Pre-notification',
+    hs_prenotif: 'Thông báo trước cho CFIA',
     hs_prenotif_val: 'Bắt buộc 72h trước khi lô hàng đến',
-    hs_form_e: 'CPTPP Form E',
+    hs_form_e: 'Mẫu CPTPP Form E',
     hs_eligible: 'Đủ điều kiện',
     hs_not_needed: 'Không cần (thuế đã 0%)',
     hs_customs_class: 'Phân loại hải quan',
     hs_saving_tag: 'Tiết kiệm',
     hs_no_benefit: 'Không có ưu đãi thêm',
-    hs_see_cfia: 'Xem CFIA tab',
+    hs_see_cfia: 'Xem mục CFIA',
     hs_recommended: 'Khuyến nghị',
-    hs_cat_agri_full: 'Agri – Raw (Nông sản thô)',
-    hs_cat_proc_full: 'Processed Food (Thực phẩm đã chế biến)',
+    hs_cat_agri_full: 'Nông sản thô',
+    hs_cat_proc_full: 'Thực phẩm chế biến',
     hs_classify: 'Phân loại:',
     hs_purpose_label: 'Mục đích:',
     hs_cptpp_eligible: 'Sản phẩm này đủ điều kiện hưởng thuế suất ưu đãi CPTPP',
     hs_cptpp_not: 'Sản phẩm này đã có thuế suất MFN ở mức thấp',
-    hs_cptpp_saving: 'Tiết kiệm thuế cho buyer Canada:',
+    hs_cptpp_saving: 'Tiết kiệm thuế cho bên mua Canada:',
     hs_cptpp_no_benefit: 'Form E CPTPP không tạo thêm lợi ích đáng kể ở giai đoạn này.',
     // CFIA
     cfia_title: 'Checklist Nhập khẩu CFIA',
@@ -3885,76 +3888,77 @@ const T = {
     cfia_lbl_progress: 'Tiến độ của bạn',
     cfia_progress_count: (d,t) => `${d}/${t} bước hoàn thành`,
     cfia_done_title: 'Bạn đã sẵn sàng xuất khẩu sang Canada!',
-    cfia_done_sub: 'Tất cả yêu cầu CFIA đã được hoàn thành. Bước tiếp theo: đăng ký trên AdeptLink để kết nối với buyer Canada.',
+    cfia_done_sub: 'Tất cả yêu cầu CFIA đã được hoàn thành. Bước tiếp theo: đăng ký trên AdeptLink để kết nối với bên mua Canada.',
     // ALLERGEN
-    allergen_title: 'Khai báo Allergen',
-    allergen_intro: 'Canada yêu cầu khai báo bắt buộc 14 chất gây dị ứng ưu tiên (Priority Food Allergens) trên nhãn sản phẩm theo Health Canada regulations.',
-    allergen_card_sub: 'Theo Health Canada · Safe Food for Canadians Act · 14 allergens bắt buộc',
+    allergen_title: 'Khai báo chất gây dị ứng',
+    allergen_intro: 'Canada yêu cầu khai báo bắt buộc 14 chất gây dị ứng ưu tiên trên nhãn sản phẩm theo quy định của Health Canada.',
+    allergen_card_sub: 'Theo Health Canada · Safe Food for Canadians Act · 14 chất bắt buộc',
     tag_label_required: 'Bắt buộc trên nhãn',
-    allergen_banner: 'Khai thiếu allergen là vi phạm nghiêm trọng, có thể dẫn đến <strong>thu hồi sản phẩm</strong> và phạt tiền. Canada có danh sách allergen riêng — khác với EU và Mỹ.',
-    allergen_grid_label: 'Chọn tất cả allergen CÓ MẶT trong sản phẩm của bạn:',
-    allergen_lbl_product: 'Tên sản phẩm (để tạo declaration text)',
-    allergen_ph_product: 'VD: ABC Foods Roasted Cashews with Sea Salt',
-    allergen_btn_build: 'Tạo Allergen Declaration',
-    allergen_result_label: 'Allergen Declaration — Theo chuẩn Health Canada',
+    allergen_banner: 'Khai thiếu chất gây dị ứng là vi phạm nghiêm trọng, có thể dẫn đến <strong>thu hồi sản phẩm</strong> và phạt tiền. Canada có danh sách riêng — khác với EU và Mỹ.',
+    allergen_grid_label: 'Chọn tất cả chất gây dị ứng CÓ MẶT trong sản phẩm:',
+    allergen_lbl_product: 'Tên sản phẩm (để tạo câu khai báo)',
+    allergen_ph_product: 'VD: Hạt điều rang muối ABC Foods',
+    allergen_btn_build: 'Tạo câu khai báo chất gây dị ứng',
+    allergen_result_label: 'Câu khai báo chất gây dị ứng — Theo chuẩn Health Canada',
     allergen_en_label: 'Phải in trên nhãn (tiếng Anh):',
     allergen_fr_label: 'Phải in trên nhãn (tiếng Pháp — bắt buộc):',
-    allergen_btn_copy: 'Copy text',
+    allergen_btn_copy: 'Sao chép nội dung',
     allergen_btn_add_label: 'Thêm vào nhãn EN/FR →',
-    allergen_alert: 'Vui lòng chọn ít nhất một allergen có trong sản phẩm của bạn.',
-    allergen_copy_done: 'Đã copy cả EN và FR!',
+    allergen_alert: 'Vui lòng chọn ít nhất một chất gây dị ứng có trong sản phẩm của bạn.',
+    allergen_copy_done: 'Đã sao chép cả EN và FR!',
     // LABEL
     label_title: 'Tạo nhãn song ngữ EN/FR',
-    label_intro: 'Canada yêu cầu <strong>tất cả nhãn sản phẩm phải song ngữ</strong> Anh-Pháp theo Official Languages Act và Food and Drug Regulations (FDR).',
+    label_intro: 'Canada yêu cầu <strong>tất cả nhãn sản phẩm phải song ngữ</strong> Anh-Pháp theo Luật Ngôn ngữ Chính thức và Quy định về Thực phẩm và Dược phẩm (FDR).',
     label_card_title: 'Tạo nhãn song ngữ EN/FR',
-    label_banner: 'Tất cả thông tin bắt buộc trên nhãn (tên sản phẩm, net weight, ingredients, allergens, địa chỉ nhà sản xuất/nhập khẩu) <strong>phải có cả tiếng Anh lẫn tiếng Pháp</strong>. Nhãn chỉ có tiếng Anh sẽ bị từ chối ở border.',
+    label_banner: 'Tất cả thông tin bắt buộc trên nhãn (tên sản phẩm, khối lượng tịnh, thành phần, chất dị ứng, địa chỉ nhà sản xuất/nhập khẩu) <strong>phải có cả tiếng Anh lẫn tiếng Pháp</strong>. Nhãn chỉ có tiếng Anh có thể bị từ chối tại cửa khẩu.',
     label_lbl_name_en: 'Tên sản phẩm (Anh)',
     label_lbl_name_fr: 'Tên sản phẩm (Pháp)',
     label_lbl_origin: 'Xuất xứ',
     label_btn_preview: 'Xem trước nhãn EN/FR',
     label_btn_consult: 'Lưu & Yêu cầu tư vấn nhãn chính thức',
     // CERT
-    cert_title: 'Chứng chỉ & Trust Score',
-    cert_intro: 'Kiểm tra chứng chỉ bạn đang có và xem Trust Score ước tính trên nền tảng AdeptLink. Buyer Canada ưu tiên supplier có Trust Score cao.',
+    cert_title: 'Chứng chỉ & Điểm uy tín',
+    cert_intro: 'Kiểm tra chứng chỉ bạn đang có và xem điểm uy tín ước tính trên nền tảng AdeptLink. Bên mua Canada thường ưu tiên nhà cung cấp có điểm cao.',
     cert_card1_title: 'Chứng chỉ hiện có',
-    cert_card1_sub: 'Tick vào chứng chỉ bạn đang sở hữu',
-    cert_btn_calc: 'Tính Trust Score',
-    cert_card2_title: 'Trust Score ước tính',
+    cert_card1_sub: 'Đánh dấu các chứng chỉ bạn đang sở hữu',
+    cert_btn_calc: 'Tính điểm uy tín',
+    cert_card2_title: 'Điểm uy tín ước tính',
     cert_card2_sub: 'Điểm tín nhiệm trên AdeptLink (0–100)',
     cert_tier_hint: 'Chọn chứng chỉ và bấm tính →',
     cert_advice_label: 'Lời khuyên để tăng điểm',
-    cert_table_title: 'Chứng chỉ nào quan trọng với buyer Canada?',
-    cert_table_sub: 'Yêu cầu của chuỗi siêu thị và nhà nhập khẩu Canada',
+    cert_table_title: 'Chứng chỉ nào quan trọng với bên mua Canada?',
+    cert_table_sub: 'Yêu cầu thường gặp của chuỗi siêu thị và nhà nhập khẩu Canada',
     cert_th_cert: 'Chứng chỉ',
-    cert_th_buyer: 'Buyer yêu cầu',
+    cert_th_buyer: 'Bên mua yêu cầu',
     cert_th_level: 'Mức độ quan trọng',
     cert_level_high: 'Cao',
     cert_level_mid: 'Trung bình',
     cert_level_niche: 'Thị trường ngách',
-    cert_haccp_buyer: 'Hầu hết food manufacturers',
+    cert_level_nice: 'Ưu tiên thêm',
+    cert_haccp_buyer: 'Hầu hết nhà sản xuất thực phẩm',
     cert_haccp_note: 'Tiêu chuẩn tối thiểu vào Canada',
-    cert_brc_note: 'Top 3 chuỗi siêu thị Canada',
-    cert_sqf_note: 'Costco chỉ accept SQF hoặc BRC AA',
+    cert_brc_note: '3 chuỗi siêu thị lớn tại Canada',
+    cert_sqf_note: 'Costco chỉ chấp nhận SQF hoặc BRC AA',
     cert_organic_note: 'Tăng giá bán 20–40%',
     cert_kosher_note: 'Mở thêm kênh bán',
     cert_sa8000_note: 'Tăng uy tín, không bắt buộc',
     cert_have: 'Đã có chứng chỉ',
     cert_add: '+ Tôi có chứng chỉ này',
-    cert_tier_excellent: 'Excellent — Buyer Canada sẽ ưu tiên bạn',
-    cert_tier_good: 'Good — Đủ điều kiện vào hầu hết B2B deals',
-    cert_tier_fair: 'Fair — Cần thêm chứng chỉ để tăng uy tín',
-    cert_tier_low: 'Low — Bắt đầu với HACCP để tăng điểm nhanh nhất',
-    cert_advice_haccp: '→ Ưu tiên cao nhất: lấy HACCP (tăng +20 pts, bắt buộc vào Canada)',
+    cert_tier_excellent: 'Rất tốt — Bên mua Canada sẽ ưu tiên bạn',
+    cert_tier_good: 'Tốt — Đủ điều kiện cho hầu hết giao dịch B2B',
+    cert_tier_fair: 'Khá — Cần thêm chứng chỉ để tăng uy tín',
+    cert_tier_low: 'Thấp — Bắt đầu với HACCP để tăng điểm nhanh nhất',
+    cert_advice_haccp: '→ Ưu tiên cao nhất: lấy HACCP (tăng +20 điểm, tiêu chuẩn tối thiểu để vào Canada)',
     cert_advice_brc: '→ BRC hoặc SQF mở cửa vào siêu thị lớn (Loblaw, Costco)',
-    cert_advice_coo: '→ C/O Form E CPTPP giúp buyer tiết kiệm thuế — tăng khả năng được chọn',
-    cert_advice_phyto: '→ Phytosanitary Cert bắt buộc cho hạt, gia vị, thực vật',
-    cert_advice_full: 'Bạn đã có bộ chứng chỉ rất tốt! Đăng ký AdeptLink để showcase với buyer Canada.',
+    cert_advice_coo: '→ C/O Form E CPTPP giúp bên mua tiết kiệm thuế — tăng khả năng được chọn',
+    cert_advice_phyto: '→ Giấy kiểm dịch thực vật bắt buộc cho hạt, gia vị và sản phẩm thực vật',
+    cert_advice_full: 'Bạn đã có bộ chứng chỉ rất tốt! Đăng ký AdeptLink để giới thiệu với bên mua Canada.',
     // CTA
     cta_h3: 'Sẵn sàng xuất khẩu sang Canada?',
-    cta_p: 'Đăng ký AdeptLink miễn phí — kết nối với buyer Canada đã verified, quản lý RFQ và compliance trong một nền tảng.',
+    cta_p: 'Đăng ký AdeptLink miễn phí — kết nối với bên mua Canada đã xác minh, quản lý yêu cầu báo giá và tuân thủ trên một nền tảng.',
     // MODAL
     modal_title: 'Đăng ký miễn phí',
-    modal_sub: 'Đăng ký AdeptLink — kết nối với buyer Canada đã verified, quản lý RFQ và compliance trong một nền tảng.',
+    modal_sub: 'Đăng ký AdeptLink — kết nối với bên mua Canada đã xác minh, quản lý yêu cầu báo giá và tuân thủ trên một nền tảng.',
     modal_lbl_company: 'Tên công ty',
     modal_ph_company: 'Tên công ty của bạn',
     modal_lbl_name: 'Người liên hệ',
@@ -3972,13 +3976,13 @@ const T = {
     modal_btn_submit: 'Đăng ký ngay →',
     modal_sending: 'Đang gửi…',
     modal_success_title: 'Đã nhận! Chúng tôi sẽ liên hệ trong 24h.',
-    modal_success_sub: 'Trong lúc chờ, bạn có thể đăng ký tài khoản AdeptLink miễn phí để khám phá buyer Canada.',
+    modal_success_sub: 'Trong lúc chờ, bạn có thể đăng ký tài khoản AdeptLink miễn phí để khám phá bên mua Canada.',
     modal_success_btn: 'Đăng ký ngay →',
     modal_required_alert: 'Vui lòng điền đầy đủ: Tên công ty, Người liên hệ và Email.',
     modal_send_fail: 'Gửi thất bại: ',
     modal_retry: '\nVui lòng thử lại hoặc liên hệ support@adept-link.com',
     // TRUST FACTORS
-    tf_kyc: 'KYC Verified',
+    tf_kyc: 'Đã xác minh KYC',
     tf_fs: 'An toàn thực phẩm',
     tf_exp: 'Chứng chỉ XK',
     tf_spec: 'Chứng chỉ đặc thù',
@@ -3988,8 +3992,8 @@ const T = {
     label_lbl_ing_en: 'Thành phần (Anh)',
     label_lbl_ing_fr: 'Thành phần (Pháp)',
     label_lbl_importer: 'Nhà nhập khẩu tại Canada',
-    label_lbl_allergen_en: 'Khai báo Allergen (EN)',
-    label_lbl_allergen_fr: 'Khai báo Allergen (FR)',
+    label_lbl_allergen_en: 'Khai báo chất dị ứng (EN)',
+    label_lbl_allergen_fr: 'Khai báo chất dị ứng (FR)',
     // MULTISKU
     card_title_multisku: 'Tra cứu nhiều SKU',
   },
@@ -4170,6 +4174,7 @@ const T = {
     cert_level_high: 'High',
     cert_level_mid: 'Medium',
     cert_level_niche: 'Niche Market',
+    cert_level_nice: 'Nice to have',
     cert_haccp_buyer: 'Most food manufacturers',
     cert_haccp_note: 'Minimum standard to enter Canada',
     cert_brc_note: 'Top 3 Canadian supermarket chains',
@@ -4294,16 +4299,16 @@ function setLang(lang) {
 
 // Patch renderChecklist to use language
 const CFIA_ITEMS_DATA = {
-  sfca:     { title_vi: 'Xác minh Importer Canada có SFCA License', title_en: 'Verify Canadian Importer has SFCA License', desc_vi: 'Importer tại Canada phải có Safe Food for Canadians License từ CFIA. Không có license → lô hàng bị từ chối ngay tại border.', desc_en: 'The Canadian importer must hold a Safe Food for Canadians License from CFIA. No license = shipment rejected at the border.', tag_vi: 'Bắt buộc', tag_en: 'Required', tagClass: 'tag-red' },
-  prenotif: { title_vi: '72-hour Pre-notification trên My CFIA Portal', title_en: '72-hour Pre-notification on My CFIA Portal', desc_vi: 'Phải submit thông báo nhập khẩu qua hệ thống My CFIA tối thiểu 72 giờ trước khi lô hàng đến. Bao gồm: tên sản phẩm, HS code, nhà sản xuất, số lượng, cửa khẩu.', desc_en: 'Must submit an import notification through My CFIA at least 72 hours before shipment arrival. Includes: product name, HS code, manufacturer, quantity, port of entry.', tag_vi: 'Bắt buộc', tag_en: 'Required', tagClass: 'tag-red' },
+  sfca:     { title_vi: 'Xác minh nhà nhập khẩu Canada có giấy phép SFCA', title_en: 'Verify Canadian Importer has SFCA License', desc_vi: 'Nhà nhập khẩu tại Canada phải có giấy phép Safe Food for Canadians do CFIA cấp. Không có giấy phép → lô hàng có thể bị từ chối tại cửa khẩu.', desc_en: 'The Canadian importer must hold a Safe Food for Canadians License from CFIA. No license = shipment rejected at the border.', tag_vi: 'Bắt buộc', tag_en: 'Required', tagClass: 'tag-red' },
+  prenotif: { title_vi: 'Thông báo trước 72 giờ trên cổng My CFIA', title_en: '72-hour Pre-notification on My CFIA Portal', desc_vi: 'Phải gửi thông báo nhập khẩu qua hệ thống My CFIA tối thiểu 72 giờ trước khi lô hàng đến. Bao gồm: tên sản phẩm, mã HS, nhà sản xuất, số lượng và cửa khẩu.', desc_en: 'Must submit an import notification through My CFIA at least 72 hours before shipment arrival. Includes: product name, HS code, manufacturer, quantity, port of entry.', tag_vi: 'Bắt buộc', tag_en: 'Required', tagClass: 'tag-red' },
   haccp:    { title_vi: 'Nhà máy có HACCP hoặc GMP được công nhận', title_en: 'Factory holds recognized HACCP or GMP certification', desc_vi: 'CFIA yêu cầu thực phẩm nhập khẩu phải được sản xuất trong điều kiện an toàn tương đương tiêu chuẩn Canada. HACCP, BRC, SQF, FSSC 22000 đều được công nhận.', desc_en: 'CFIA requires imported food to be produced under safety conditions equivalent to Canadian standards. HACCP, BRC, SQF, and FSSC 22000 are all recognized.', tag_vi: 'Bắt buộc', tag_en: 'Required', tagClass: 'tag-red' },
-  label:    { title_vi: 'Nhãn sản phẩm song ngữ EN/FR', title_en: 'Bilingual EN/FR product label', desc_vi: 'Tất cả thông tin bắt buộc (tên sp, ingredients, allergens, net weight, country of origin, importer address) phải có cả tiếng Anh lẫn tiếng Pháp.', desc_en: 'All mandatory information (product name, ingredients, allergens, net weight, country of origin, importer address) must appear in both English and French.', tag_vi: 'Bắt buộc', tag_en: 'Required', tagClass: 'tag-red' },
-  allergen: { title_vi: 'Khai báo đầy đủ 14 Priority Allergens', title_en: 'Declare all 14 Priority Allergens', desc_vi: 'Health Canada quy định 14 allergen phải khai báo: gluten grains, crustaceans, eggs, fish, peanuts, tree nuts, sesame, soya, milk, mustard, sulphites. Thiếu một allergen có thể bị thu hồi toàn bộ lô.', desc_en: 'Health Canada requires declaration of 14 allergens: gluten grains, crustaceans, eggs, fish, peanuts, tree nuts, sesame, soya, milk, mustard, sulphites, lupin, molluscs, celery. Missing one can result in full shipment recall.', tag_vi: 'Bắt buộc', tag_en: 'Required', tagClass: 'tag-red' },
-  phyto:    { title_vi: 'Phytosanitary Certificate (kiểm dịch thực vật)', title_en: 'Phytosanitary Certificate (plant inspection)', desc_vi: 'Bắt buộc cho: gạo, gia vị, hạt thô, trái cây sấy, rau củ. Do Cục Bảo vệ Thực vật VN (PPVMO) cấp. Phải kèm theo lô hàng.', desc_en: 'Required for: rice, spices, raw nuts, dried fruit, vegetables. Issued by Vietnam Plant Protection Department (PPVMO). Must accompany the shipment.', tag_vi: 'Với thực vật', tag_en: 'For Plants', tagClass: 'tag-amber' },
-  coo:      { title_vi: 'Certificate of Origin (C/O) — Xuất xứ Việt Nam', title_en: 'Certificate of Origin (C/O) — Vietnamese Origin', desc_vi: 'CPTPP Form E do VCCI cấp để hưởng thuế ưu đãi CPTPP. Khai "Made in Vietnam" trên nhãn và tờ khai cần có C/O hợp lệ.', desc_en: 'CPTPP Form E issued by VCCI to benefit from CPTPP preferential tariffs. "Made in Vietnam" declarations require a valid C/O.', tag_vi: 'CPTPP', tag_en: 'CPTPP', tagClass: 'tag-green' },
-  transit:  { title_vi: 'Commercial Invoice đúng format', title_en: 'Correctly Formatted Commercial Invoice', desc_vi: 'Invoice phải ghi đầy đủ: tên/địa chỉ buyer-seller, HS code, description, quantity, unit price, total value, Incoterm (FOB/CIF/EXW), currency.', desc_en: 'Invoice must include: buyer/seller name and address, HS code, description, quantity, unit price, total value, Incoterm (FOB/CIF/EXW), and currency.', tag_vi: 'Bắt buộc', tag_en: 'Required', tagClass: 'tag-red' },
-  packinglist: { title_vi: 'Packing List chi tiết', title_en: 'Detailed Packing List', desc_vi: 'Kèm theo invoice: số kiện, trọng lượng gross/net từng kiện, kích thước, marks & numbers. CBSA customs sẽ kiểm tra khớp với pre-notification.', desc_en: 'Accompanies invoice: number of packages, gross/net weight per package, dimensions, marks & numbers. CBSA customs will verify against the pre-notification.', tag_vi: 'Bắt buộc', tag_en: 'Required', tagClass: 'tag-red' },
-  seafood_coa: { title_vi: 'Health Certificate / CoA từ cơ quan có thẩm quyền VN', title_en: 'Health Certificate / CoA from Vietnamese Authority', desc_vi: 'Với hải sản và thịt: cần Health Certificate từ NAFIQAD (Cục Quản lý Chất lượng Nông Lâm Thủy sản). Với thực phẩm chế biến: CoA (Certificate of Analysis) từ phòng lab được công nhận.', desc_en: 'For seafood and meat: Health Certificate from NAFIQAD required. For processed food: CoA (Certificate of Analysis) from an accredited laboratory.', tag_vi: 'Hải sản / Thịt', tag_en: 'Seafood / Meat', tagClass: 'tag-amber' },
+  label:    { title_vi: 'Nhãn sản phẩm song ngữ EN/FR', title_en: 'Bilingual EN/FR product label', desc_vi: 'Tất cả thông tin bắt buộc (tên sản phẩm, thành phần, chất dị ứng, khối lượng tịnh, xuất xứ, địa chỉ nhà nhập khẩu) phải có cả tiếng Anh lẫn tiếng Pháp.', desc_en: 'All mandatory information (product name, ingredients, allergens, net weight, country of origin, importer address) must appear in both English and French.', tag_vi: 'Bắt buộc', tag_en: 'Required', tagClass: 'tag-red' },
+  allergen: { title_vi: 'Khai báo đầy đủ 14 chất gây dị ứng ưu tiên', title_en: 'Declare all 14 Priority Allergens', desc_vi: 'Health Canada quy định 14 chất gây dị ứng phải khai báo: ngũ cốc chứa gluten, giáp xác, trứng, cá, đậu phộng, các loại hạt cây, mè, đậu nành, sữa, mù tạt, sulfite. Thiếu một chất có thể bị thu hồi toàn bộ lô.', desc_en: 'Health Canada requires declaration of 14 allergens: gluten grains, crustaceans, eggs, fish, peanuts, tree nuts, sesame, soya, milk, mustard, sulphites, lupin, molluscs, celery. Missing one can result in full shipment recall.', tag_vi: 'Bắt buộc', tag_en: 'Required', tagClass: 'tag-red' },
+  phyto:    { title_vi: 'Giấy kiểm dịch thực vật', title_en: 'Phytosanitary Certificate (plant inspection)', desc_vi: 'Bắt buộc cho: gạo, gia vị, hạt thô, trái cây sấy và rau củ. Do Cục Bảo vệ Thực vật Việt Nam (PPVMO) cấp và phải đi kèm lô hàng.', desc_en: 'Required for: rice, spices, raw nuts, dried fruit, vegetables. Issued by Vietnam Plant Protection Department (PPVMO). Must accompany the shipment.', tag_vi: 'Với thực vật', tag_en: 'For Plants', tagClass: 'tag-amber' },
+  coo:      { title_vi: 'Chứng nhận xuất xứ (C/O) — Xuất xứ Việt Nam', title_en: 'Certificate of Origin (C/O) — Vietnamese Origin', desc_vi: 'CPTPP Form E do VCCI cấp để hưởng thuế ưu đãi CPTPP. Khai "Made in Vietnam" trên nhãn và tờ khai cần có C/O hợp lệ.', desc_en: 'CPTPP Form E issued by VCCI to benefit from CPTPP preferential tariffs. "Made in Vietnam" declarations require a valid C/O.', tag_vi: 'CPTPP', tag_en: 'CPTPP', tagClass: 'tag-green' },
+  transit:  { title_vi: 'Hóa đơn thương mại đúng định dạng', title_en: 'Correctly Formatted Commercial Invoice', desc_vi: 'Hóa đơn phải ghi đầy đủ: tên và địa chỉ bên mua/bên bán, mã HS, mô tả, số lượng, đơn giá, tổng giá trị, điều kiện Incoterm (FOB/CIF/EXW) và loại tiền.', desc_en: 'Invoice must include: buyer/seller name and address, HS code, description, quantity, unit price, total value, Incoterm (FOB/CIF/EXW), and currency.', tag_vi: 'Bắt buộc', tag_en: 'Required', tagClass: 'tag-red' },
+  packinglist: { title_vi: 'Danh sách đóng gói chi tiết', title_en: 'Detailed Packing List', desc_vi: 'Kèm theo hóa đơn: số kiện, trọng lượng cả bì/tịnh từng kiện, kích thước, ký mã hiệu. Hải quan CBSA sẽ đối chiếu với thông báo trước.', desc_en: 'Accompanies invoice: number of packages, gross/net weight per package, dimensions, marks & numbers. CBSA customs will verify against the pre-notification.', tag_vi: 'Bắt buộc', tag_en: 'Required', tagClass: 'tag-red' },
+  seafood_coa: { title_vi: 'Giấy chứng nhận sức khỏe / CoA từ cơ quan có thẩm quyền Việt Nam', title_en: 'Health Certificate / CoA from Vietnamese Authority', desc_vi: 'Với hải sản và thịt: cần giấy chứng nhận sức khỏe từ NAFIQAD. Với thực phẩm chế biến: cần CoA (chứng nhận phân tích) từ phòng thí nghiệm được công nhận.', desc_en: 'For seafood and meat: Health Certificate from NAFIQAD required. For processed food: CoA (Certificate of Analysis) from an accredited laboratory.', tag_vi: 'Hải sản / Thịt', tag_en: 'Seafood / Meat', tagClass: 'tag-amber' },
 };
 
 const CFIA_ORDER = ['sfca','prenotif','haccp','label','allergen','phyto','coo','transit','packinglist','seafood_coa'];
@@ -4359,20 +4364,20 @@ function renderChecklist() {
 
 // Override renderAllergenGrid to be language-aware
 const ALLERGENS_DATA = [
-  { id: 'gluten',     name: 'Gluten',      sub_vi: 'Lúa mì, mạch đen, yến mạch',      sub_en: 'Wheat, rye, oats' },
-  { id: 'crustacean', name: 'Crustaceans', sub_vi: 'Tôm, cua, tôm hùm',               sub_en: 'Shrimp, crab, lobster' },
-  { id: 'egg',        name: 'Eggs',        sub_vi: 'Trứng và sản phẩm',                sub_en: 'Eggs and egg products' },
-  { id: 'fish',       name: 'Fish',        sub_vi: 'Cá và sản phẩm từ cá',             sub_en: 'Fish and fish products' },
-  { id: 'peanut',     name: 'Peanuts',     sub_vi: 'Đậu phộng',                        sub_en: 'Peanuts' },
-  { id: 'treenut',    name: 'Tree Nuts',   sub_vi: 'Hạnh nhân, điều, óc chó...',       sub_en: 'Almonds, cashews, walnuts...' },
-  { id: 'sesame',     name: 'Sesame',      sub_vi: 'Vừng / mè',                        sub_en: 'Sesame seeds' },
-  { id: 'soy',        name: 'Soya',        sub_vi: 'Đậu nành và sản phẩm',             sub_en: 'Soy and soy products' },
-  { id: 'milk',       name: 'Milk',        sub_vi: 'Sữa và sản phẩm từ sữa',           sub_en: 'Milk and dairy products' },
-  { id: 'mustard',    name: 'Mustard',     sub_vi: 'Mù tạt và hạt mù tạt',            sub_en: 'Mustard and mustard seeds' },
-  { id: 'sulphite',   name: 'Sulphites',   sub_vi: '≥10 ppm — sulfur dioxide',         sub_en: '≥10 ppm — sulfur dioxide' },
-  { id: 'lupin',      name: 'Lupin',       sub_vi: 'Hạt đậu lupin',                    sub_en: 'Lupin beans' },
-  { id: 'mollusc',    name: 'Molluscs',    sub_vi: 'Sò, mực, bạch tuộc',              sub_en: 'Clams, squid, octopus' },
-  { id: 'celery',     name: 'Celery',      sub_vi: 'Cần tây và sản phẩm',              sub_en: 'Celery and celery products' },
+  { id: 'gluten',     name_vi: 'Gluten',           name_en: 'Gluten',      sub_vi: 'Lúa mì, mạch đen, yến mạch',      sub_en: 'Wheat, rye, oats' },
+  { id: 'crustacean', name_vi: 'Động vật giáp xác', name_en: 'Crustaceans', sub_vi: 'Tôm, cua, tôm hùm',                sub_en: 'Shrimp, crab, lobster' },
+  { id: 'egg',        name_vi: 'Trứng',            name_en: 'Eggs',        sub_vi: 'Trứng và sản phẩm',                 sub_en: 'Eggs and egg products' },
+  { id: 'fish',       name_vi: 'Cá',               name_en: 'Fish',        sub_vi: 'Cá và sản phẩm từ cá',              sub_en: 'Fish and fish products' },
+  { id: 'peanut',     name_vi: 'Đậu phộng',        name_en: 'Peanuts',     sub_vi: 'Đậu phộng',                         sub_en: 'Peanuts' },
+  { id: 'treenut',    name_vi: 'Các loại hạt cây', name_en: 'Tree Nuts',   sub_vi: 'Hạnh nhân, điều, óc chó...',        sub_en: 'Almonds, cashews, walnuts...' },
+  { id: 'sesame',     name_vi: 'Mè / vừng',        name_en: 'Sesame',      sub_vi: 'Vừng / mè',                        sub_en: 'Sesame seeds' },
+  { id: 'soy',        name_vi: 'Đậu nành',         name_en: 'Soya',        sub_vi: 'Đậu nành và sản phẩm',              sub_en: 'Soy and soy products' },
+  { id: 'milk',       name_vi: 'Sữa',              name_en: 'Milk',        sub_vi: 'Sữa và sản phẩm từ sữa',            sub_en: 'Milk and dairy products' },
+  { id: 'mustard',    name_vi: 'Mù tạt',           name_en: 'Mustard',     sub_vi: 'Mù tạt và hạt mù tạt',              sub_en: 'Mustard and mustard seeds' },
+  { id: 'sulphite',   name_vi: 'Sulfite',          name_en: 'Sulphites',   sub_vi: '≥10 ppm — sulfur dioxide',          sub_en: '≥10 ppm — sulfur dioxide' },
+  { id: 'lupin',      name_vi: 'Đậu lupin',        name_en: 'Lupin',       sub_vi: 'Hạt đậu lupin',                     sub_en: 'Lupin beans' },
+  { id: 'mollusc',    name_vi: 'Động vật thân mềm', name_en: 'Molluscs',   sub_vi: 'Sò, mực, bạch tuộc',                sub_en: 'Clams, squid, octopus' },
+  { id: 'celery',     name_vi: 'Cần tây',          name_en: 'Celery',      sub_vi: 'Cần tây và sản phẩm',               sub_en: 'Celery and celery products' },
 ];
 
 function renderAllergenGrid() {
@@ -4385,7 +4390,7 @@ function renderAllergenGrid() {
       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleAllergen('${a.id}')}">
       <div class="a-dot ${state.allergens.has(a.id) ? 'active' : ''}" id="ad-${a.id}"></div>
       <div>
-        <div class="a-name">${a.name}</div>
+        <div class="a-name">${a[`name_${_lang}`] || a.name_vi || a.name}</div>
         <div class="a-sub">${a[`sub_${_lang}`] || a.sub_vi}</div>
       </div>
     </div>
@@ -4401,10 +4406,10 @@ const CERTS_DATA = [
   { id: 'organic',  name: 'Organic (USDA/EU)',  desc_vi: 'Tăng giá bán 20–40%',                    desc_en: 'Increases selling price 20–40%', pts: 8,  cat: 'spec' },
   { id: 'kosher',   name: 'Kosher',             desc_vi: 'Thị trường Do Thái',                      desc_en: 'Jewish market', pts: 5, cat: 'spec' },
   { id: 'halal',    name: 'Halal (JAKIM/MUI)',  desc_vi: 'Thị trường Hồi giáo',                    desc_en: 'Muslim market', pts: 5, cat: 'spec' },
-  { id: 'sa8000',   name: 'SA8000 (CSR)',       desc_vi: 'ESG-focused buyers',                      desc_en: 'ESG-focused buyers', pts: 3, cat: 'spec' },
-  { id: 'phyto',    name: 'Phytosanitary Cert', desc_vi: 'Kiểm dịch thực vật',                     desc_en: 'Plant health inspection', pts: 8, cat: 'exp' },
-  { id: 'coo',      name: 'C/O Form E (CPTPP)', desc_vi: 'Ưu đãi thuế CPTPP',                     desc_en: 'CPTPP tariff preference', pts: 10, cat: 'exp' },
-  { id: 'nafiqad',  name: 'NAFIQAD / MARD Cert',desc_vi: 'Health cert hải sản, thịt',              desc_en: 'Health certificate for seafood/meat', pts: 7, cat: 'exp' },
+  { id: 'sa8000',   name_vi: 'SA8000 (CSR)',             name_en: 'SA8000 (CSR)',             desc_vi: 'Nhà mua hàng quan tâm ESG',              desc_en: 'ESG-focused buyers', pts: 3, cat: 'spec' },
+  { id: 'phyto',    name_vi: 'Giấy kiểm dịch thực vật',  name_en: 'Phytosanitary Certificate', desc_vi: 'Kiểm dịch thực vật',                     desc_en: 'Plant health inspection', pts: 8, cat: 'exp' },
+  { id: 'coo',      name_vi: 'C/O Form E (CPTPP)',       name_en: 'C/O Form E (CPTPP)',       desc_vi: 'Ưu đãi thuế CPTPP',                     desc_en: 'CPTPP tariff preference', pts: 10, cat: 'exp' },
+  { id: 'nafiqad',  name_vi: 'Giấy chứng nhận NAFIQAD / MARD', name_en: 'NAFIQAD / MARD Certificate', desc_vi: 'Chứng nhận sức khỏe hải sản, thịt', desc_en: 'Health certificate for seafood/meat', pts: 7, cat: 'exp' },
 ];
 
 function renderCertGrid() {
@@ -4415,8 +4420,8 @@ function renderCertGrid() {
     return `
     <div class="cert-card">
       <div class="cert-card-head">
-        <div class="cert-name">${c.name}</div>
-        <span class="tag tag-gray">+${c.pts} pts</span>
+        <div class="cert-name">${c[`name_${_lang}`] || c.name_vi || c.name}</div>
+        <span class="tag tag-gray">+${c.pts} ${_lang === 'en' ? 'pts' : 'điểm'}</span>
       </div>
       <div class="cert-desc">${c[`desc_${_lang}`] || c.desc_vi}</div>
       <div class="cert-upload ${have ? 'cert-upload-done' : ''}" id="cu-${c.id}"
@@ -4492,8 +4497,8 @@ function calcTrustScore() {
 // Patch buildAllergenDeclaration for bilingual alerts
 function buildAllergenDeclaration() {
   if (state.allergens.size === 0) { alert(t('allergen_alert')); return; }
-  const product = document.getElementById('allergen-product-name').value.trim() || 'Product';
-  const enList = [...state.allergens].map(id => ALLERGENS_DATA.find(a => a.id === id)?.name).filter(Boolean);
+  const product = document.getElementById('allergen-product-name').value.trim() || (_lang === 'en' ? 'Product' : 'Sản phẩm');
+  const enList = [...state.allergens].map(id => ALLERGENS_DATA.find(a => a.id === id)?.name_en).filter(Boolean);
   const frList = [...state.allergens].map(id => FR_ALLERGENS[id]).filter(Boolean);
   document.getElementById('allergen-en-text').textContent = `Contains: ${enList.join(', ')}.`;
   document.getElementById('allergen-fr-text').textContent = `Contient : ${frList.join(', ')}.`;
@@ -4529,7 +4534,7 @@ function copyAllergenFallback(text, done) {
   try { copied = document.execCommand('copy'); } catch (_) {}
   area.remove();
   if (copied) done();
-  else alert(_lang === 'en' ? 'Copy failed. Please copy the text manually.' : 'Không thể copy. Vui lòng copy nội dung thủ công.');
+  else alert(_lang === 'en' ? 'Copy failed. Please copy the text manually.' : 'Không thể sao chép. Vui lòng sao chép nội dung thủ công.');
 }
 
 // Patch submitLead for bilingual validation and sending state
@@ -4553,7 +4558,7 @@ async function submitLead() {
       body: JSON.stringify({ company, name, title, email, phone, product, volume, hs_info: hsInfo })
     });
     const result = await resp.json();
-    if (!resp.ok || !result.ok) throw new Error(result.error || 'Unknown error');
+    if (!resp.ok || !result.ok) throw new Error(result.error || (_lang === 'en' ? 'Unknown error' : 'Lỗi không xác định'));
     document.getElementById('modal-form').style.display = 'none';
     document.getElementById('modal-success').style.display = 'block';
   } catch (err) {
@@ -4609,16 +4614,21 @@ async function runHSLookup() {
   btn.style.display = ''; spinner.style.display = 'none';
 
   document.getElementById('hs-code-out').textContent = result.code;
-  const gradePart    = (cat === 'nuts' && grade) ? `Grade: ${grade}` : '';
-  const nutFormLabel = (cat === 'nuts' && nutForm) ? ({ inshell:'In Shell (WW/SW)', kernel:'Kernels', split:'Split & Broken', pieces:'Pieces/Scorched' }[nutForm] || '') : '';
+  const gradePart    = (cat === 'nuts' && grade) ? `${_lang === 'en' ? 'Grade' : 'Loại hạt'}: ${grade}` : '';
+  const nutFormLabel = (cat === 'nuts' && nutForm) ? ({
+    inshell: _lang === 'en' ? 'In Shell (WW/SW)' : 'Chưa bóc vỏ (WW/SW)',
+    kernel: _lang === 'en' ? 'Kernels' : 'Nhân nguyên',
+    split: _lang === 'en' ? 'Split & Broken' : 'Nhân vỡ',
+    pieces: _lang === 'en' ? 'Pieces/Scorched' : 'Vụn & hạt cháy'
+  }[nutForm] || '') : '';
   document.getElementById('hs-desc-out').textContent = [result.desc, product ? `(${product})` : '', nutFormLabel, gradePart].filter(Boolean).join(' · ');
 
-  const sourceBadge = result._source === 'cache' ? ' <span style="font-size:10px;color:var(--light);font-style:italic;">(cached)</span>' :
+  const sourceBadge = result._source === 'cache' ? ` <span style="font-size:10px;color:var(--light);font-style:italic;">(${_lang === 'en' ? 'cached' : 'đã lưu'})</span>` :
     result._source === 'fallback' ? ` <span style="font-size:10px;color:var(--gold);font-style:italic;">(${_lang === 'en' ? 'reference' : 'tham khảo'})</span>` : '';
 
   document.getElementById('hs-cat-tag-result').innerHTML = renderCatTag(result.product_category);
   const catLabel = result.product_category === 'agri' ? t('hs_cat_agri_full') : t('hs_cat_proc_full');
-  const purposeLabel = purpose === 'human' ? 'Human Consumption' : purpose === 'industrial' ? 'Industrial Use' : 'Animal Feed';
+  const purposeLabel = purpose === 'human' ? t('hs_pur_human') : purpose === 'industrial' ? t('hs_pur_industrial') : t('hs_pur_feed');
   document.getElementById('hs-product-category-line').innerHTML =
     `${t('hs_classify')} <strong>${catLabel}</strong> &nbsp;·&nbsp; ${t('hs_purpose_label')} <strong>${purposeLabel}</strong>${sourceBadge}`;
 
@@ -4640,11 +4650,11 @@ async function runHSLookup() {
     <tr>
       <td>${t('hs_form_e')}</td>
       <td colspan="2">${result.eligible ? t('hs_eligible') : t('hs_not_needed')}</td>
-      <td>${result.eligible ? `<span class="tag tag-green">${t('hs_recommended')}</span>` : '<span class="tag tag-gray">N/A</span>'}</td>
+      <td>${result.eligible ? `<span class="tag tag-green">${t('hs_recommended')}</span>` : `<span class="tag tag-gray">${_lang === 'en' ? 'N/A' : 'Không áp dụng'}</span>`}</td>
     </tr>
     <tr>
       <td>${t('hs_customs_class')}</td>
-      <td colspan="2">${result.product_category === 'agri' ? 'Agricultural / Primary product' : 'Processed / Manufactured food'}</td>
+       <td colspan="2">${result.product_category === 'agri' ? (_lang === 'en' ? 'Agricultural / Primary product' : 'Nông sản / Sản phẩm sơ chế') : (_lang === 'en' ? 'Processed / Manufactured food' : 'Thực phẩm chế biến')}</td>
       <td>${renderCatTag(result.product_category)}</td>
     </tr>`;
 
