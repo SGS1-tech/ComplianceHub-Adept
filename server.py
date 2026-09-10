@@ -15,7 +15,7 @@ app = Flask(__name__, static_folder=".")
 BREVO_API_KEY = os.environ.get("BREVO_API_KEY", "")
 BREVO_URL = "https://api.brevo.com/v3/smtp/email"
 SENDER_EMAIL = "support@adept-link.com"
-SENDER_NAME = "Compliance Hub — Adeptlink"
+SENDER_NAME = "Compliance Hub — AdeptLink"
 NOTIFY_EMAIL = "support@adept-link.com"
 NOTIFY_SENDER_EMAIL = "noreply@adept-link.com"   # khác recipient để tránh spam filter
 
@@ -76,12 +76,12 @@ def contact():
         style = "font-family:monospace;" if mono else ""
         return f"<tr><td style='padding:8px 0;color:#5a6b5a;width:150px;vertical-align:top;'><strong>{label}</strong></td><td style='padding:8px 0;color:#0f1a0f;{style}'>{value}</td></tr>"
 
-    # ── Email 1: thông báo nội bộ đến Adeptlink ──
+    # ── Email 1: thông báo nội bộ đến AdeptLink ──
     internal_html = f"""
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
       <div style="background:#1a3320;padding:20px 28px;border-radius:8px 8px 0 0;">
         <h2 style="color:#e6a820;margin:0;font-size:18px;">Yêu cầu tư vấn mới</h2>
-        <p style="color:rgba(255,255,255,0.7);margin:4px 0 0;font-size:13px;">Compliance Hub — Adeptlink</p>
+        <p style="color:rgba(255,255,255,0.7);margin:4px 0 0;font-size:13px;">Compliance Hub — AdeptLink</p>
       </div>
       <div style="background:#f7f3ec;padding:24px 28px;border-radius:0 0 8px 8px;border:1px solid #ede6d6;">
         <table style="width:100%;border-collapse:collapse;font-size:14px;">
@@ -101,7 +101,7 @@ def contact():
     </div>
     """
     status1, body1 = send_email(
-        NOTIFY_EMAIL, "Adeptlink Support",
+        NOTIFY_EMAIL, "AdeptLink Support",
         f"[Compliance Hub] Yêu cầu tư vấn từ {company}",
         internal_html,
         sender_email=NOTIFY_SENDER_EMAIL,
@@ -116,14 +116,14 @@ def contact():
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
       <div style="background:#1a3320;padding:20px 28px;border-radius:8px 8px 0 0;">
         <h2 style="color:#e6a820;margin:0;font-size:18px;">Đã nhận yêu cầu tư vấn!</h2>
-        <p style="color:rgba(255,255,255,0.7);margin:4px 0 0;font-size:13px;">Compliance Hub — Adeptlink</p>
+        <p style="color:rgba(255,255,255,0.7);margin:4px 0 0;font-size:13px;">Compliance Hub — AdeptLink</p>
       </div>
       <div style="background:#f7f3ec;padding:24px 28px;border-radius:0 0 8px 8px;border:1px solid #ede6d6;">
         <p style="color:#0f1a0f;font-size:15px;margin:0 0 16px;">Xin chào <strong>{name}</strong>{(' — ' + title) if title else ''},</p>
         <p style="color:#5a6b5a;font-size:14px;line-height:1.7;margin:0 0 16px;">
           Chúng tôi đã nhận được yêu cầu tư vấn xuất khẩu thực phẩm sang Canada của công ty
           <strong style="color:#1a3320;">{company}</strong>.
-          Đội ngũ Adeptlink sẽ liên hệ với bạn trong vòng <strong>24 giờ làm việc</strong>.
+          Đội ngũ AdeptLink sẽ liên hệ với bạn trong vòng <strong>24 giờ làm việc</strong>.
         </p>
         <div style="background:#fff;border-radius:6px;border:1px solid #ede6d6;padding:16px 20px;margin-bottom:20px;">
           <p style="margin:0 0 10px;font-size:12px;color:#8a9e8a;text-transform:uppercase;letter-spacing:0.7px;">Thông tin đã gửi</p>
@@ -134,18 +134,18 @@ def contact():
         </div>
         <div style="text-align:center;">
           <a href="https://adept-link.com/registration/" style="display:inline-block;background:#1a3320;color:#e6a820;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:700;font-size:14px;">
-            Đăng ký Adeptlink miễn phí →
+            Đăng ký AdeptLink miễn phí →
           </a>
         </div>
         <p style="margin:20px 0 0;font-size:12px;color:#8a9e8a;text-align:center;">
-          © Adeptlink · <a href="https://compliance.adept-link.com" style="color:#3d7a52;">compliance.adept-link.com</a>
+          © AdeptLink · <a href="https://compliance.adept-link.com" style="color:#3d7a52;">compliance.adept-link.com</a>
         </p>
       </div>
     </div>
     """
     status2, body2 = send_email(
         email, name,
-        "Adeptlink đã nhận yêu cầu tư vấn của bạn",
+        "AdeptLink đã nhận yêu cầu tư vấn của bạn",
         confirm_html
     )
     if status2 not in (200, 201):

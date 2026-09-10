@@ -1,4 +1,4 @@
-# ComplianceHub — Adeptlink
+# ComplianceHub — AdeptLink
 
 ## Overview
 A compliance tool for Vietnamese food exporters targeting the Canadian market. Provides HS Code lookup, CFIA checklists, allergen checking, bilingual (EN/FR) label guidance, and certificate information.
