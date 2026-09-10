@@ -9,6 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
+  /* Chiều cao header — drawer/overlay mobile neo theo biến này */
+  --hdr-h: 60px;
   /* ── Minimal palette: trắng + xanh rêu + 1 accent ── */
   --ink:        #16181d;
   --forest:     #1d3a2a;
@@ -61,7 +63,7 @@ header {
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
   padding: 0 28px;
-  height: 60px;
+  height: var(--hdr-h);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -996,11 +998,8 @@ header {
   .hero-badge { font-size: 11px; padding: 4px 10px; }
 
   .shell { padding: 0 12px 50px; }
-  .tabs-wrap { top: 56px; }
-  .tool-tabs { padding: 0; gap: 6px; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-  .tool-tabs::-webkit-scrollbar { display: none; }
-  .tab-btn { min-width: unset; font-size: 12px; padding: 9px 14px; white-space: nowrap; flex-shrink: 0; gap: 0; border-bottom-width: 2px; }
-  .tab-btn svg { display: none; }
+  /* Mobile: ẩn tabs-bar — nút chức năng chuyển hết vào menu hamburger */
+  .tabs-wrap { display: none; }
 
   .card-head { padding: 14px 14px 12px; flex-wrap: wrap; gap: 8px; }
   .card-title { font-size: 15px; }
@@ -1058,18 +1057,20 @@ header {
 .mobile-menu-btn.open { background: var(--mint); border-color: var(--sage); }
 @media (max-width: 900px) { .mobile-menu-btn { display: flex; } }
 
-/* ── MOBILE NAV DRAWER ── */
+/* ── MOBILE NAV DRAWER — vị trí khớp chân header qua biến --hdr-h ── */
 .mobile-nav {
   display: none;
   flex-direction: column;
   position: fixed;
-  top: 60px; left: 0; right: 0;
+  top: var(--hdr-h, 60px); left: 0; right: 0;
   background: var(--white);
   border-bottom: 1px solid var(--border);
   box-shadow: 0 8px 32px rgba(0,0,0,0.08);
   padding: 10px 14px 16px;
   z-index: 99;
   gap: 3px;
+  max-height: calc(100vh - var(--hdr-h, 60px));
+  overflow-y: auto;
 }
 .mobile-nav.open { display: flex; animation: slideDown 0.18s ease both; }
 @keyframes slideDown {
@@ -1078,8 +1079,11 @@ header {
 }
 .mob-nav-btn {
   width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
   text-align: left;
-  padding: 12px 16px;
+  padding: 13px 16px;
   font-size: 15px;
   font-weight: 500;
   color: var(--ink);
@@ -1089,8 +1093,10 @@ header {
   cursor: pointer;
   transition: background 0.12s;
 }
+.mob-nav-btn svg { width: 18px; height: 18px; flex-shrink: 0; color: var(--muted); }
 .mob-nav-btn:hover { background: var(--cream); }
 .mob-nav-btn.active { background: var(--mint); color: var(--forest); font-weight: 600; }
+.mob-nav-btn.active svg { color: var(--forest); }
 .mob-nav-divider { height: 1px; background: var(--border); margin: 6px 0; }
 .mob-nav-register {
   width: 100%;
@@ -1110,14 +1116,13 @@ header {
 .mob-nav-overlay {
   display: none;
   position: fixed;
-  top: 60px; left: 0; right: 0; bottom: 0;
+  top: var(--hdr-h); left: 0; right: 0; bottom: 0;
   z-index: 98;
   background: rgba(0,0,0,0.2);
 }
 .mob-nav-overlay.open { display: block; }
 @media (max-width: 600px) {
-  .mobile-nav { top: 56px; }
-  .mob-nav-overlay { top: 56px; }
+  :root { --hdr-h: 56px; }
 }
 
 /* ── TAB BAR SCROLL HINT ── */
@@ -1381,11 +1386,26 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
 
 <!-- MOBILE NAV DRAWER -->
 <nav class="mobile-nav" id="mobile-nav">
-  <button class="mob-nav-btn active" data-tab="hs" onclick="switchTab('hs',null)" data-i18n="nav_hs">HS Code</button>
-  <button class="mob-nav-btn" data-tab="cfia" onclick="switchTab('cfia',null)" data-i18n="nav_cfia">Checklist CFIA</button>
-  <button class="mob-nav-btn" data-tab="allergen" onclick="switchTab('allergen',null)" data-i18n="nav_allergen">Khai báo Allergen</button>
-  <button class="mob-nav-btn" data-tab="label" onclick="switchTab('label',null)" data-i18n="nav_label">Nhãn EN/FR</button>
-  <button class="mob-nav-btn" data-tab="cert" onclick="switchTab('cert',null)" data-i18n="nav_cert">Chứng chỉ</button>
+  <button class="mob-nav-btn" data-tab="hs" onclick="switchTab('hs',null)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+    <span data-i18n="nav_hs">HS Code</span>
+  </button>
+  <button class="mob-nav-btn" data-tab="cfia" onclick="switchTab('cfia',null)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+    <span data-i18n="nav_cfia">Checklist CFIA</span>
+  </button>
+  <button class="mob-nav-btn" data-tab="allergen" onclick="switchTab('allergen',null)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <span data-i18n="nav_allergen">Khai báo Allergen</span>
+  </button>
+  <button class="mob-nav-btn" data-tab="label" onclick="switchTab('label',null)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+    <span data-i18n="nav_label">Nhãn EN/FR</span>
+  </button>
+  <button class="mob-nav-btn" data-tab="cert" onclick="switchTab('cert',null)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+    <span data-i18n="nav_cert">Chứng chỉ</span>
+  </button>
   <div class="mob-nav-divider"></div>
   <button class="mob-nav-register" onclick="openModal();closeMobileNav()" data-i18n="cta_register">Đăng ký miễn phí →</button>
 </nav>
@@ -4677,6 +4697,9 @@ document.addEventListener('DOMContentLoaded', () => {
   buildCustomSelects();   // must run before setLang so labels sync correctly
   setLang(_lang);         // always apply lang (updates i18n + syncs custom select labels)
   initTabDragScroll();    // enable mouse drag-to-scroll on tab bar
+  // Mobile menu: active nút chức năng theo tab đang mở (mặc định: hs)
+  const initialMob = document.querySelector('.mob-nav-btn[data-tab="hs"]');
+  if (initialMob) initialMob.classList.add('active');
 });
 </script>
 </body>
