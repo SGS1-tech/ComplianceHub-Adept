@@ -1496,7 +1496,7 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
             </label>
             <div style="position:relative;">
               <input class="f-input" id="hs-product" data-i18n-placeholder="hs_ph_product" placeholder="VD: cashew nuts, roasted, salted"
-                oninput="onProductInput(this.value)" autocomplete="off" />
+                oninput="onProductInput(this.value)" autocomplete="off" maxlength="120" />
               <div id="hs-suggest" class="hs-suggest-box" style="display:none;"></div>
             </div>
             <div class="f-err" id="err-hs-product"></div>
@@ -1966,7 +1966,13 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
           <span class="bn-text" data-i18n-html="allergen_banner">Khai thiếu allergen là vi phạm nghiêm trọng, có thể dẫn đến <strong>thu hồi sản phẩm</strong> và phạt tiền. Canada có danh sách allergen riêng — khác với EU và Mỹ.</span>
         </div>
 
-        <div class="f-label" style="margin-bottom:12px;" data-i18n="allergen_grid_label">Chọn tất cả allergen CÓ MẶT trong sản phẩm của bạn:</div>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+          <div class="f-label" style="margin-bottom:0;" data-i18n="allergen_grid_label">Chọn tất cả allergen CÓ MẶT trong sản phẩm của bạn:</div>
+          <div style="display:flex;gap:6px;margin-left:auto;">
+            <button type="button" class="btn-secondary" style="padding:6px 9px;font-size:11px;" onclick="selectAllAllergens()">Chọn tất cả</button>
+            <button type="button" class="btn-secondary" style="padding:6px 9px;font-size:11px;" onclick="clearAllergens()">Bỏ chọn</button>
+          </div>
+        </div>
         <div class="allergen-grid" id="allergen-grid">
           <!-- Rendered by JS -->
         </div>
@@ -1980,6 +1986,7 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
 
         <div class="result-box result-warn" id="allergen-result" style="display:none">
           <div class="r-label" data-i18n="allergen_result_label">Allergen Declaration — Theo chuẩn Health Canada</div>
+          <div id="allergen-product-context" style="font-size:12px;color:var(--muted);margin:-6px 0 14px;"></div>
           <div style="margin-bottom:14px;">
             <div style="font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px;" data-i18n="allergen_en_label">Phải in trên nhãn (tiếng Anh):</div>
             <div style="background:var(--white);border:1.5px solid var(--border);border-radius:7px;padding:14px 16px;font-family:'DM Mono',monospace;font-size:13px;color:var(--ink);line-height:1.6;" id="allergen-en-text">—</div>
@@ -2018,54 +2025,64 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
         <div class="form-grid">
           <div>
             <label class="f-label" data-i18n="label_lbl_name_en">Tên sản phẩm (Anh)</label>
-            <input class="f-input" id="lbl-name-en" placeholder="Roasted Cashews with Sea Salt" />
+            <input class="f-input" id="lbl-name-en" placeholder="Roasted Cashews with Sea Salt" required maxlength="120" />
+            <div class="f-err" id="err-lbl-name-en"></div>
           </div>
           <div>
             <label class="f-label" data-i18n="label_lbl_name_fr">Tên sản phẩm (Pháp)</label>
-            <input class="f-input" id="lbl-name-fr" placeholder="Noix de cajou grillées au sel de mer" />
+            <input class="f-input" id="lbl-name-fr" placeholder="Noix de cajou grillées au sel de mer" required maxlength="120" />
+            <div class="f-err" id="err-lbl-name-fr"></div>
           </div>
         </div>
 
         <div class="form-grid-3">
           <div>
             <label class="f-label" data-i18n="label_lbl_weight">Khối lượng tịnh</label>
-            <input class="f-input" id="lbl-weight" placeholder="500 g" />
+            <input class="f-input" id="lbl-weight" placeholder="500 g" required maxlength="30" />
+            <div class="f-err" id="err-lbl-weight"></div>
           </div>
           <div>
             <label class="f-label" data-i18n="label_lbl_origin">Xuất xứ</label>
-            <input class="f-input" id="lbl-origin" value="Product of Vietnam / Produit du Viêtnam" />
+            <input class="f-input" id="lbl-origin" placeholder="Product of Vietnam / Produit du Vietnam" required maxlength="120" />
+            <div class="f-err" id="err-lbl-origin"></div>
           </div>
           <div>
             <label class="f-label" data-i18n="label_lbl_bb">Hạn sử dụng</label>
-            <input class="f-input" id="lbl-bb" placeholder="BB: 2027-06-30" />
+            <input class="f-input" id="lbl-bb" type="date" required />
+            <div class="f-err" id="err-lbl-bb"></div>
           </div>
         </div>
 
         <div class="form-grid">
           <div>
             <label class="f-label" data-i18n="label_lbl_ing_en">Thành phần (Anh)</label>
-            <input class="f-input" id="lbl-ing-en" placeholder="Cashews, sea salt." />
+            <input class="f-input" id="lbl-ing-en" placeholder="Cashews, sea salt." required maxlength="500" />
+            <div class="f-err" id="err-lbl-ing-en"></div>
           </div>
           <div>
             <label class="f-label" data-i18n="label_lbl_ing_fr">Thành phần (Pháp)</label>
-            <input class="f-input" id="lbl-ing-fr" placeholder="Noix de cajou, sel de mer." />
+            <input class="f-input" id="lbl-ing-fr" placeholder="Noix de cajou, sel de mer." required maxlength="500" />
+            <div class="f-err" id="err-lbl-ing-fr"></div>
           </div>
         </div>
 
         <div class="form-grid">
           <div>
             <label class="f-label" data-i18n="label_lbl_importer">Nhà nhập khẩu / Phân phối tại Canada</label>
-            <input class="f-input" id="lbl-importer" placeholder="ABC Foods Canada Inc., Vancouver BC" />
+            <input class="f-input" id="lbl-importer" placeholder="ABC Foods Canada Inc., Vancouver BC" required maxlength="180" />
+            <div class="f-err" id="err-lbl-importer"></div>
           </div>
           <div>
             <label class="f-label" data-i18n="label_lbl_allergen_en">Khai báo Allergen (EN)</label>
-            <input class="f-input" id="lbl-allergen" placeholder="Contains: tree nuts (cashew)." />
+            <input class="f-input" id="lbl-allergen" placeholder="Contains: tree nuts (cashew)." maxlength="300" />
+            <div class="f-err" id="err-lbl-allergen"></div>
           </div>
         </div>
 
         <div class="form-full">
           <label class="f-label" data-i18n="label_lbl_allergen_fr">Khai báo Allergen (FR)</label>
-          <input class="f-input" id="lbl-allergen-fr" placeholder="Contient : noix d'acajou." />
+          <input class="f-input" id="lbl-allergen-fr" placeholder="Contient : noix d'acajou." maxlength="300" />
+          <div class="f-err" id="err-lbl-allergen-fr"></div>
         </div>
 
         <button class="btn-run" onclick="buildLabel()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span data-i18n="label_btn_preview">Xem trước nhãn EN/FR</span></button>
@@ -2517,6 +2534,7 @@ function onCategoryChange() {
   const nutExtra = document.getElementById('hs-nut-extra');
   const isNuts = cat === 'nuts';
   nutExtra.style.display = isNuts ? 'block' : 'none';
+  syncHSStateOptions();
 
   // Reset & clear nut-specific fields khi đổi sang category khác
   if (!isNuts) {
@@ -2531,14 +2549,45 @@ function onCategoryChange() {
   livePreview();
 }
 
+function syncHSStateOptions() {
+  const cat = document.getElementById('hs-category')?.value;
+  const stateSelect = document.getElementById('hs-state');
+  if (!stateSelect) return;
+  const validStates = new Set(Object.keys(HS_DATA[cat] || {}).filter(key => key !== 'default'));
+  let currentIsValid = !stateSelect.value || validStates.has(stateSelect.value);
+  Array.from(stateSelect.options).forEach(option => {
+    if (!option.value) return;
+    option.disabled = !validStates.has(option.value);
+    option.hidden = option.disabled;
+  });
+  if (!currentIsValid) {
+    stateSelect.value = '';
+    stateSelect.dispatchEvent(new Event('change', { bubbles: true }));
+    clearError('hs-state');
+  }
+}
+
 // ── FILE SELECT ─────────────────────────────────
 function onFileSelect(input) {
   const zone = document.getElementById('upload-zone');
   const lbl = document.getElementById('upload-label');
-  if (input.files && input.files[0]) {
-    zone.classList.add('has-file');
-    lbl.textContent = input.files[0].name;
+  const file = input.files && input.files[0];
+  if (!file) return;
+  const allowed = ['application/pdf', 'image/jpeg', 'image/png'];
+  const maxBytes = 10 * 1024 * 1024;
+  if (!allowed.includes(file.type) || file.size > maxBytes) {
+    input.value = '';
+    zone.classList.remove('has-file');
+    lbl.textContent = _lang === 'en'
+      ? 'Choose a PDF, JPG or PNG up to 10 MB'
+      : 'Chọn PDF, JPG hoặc PNG tối đa 10 MB';
+    alert(_lang === 'en'
+      ? 'The file must be a PDF, JPG or PNG no larger than 10 MB.'
+      : 'File phải là PDF, JPG hoặc PNG và không vượt quá 10 MB.');
+    return;
   }
+  zone.classList.add('has-file');
+  lbl.textContent = `${file.name} (${Math.ceil(file.size / 1024)} KB)`;
 }
 
 // ── LIVE PREVIEW ────────────────────────────────
@@ -2864,7 +2913,14 @@ function updateCFIAProgress() {
   }
 }
 
-function filterChecklist() { /* simplified — all items always shown */ }
+function filterChecklist() {
+  const select = document.getElementById('cfia-type');
+  const selected = select ? select.value : 'all';
+  document.querySelectorAll('#cfia-checklist .check-item').forEach(item => {
+    const types = (item.dataset.types || 'all').split(/\s+/);
+    item.style.display = selected === 'all' || types.includes('all') || types.includes(selected) ? '' : 'none';
+  });
+}
 
 // ══════════════════════════════════════════
 // ALLERGEN DATA & LOGIC
@@ -2922,7 +2978,23 @@ function toggleAllergen(id) {
   } else {
     state.allergens.add(id);
   }
-  document.getElementById('ai-' + id).classList.toggle('selected', state.allergens.has(id));
+  const item = document.getElementById('ai-' + id);
+  if (item) {
+    item.classList.toggle('selected', state.allergens.has(id));
+    item.setAttribute('aria-pressed', String(state.allergens.has(id)));
+  }
+  const dot = document.getElementById('ad-' + id);
+  if (dot) dot.classList.toggle('active', state.allergens.has(id));
+}
+
+function selectAllAllergens() {
+  ALLERGENS_DATA.forEach(a => state.allergens.add(a.id));
+  renderAllergenGrid();
+}
+
+function clearAllergens() {
+  state.allergens.clear();
+  renderAllergenGrid();
 }
 
 function buildAllergenDeclaration() {
@@ -2967,16 +3039,17 @@ function addAllergenToLabel() {
 // LABEL BUILDER
 // ══════════════════════════════════════════
 function buildLabel() {
-  const nameEn = document.getElementById('lbl-name-en').value || '—';
-  const nameFr = document.getElementById('lbl-name-fr').value || '—';
-  const weight = document.getElementById('lbl-weight').value || '—';
-  const ingEn  = document.getElementById('lbl-ing-en').value || '—';
-  const ingFr  = document.getElementById('lbl-ing-fr').value || '—';
-  const origin = document.getElementById('lbl-origin').value || '—';
-  const bb     = document.getElementById('lbl-bb').value || '—';
-  const allergenEn = document.getElementById('lbl-allergen').value || '';
-  const allergenFr = document.getElementById('lbl-allergen-fr').value || '';
-  const importer = document.getElementById('lbl-importer').value || '—';
+  if (!validateLabel()) return;
+  const nameEn = document.getElementById('lbl-name-en').value.trim();
+  const nameFr = document.getElementById('lbl-name-fr').value.trim();
+  const weight = document.getElementById('lbl-weight').value.trim();
+  const ingEn  = document.getElementById('lbl-ing-en').value.trim();
+  const ingFr  = document.getElementById('lbl-ing-fr').value.trim();
+  const origin = document.getElementById('lbl-origin').value.trim();
+  const bb     = document.getElementById('lbl-bb').value.trim();
+  const allergenEn = document.getElementById('lbl-allergen').value.trim();
+  const allergenFr = document.getElementById('lbl-allergen-fr').value.trim();
+  const importer = document.getElementById('lbl-importer').value.trim();
 
   document.getElementById('lbl-out-name-en').textContent  = nameEn;
   document.getElementById('lbl-out-name-fr').textContent  = nameFr;
@@ -2994,12 +3067,12 @@ function buildLabel() {
   const allergenEnEl = document.getElementById('lbl-out-allergen-en');
   const allergenFrEl = document.getElementById('lbl-out-allergen-fr');
   if (allergenEn) {
-    allergenEnEl.innerHTML = `<strong>ALLERGEN INFORMATION:</strong> ${allergenEn}`;
+    allergenEnEl.textContent = `ALLERGEN INFORMATION: ${allergenEn}`;
   } else {
     allergenEnEl.textContent = 'No allergen statement added.';
   }
   if (allergenFr) {
-    allergenFrEl.innerHTML = `<strong>INFORMATION SUR LES ALLERGÈNES :</strong> ${allergenFr}`;
+    allergenFrEl.textContent = `INFORMATION SUR LES ALLERGÈNES : ${allergenFr}`;
   } else {
     allergenFrEl.textContent = 'Aucune mention d\'allergènes ajoutée.';
   }
@@ -3007,6 +3080,53 @@ function buildLabel() {
   const preview = document.getElementById('label-preview');
   preview.classList.add('show');
   preview.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function validateLabel() {
+  const fields = [
+    ['lbl-name-en', _lang === 'en' ? 'Enter the English product name.' : 'Vui lòng nhập tên sản phẩm tiếng Anh.'],
+    ['lbl-name-fr', _lang === 'en' ? 'Enter the French product name.' : 'Vui lòng nhập tên sản phẩm tiếng Pháp.'],
+    ['lbl-weight', _lang === 'en' ? 'Enter the net quantity, for example 500 g.' : 'Vui lòng nhập khối lượng tịnh, ví dụ 500 g.'],
+    ['lbl-origin', _lang === 'en' ? 'Enter the origin in English and French.' : 'Vui lòng nhập xuất xứ bằng tiếng Anh và tiếng Pháp.'],
+    ['lbl-bb', _lang === 'en' ? 'Choose a best-before date.' : 'Vui lòng chọn hạn sử dụng.'],
+    ['lbl-ing-en', _lang === 'en' ? 'Enter the English ingredients.' : 'Vui lòng nhập thành phần tiếng Anh.'],
+    ['lbl-ing-fr', _lang === 'en' ? 'Enter the French ingredients.' : 'Vui lòng nhập thành phần tiếng Pháp.'],
+    ['lbl-importer', _lang === 'en' ? 'Enter the Canadian importer or distributor.' : 'Vui lòng nhập nhà nhập khẩu hoặc phân phối tại Canada.']
+  ];
+  let ok = true;
+  fields.forEach(([id, message]) => {
+    const value = document.getElementById(id).value.trim();
+    if (!value) { showError(id, message); ok = false; } else clearError(id);
+  });
+
+  const weight = document.getElementById('lbl-weight').value.trim();
+  if (weight && !/^\d+(?:[.,]\d+)?\s?(?:g|kg|mg|ml|l|oz|lb)\b/i.test(weight)) {
+    showError('lbl-weight', _lang === 'en' ? 'Use a quantity such as 500 g or 1 kg.' : 'Dùng định dạng như 500 g hoặc 1 kg.');
+    ok = false;
+  }
+
+  const origin = document.getElementById('lbl-origin').value.trim();
+  if (origin && !origin.includes('/')) {
+    showError('lbl-origin', _lang === 'en' ? 'Separate English and French with /.' : 'Ngăn cách phần tiếng Anh và tiếng Pháp bằng dấu /.');
+    ok = false;
+  }
+
+  const allergenEn = document.getElementById('lbl-allergen').value.trim();
+  const allergenFr = document.getElementById('lbl-allergen-fr').value.trim();
+  if (!!allergenEn !== !!allergenFr) {
+    const message = _lang === 'en' ? 'Provide both allergen statements or leave both blank.' : 'Hãy nhập cả hai câu allergen hoặc để trống cả hai.';
+    if (!allergenEn) showError('lbl-allergen', message); else clearError('lbl-allergen');
+    if (!allergenFr) showError('lbl-allergen-fr', message); else clearError('lbl-allergen-fr');
+    ok = false;
+  } else {
+    clearError('lbl-allergen');
+    clearError('lbl-allergen-fr');
+  }
+  if (!ok) {
+    const first = document.querySelector('.f-input.error');
+    if (first) first.focus();
+  }
+  return ok;
 }
 
 // ══════════════════════════════════════════
@@ -3197,6 +3317,20 @@ function stOpts() {
   return SKU_STATE_OPTIONS.map(o => `<option value="${o.v}">${o.l}</option>`).join('');
 }
 
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, ch => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[ch]));
+}
+
+function stOptsForCategory(cat, selected='') {
+  const valid = cat && HS_DATA[cat] ? new Set(Object.keys(HS_DATA[cat])) : null;
+  return SKU_STATE_OPTIONS
+    .filter(o => !valid || valid.has(o.v) || o.v === selected)
+    .map(o => `<option value="${o.v}" ${o.v === selected ? 'selected' : ''}>${o.l}</option>`)
+    .join('');
+}
+
 function openMultiSKU() {
   document.getElementById('multi-sku-panel').style.display = 'block';
   document.getElementById('sku-micro-trigger').style.display = 'none';
@@ -3245,8 +3379,8 @@ function renderSKUTable() {
     return `
       <tr id="sku-row-${row.id}">
         <td style="color:var(--light);font-size:12px;font-family:'DM Mono',monospace;">${idx+1}</td>
-        <td><input class="f-input" placeholder="Tên sản phẩm" value="${row.product}"
-          onchange="updateSKUField(${row.id},'product',this.value)" style="min-width:140px;" /></td>
+        <td><input class="f-input" placeholder="Tên sản phẩm" value="${escapeHtml(row.product)}"
+          oninput="updateSKUTextField(${row.id},this.value)" style="min-width:140px;" maxlength="120" /></td>
         <td>
           <select class="f-select" onchange="updateSKUField(${row.id},'cat',this.value)" style="min-width:130px;">
             <option value="">-- Danh mục --</option>${catOpts().replace(`value="${row.cat}"`,`value="${row.cat}" selected`)}
@@ -3254,10 +3388,10 @@ function renderSKUTable() {
         </td>
         <td>
           <select class="f-select" onchange="updateSKUField(${row.id},'st',this.value)" style="min-width:130px;">
-            <option value="">-- Hình thức --</option>${stOpts().replace(`value="${row.st}"`,`value="${row.st}" selected`)}
+            <option value="">-- Hình thức --</option>${stOptsForCategory(row.cat, row.st)}
           </select>
         </td>
-        <td>${codeCell}</td>
+        <td>${row.error ? `<span class="sku-result-pending" style="color:var(--rust);">${row.error}</span>` : codeCell}</td>
         <td>${taxCell}</td>
         <td>${catTag}</td>
         <td>
@@ -3273,11 +3407,22 @@ async function updateSKUField(id, field, value) {
   const row = skuState.rows.find(r => r.id === id);
   if (!row) return;
   row[field] = value;
+  row.error = '';
+  if (field === 'cat' && row.st && !HS_DATA[value]?.[row.st]) row.st = '';
   // Auto-lookup if both cat + st are filled
   if (row.cat && row.st) {
     const catData   = HS_DATA[row.cat] || HS_DATA['processed'];
-    const staticRes = catData[row.st] || catData['other_processed'] || catData['default'];
+    const staticRes = catData[row.st];
+    if (!staticRes) {
+      row.result = null;
+      row.error = _lang === 'en' ? 'This state is not available for the selected category.' : 'Trạng thái này không áp dụng cho danh mục đã chọn.';
+      renderSKUTable();
+      updateSKUSummary();
+      return;
+    }
     row.result = staticRes || null;
+    const lookupToken = (row.lookupToken || 0) + 1;
+    row.lookupToken = lookupToken;
 
     // Fetch live rate từ Worker nếu đã config
     if (staticRes?.code && HS_PROXY_URL && !HS_PROXY_URL.includes('YOUR-SUBDOMAIN')) {
@@ -3285,6 +3430,7 @@ async function updateSKUField(id, field, value) {
         const resp = await fetch(`${HS_PROXY_URL}?code=${encodeURIComponent(staticRes.code)}&origin=VN`);
         if (resp.ok) {
           const api = await resp.json();
+          if (row.lookupToken !== lookupToken) return;
           row.result = { ...staticRes, mfn: api.mfn || staticRes.mfn, cptpp: api.cptpp || staticRes.cptpp,
                          saving: api.saving || staticRes.saving, eligible: api.eligible ?? staticRes.eligible };
         }
@@ -3292,9 +3438,19 @@ async function updateSKUField(id, field, value) {
     }
   } else {
     row.result = null;
+    row.error = row.cat && row.st
+      ? (_lang === 'en' ? 'Please choose a valid category and state.' : 'Vui lòng chọn danh mục và trạng thái hợp lệ.')
+      : '';
   }
   renderSKUTable();
   updateSKUSummary();
+  checkDetectBanner();
+}
+
+function updateSKUTextField(id, value) {
+  const row = skuState.rows.find(r => r.id === id);
+  if (!row) return;
+  row.product = value.trimStart().slice(0, 120);
   checkDetectBanner();
 }
 
@@ -3351,12 +3507,19 @@ function checkDetectBanner() {
 async function parseExcel(input) {
   if (!input.files || !input.files[0]) return;
   const file = input.files[0];
-  // Simple CSV fallback — reads first 3 cols: Name, Category, State
+  const allowed = ['text/csv', 'application/vnd.ms-excel', 'text/plain'];
+  if (file.size > 5 * 1024 * 1024 || (file.type && !allowed.includes(file.type) && !/\.csv$/i.test(file.name))) {
+    alert('Vui lòng chọn file CSV tối đa 5 MB.');
+    input.value = '';
+    return;
+  }
   const text = await file.text().catch(() => null);
   if (!text) { alert('Không đọc được file. Vui lòng dùng định dạng CSV hoặc thêm SKU thủ công.'); return; }
-  const lines = text.split('\n').filter(l => l.trim()).slice(1); // skip header
-  lines.forEach(line => {
-    const cols = line.split(/,|\t/).map(c => c.trim().replace(/^"|"$/g,''));
+  const lines = text.split(/\r?\n/).filter(l => l.trim());
+  const first = parseCSVLine(lines[0]);
+  const hasHeader = first.some(value => /^(name|product|product name|category|state|trạng thái|danh mục)/i.test(value));
+  lines.slice(hasHeader ? 1 : 0).forEach(line => {
+    const cols = parseCSVLine(line);
     const [product, catRaw, stRaw] = cols;
     if (!product) return;
     // Fuzzy match category
@@ -3365,6 +3528,26 @@ async function parseExcel(input) {
     addSKURow(product, cat, st);
   });
   input.value = '';
+}
+
+function parseCSVLine(line) {
+  const values = [];
+  let value = '';
+  let quoted = false;
+  for (let i = 0; i < line.length; i += 1) {
+    const ch = line[i];
+    if (ch === '"') {
+      if (quoted && line[i + 1] === '"') { value += '"'; i += 1; }
+      else quoted = !quoted;
+    } else if ((ch === ',' || ch === '\t') && !quoted) {
+      values.push(value.trim());
+      value = '';
+    } else {
+      value += ch;
+    }
+  }
+  values.push(value.trim());
+  return values;
 }
 
 // ── GATE FORM VALIDATION ─────────────────────
@@ -3388,6 +3571,11 @@ async function generatePDFReport() {
   if (!validateGate()) return;
   const doneRows = skuState.rows.filter(r => r.result);
   if (doneRows.length === 0) { alert('Vui lòng tra cứu ít nhất 1 SKU trước khi tạo báo cáo.'); return; }
+  const incompleteRows = skuState.rows.filter(r => !r.product.trim() || !r.cat || !r.st || !r.result);
+  if (incompleteRows.length) {
+    alert(`Còn ${incompleteRows.length} SKU chưa đủ tên, danh mục, trạng thái hoặc kết quả. Vui lòng hoàn tất hoặc xóa các dòng này trước khi tạo báo cáo.`);
+    return;
+  }
 
   const email   = document.getElementById('gate-email').value.trim();
   const company = document.getElementById('gate-company').value.trim();
@@ -4128,7 +4316,12 @@ function renderChecklist() {
   // Build a quick lookup map for mainLink & links from CFIA_ITEMS
   const mainLinkMap = {};
   const linksMap = {};
-  CFIA_ITEMS.forEach(it => { mainLinkMap[it.id] = it.mainLink || null; linksMap[it.id] = it.links || null; });
+  const typesMap = {};
+  CFIA_ITEMS.forEach(it => {
+    mainLinkMap[it.id] = it.mainLink || null;
+    linksMap[it.id] = it.links || null;
+    typesMap[it.id] = it.types || ['all'];
+  });
 
   list.innerHTML = CFIA_ORDER.map((id, i) => {
     const item = CFIA_ITEMS_DATA[id];
@@ -4140,7 +4333,7 @@ function renderChecklist() {
     const lks   = linksMap[id];
     const extIco = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
     return `
-    <li class="check-item" data-types="all">
+     <li class="check-item" data-types="${typesMap[id].join(' ')}">
       <div class="check-box ${state.cfiaChecked[id] ? 'checked' : ''}" id="cb-${id}" onclick="toggleCheck('${id}')"></div>
       <div class="check-content">
         <div class="check-title">${i+1}. ${title}</div>
@@ -4161,6 +4354,7 @@ function renderChecklist() {
       </div>
     </li>`;
   }).join('');
+  filterChecklist();
 }
 
 // Override renderAllergenGrid to be language-aware
@@ -4185,7 +4379,10 @@ function renderAllergenGrid() {
   const grid = document.getElementById('allergen-grid');
   if (!grid) return;
   grid.innerHTML = ALLERGENS_DATA.map(a => `
-    <div class="allergen-item ${state.allergens.has(a.id) ? 'selected' : ''}" id="ai-${a.id}" onclick="toggleAllergen('${a.id}')">
+    <div class="allergen-item ${state.allergens.has(a.id) ? 'selected' : ''}" id="ai-${a.id}"
+      role="button" tabindex="0" aria-pressed="${state.allergens.has(a.id)}"
+      onclick="toggleAllergen('${a.id}')"
+      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleAllergen('${a.id}')}">
       <div class="a-dot ${state.allergens.has(a.id) ? 'active' : ''}" id="ad-${a.id}"></div>
       <div>
         <div class="a-name">${a.name}</div>
@@ -4222,7 +4419,10 @@ function renderCertGrid() {
         <span class="tag tag-gray">+${c.pts} pts</span>
       </div>
       <div class="cert-desc">${c[`desc_${_lang}`] || c.desc_vi}</div>
-      <div class="cert-upload ${have ? 'cert-upload-done' : ''}" id="cu-${c.id}" onclick="toggleCert('${c.id}')">
+      <div class="cert-upload ${have ? 'cert-upload-done' : ''}" id="cu-${c.id}"
+        role="button" tabindex="0" aria-pressed="${have}"
+        onclick="toggleCert('${c.id}')"
+        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleCert('${c.id}')}">
         ${have ? t('cert_have') : t('cert_add')}
       </div>
     </div>`;
@@ -4234,6 +4434,7 @@ function toggleCert(id) {
   if (state.certs.has(id)) { state.certs.delete(id); } else { state.certs.add(id); }
   const el = document.getElementById('cu-' + id);
   el.classList.toggle('cert-upload-done', state.certs.has(id));
+  el.setAttribute('aria-pressed', String(state.certs.has(id)));
   el.textContent = state.certs.has(id) ? t('cert_have') : t('cert_add');
 }
 
@@ -4296,6 +4497,8 @@ function buildAllergenDeclaration() {
   const frList = [...state.allergens].map(id => FR_ALLERGENS[id]).filter(Boolean);
   document.getElementById('allergen-en-text').textContent = `Contains: ${enList.join(', ')}.`;
   document.getElementById('allergen-fr-text').textContent = `Contient : ${frList.join(', ')}.`;
+  document.getElementById('allergen-product-context').textContent =
+    _lang === 'en' ? `Product: ${product}` : `Sản phẩm: ${product}`;
   const result = document.getElementById('allergen-result');
   result.style.display = 'block';
   result.classList.add('show');
@@ -4305,7 +4508,28 @@ function buildAllergenDeclaration() {
 function copyAllergen() {
   const en = document.getElementById('allergen-en-text').textContent;
   const fr = document.getElementById('allergen-fr-text').textContent;
-  navigator.clipboard.writeText(en + '\n' + fr).then(() => alert(t('allergen_copy_done')));
+  const text = en + '\n' + fr;
+  const done = () => alert(t('allergen_copy_done'));
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(() => copyAllergenFallback(text, done));
+  } else {
+    copyAllergenFallback(text, done);
+  }
+}
+
+function copyAllergenFallback(text, done) {
+  const area = document.createElement('textarea');
+  area.value = text;
+  area.setAttribute('readonly', '');
+  area.style.position = 'fixed';
+  area.style.opacity = '0';
+  document.body.appendChild(area);
+  area.select();
+  let copied = false;
+  try { copied = document.execCommand('copy'); } catch (_) {}
+  area.remove();
+  if (copied) done();
+  else alert(_lang === 'en' ? 'Copy failed. Please copy the text manually.' : 'Không thể copy. Vui lòng copy nội dung thủ công.');
 }
 
 // Patch submitLead for bilingual validation and sending state
@@ -4454,6 +4678,12 @@ function validateHS() {
   if (!product) { showError('hs-product', errProd); ok = false; } else clearError('hs-product');
   if (!cat) { showError('hs-category', errCat); ok = false; } else clearError('hs-category');
   if (!st)  { showError('hs-state', errSt); ok = false; }   else clearError('hs-state');
+  if (cat && st && !HS_DATA[cat]?.[st]) {
+    showError('hs-state', _lang === 'en'
+      ? 'This processing state is not available for the selected category.'
+      : 'Trạng thái này không áp dụng cho danh mục đã chọn.');
+    ok = false;
+  }
   if (!purpose) { showError('hs-purpose', errPur); ok = false; } else clearError('hs-purpose');
   if (cat === 'nuts') {
     const nf = document.getElementById('hs-nut-form').value;
@@ -4559,14 +4789,19 @@ function buildCustomSelects() {
           grp.className = 'cs-optgroup';
           grp.textContent = child.getAttribute('label') || '';
           scroll.appendChild(grp);
-          Array.from(child.children).forEach(opt => scroll.appendChild(makeItem(opt)));
+           Array.from(child.children).forEach(opt => {
+             const item = makeItem(opt);
+             if (item) scroll.appendChild(item);
+           });
         } else if (child.tagName === 'OPTION') {
-          scroll.appendChild(makeItem(child));
+           const item = makeItem(child);
+           if (item) scroll.appendChild(item);
         }
       });
     };
 
     const makeItem = (opt) => {
+       if (opt.disabled || opt.hidden) return null;
       const item = document.createElement('div');
       item.className = 'cs-item' + (opt.value === sel.value ? ' selected' : '');
       item.textContent = opt.textContent.trim();
