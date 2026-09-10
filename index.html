@@ -189,6 +189,17 @@ header {
   overflow-x: auto;
   box-shadow: none;
 }
+/* Desktop: keep the five tools in one row so the tab strip never
+   creates a horizontal scrollbar or its native arrow controls. */
+@media (min-width: 901px) {
+  .tool-tabs { overflow-x: hidden; }
+  .tab-btn {
+    min-width: 0;
+    flex: 1 1 0;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
 .tab-btn {
   flex: 1;
   min-width: 120px;
@@ -1203,9 +1214,14 @@ html:hover {
 
 /* Chrome / Safari / Edge — thanh chính của trang */
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  width: 3px;
+  height: 3px;
   background: transparent;
+}
+::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
 }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
@@ -1224,8 +1240,9 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
 .tool-tabs::-webkit-scrollbar,
 .cs-panel-scroll::-webkit-scrollbar,
 .r-table-wrap::-webkit-scrollbar {
-  width: 4px; height: 4px;
+  width: 3px; height: 3px;
 }
+.tool-tabs::-webkit-scrollbar { width: 0; height: 0; }
 .tool-tabs::-webkit-scrollbar-thumb,
 .cs-panel-scroll::-webkit-scrollbar-thumb,
 .r-table-wrap::-webkit-scrollbar-thumb {
