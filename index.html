@@ -192,7 +192,20 @@ header {
 /* Desktop: keep the five tools in one row so the tab strip never
    creates a horizontal scrollbar or its native arrow controls. */
 @media (min-width: 901px) {
-  .tool-tabs { overflow-x: hidden; }
+  .tool-tabs {
+    overflow: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .tool-tabs::-webkit-scrollbar,
+  .tool-tabs::-webkit-scrollbar-button,
+  .tool-tabs::-webkit-scrollbar-track,
+  .tool-tabs::-webkit-scrollbar-thumb,
+  .tool-tabs::-webkit-scrollbar-corner {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
   .tab-btn {
     min-width: 0;
     flex: 1 1 0;
@@ -1242,7 +1255,7 @@ html:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
 .r-table-wrap::-webkit-scrollbar {
   width: 3px; height: 3px;
 }
-.tool-tabs::-webkit-scrollbar { width: 0; height: 0; }
+ .tool-tabs::-webkit-scrollbar { width: 0; height: 0; }
 .tool-tabs::-webkit-scrollbar-thumb,
 .cs-panel-scroll::-webkit-scrollbar-thumb,
 .r-table-wrap::-webkit-scrollbar-thumb {
