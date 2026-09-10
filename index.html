@@ -2282,7 +2282,6 @@ function switchTab(id, btnEl) {
   const mobBtn = document.querySelector(`.mob-nav-btn[data-tab="${id}"]`);
   if (mobBtn) mobBtn.classList.add('active');
 
-  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function toggleMobileNav() {
