@@ -966,8 +966,9 @@ header {
   .two-col { grid-template-columns: 1fr; }
   .cert-grid { grid-template-columns: 1fr 1fr; }
   .cta-strip { padding: 24px 20px; }
-  .tabs-wrap { top: 60px; }
-  .tab-btn { font-size: 12.5px; padding: 10px 12px; min-width: 100px; }
+  /* Tablet: ẩn tabs-bar — nút chức năng dùng menu hamburger như mobile,
+     loại bỏ thanh cuộn ngang trên tabs */
+  .tabs-wrap { display: none; }
   .card-head { padding: 16px 18px 14px; }
   .card-body { padding: 18px; }
   .form-grid-3 { grid-template-columns: 1fr 1fr; }
@@ -998,8 +999,6 @@ header {
   .hero-badge { font-size: 11px; padding: 4px 10px; }
 
   .shell { padding: 0 12px 50px; }
-  /* Mobile: ẩn tabs-bar — nút chức năng chuyển hết vào menu hamburger */
-  .tabs-wrap { display: none; }
 
   .card-head { padding: 14px 14px 12px; flex-wrap: wrap; gap: 8px; }
   .card-title { font-size: 15px; }
@@ -1124,21 +1123,6 @@ header {
 @media (max-width: 600px) {
   :root { --hdr-h: 56px; }
 }
-
-/* ── TAB BAR SCROLL HINT ── */
-.tabs-wrap::after {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 48px; height: 100%;
-  background: linear-gradient(to left, var(--white) 0%, transparent 100%);
-  pointer-events: none;
-  border-radius: 0 var(--r) var(--r) 0;
-  display: none;
-}
-@media (max-width: 900px) { .tabs-wrap::after { display: block; } }
-.tool-tabs.drag-scroll { cursor: grab; user-select: none; }
-.tool-tabs.drag-scroll.dragging { cursor: grabbing; }
 
 /* ── LANG TOGGLE (header inline) ── */
 .lang-toggle {
